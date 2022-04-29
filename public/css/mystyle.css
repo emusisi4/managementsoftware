@@ -1,0 +1,188 @@
+.bethapa-table-header {
+    font-weight: bold;
+    color: maroon;
+    font-size: 2.1em;
+    border-bottom: 1px solid rgb(3, 46, 10);
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.musisireporttable-table td, th {
+   
+    /* padding-left: 18px; */
+    text-align: left;
+    
+    /* background: #a99696; */
+    background: #bfbdbd;
+    color: black;
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    padding: -0.25rem;
+    /* border-top: 1px solid #822119;*/
+    border: 0.5px solid #c5c5c5;
+    padding-left: 0px;
+   
+    font-size: 18px;
+  
+}
+/* .emmietopheader{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: monospace;
+    color: white;
+    background-color: #0064c8;
+
+}
+.emmietopheaderleft{
+    text-align: left;
+    font-size: 2em;
+    color: white;
+    background-color: #0064c8;
+
+} */
+.bethapa-reports-header {
+    font-weight: bold;
+    color: black;
+    font-size: 2.1em;
+    border-bottom: 1px solid rgb(3, 46, 10);
+    margin-bottom: 20px;
+    width: 100%;
+}
+.bethapa-table-sectionheader {
+    font-weight: bold;
+    color: maroon;
+    font-size: 1.5em;
+    border-bottom: 1px solid rgb(3, 46, 10);
+    margin-bottom: 20px;
+    width: 97%;
+    margin-left: 20px;
+}
+.bethapa-reportheader-header {
+    font-weight: bold;
+  color: #343a40;
+  font-size: 2.1em;
+  border-bottom: 1px solid rgb(3, 46, 10);
+  margin-bottom: 20px;
+  width: 100%;
+}
+.bethapa-component-header {
+      font-weight: bold;
+    color: #343a40;
+    font-size: 3.1em;
+    border-bottom: 1px solid rgb(3, 46, 10);
+    margin-bottom: 20px;
+    width: 100%;
+}
+.bethapa-table-miniheader {
+    font-weight: bold;
+    color: #180480;
+    font-size: 1.1em;
+    border-bottom: 1px solid rgb(3, 46, 10);
+    margin-bottom: 20px;
+    margin-left: 40px;
+    width: 100%;
+    padding: initial;
+}
+button.add-newm {
+    display: inline-block;
+    float: right;
+    font-size: 0.6em;
+    /* padding: 0px; */
+    background:#8ea09f;
+    font-weight: bold;
+    /* border: 1px solid black; */
+    box-shadow: 0px 0px 0.5px black;
+}
+/* .mysalessect {
+    padding: 0rem;
+    float: right;
+} */
+/* .mysalessect2 {
+    padding: 0rem;
+    float: left;
+} */
+/* .mysalessect3 {
+    padding: 0rem;
+    font-size: 28px;
+    font-weight: bold;
+ 
+    text-align: center;
+} */
+/* 
+ tr:nth-child(even) {
+  background-color: #f67d2947;
+  font-size: 20px;
+}
+tr:nth-child(odd) {
+  background-color:#b7b7ef42;
+ font-size: 20px;
+ 
+}*/
+.sss{
+
+    font-weight: 900;
+    font-size: 30px;
+    color: white;
+
+}
+.info-payots {
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    border-radius: 26.25rem;
+    background: #dc3545;
+;
+    display: -ms-flexbox;
+    display: flex;
+    /* margin-bottom: 1rem; */
+    min-height: 80px;
+        padding: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+.info-collections {
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    border-radius: 26.25rem;
+    background: #33a2b8;
+;
+    display: -ms-flexbox;
+    display: flex;
+    /* margin-bottom: 1rem; */
+    min-height: 80px;
+        padding: 1.5rem;
+    position: relative;
+    background-color: #41fae024;
+    width: 100%;
+}
+.info-profit {
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    border-radius: 26.25rem;
+    background: #3f8a30;
+;
+    display: -ms-flexbox;
+    display: flex;
+    /* margin-bottom: 1rem; */
+    min-height: 80px;
+        padding: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+.info-salesdetails {
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    border-radius: 26.25rem;
+    background: #6c757d;;
+    display: -ms-flexbox;
+    display: flex;
+    /* margin-bottom: 1rem; */
+    min-height: 80px;
+        padding: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+th {
+  /* background-color: #8c9765; */
+  font-size: 18px;
+}
+#axiosForm{  /* Components Root Element ID */
+    position: relative;
+}
+ 
