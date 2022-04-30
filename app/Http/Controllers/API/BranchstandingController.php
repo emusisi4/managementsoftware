@@ -31,58 +31,31 @@ class BranchstandingController extends Controller
 
     public function index()
     {
-        $userid =  auth('api')->user()->id;
-        $userbranch =  auth('api')->user()->branch;
-        $userrole =  auth('api')->user()->type;
-     //   if($userrole = 1)
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+      $branchname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
+      $countryname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('countryname');
+      $companyname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
 
-
-     //if($userrole == '101')
-      {
-      
-      //   return   Dailyreportcode::with(['branchName','expenseName'])->latest('id')
-    //  return   Branchcashstanding::with(['branchnameDailycodes', 'machinenameDailycodes'])->orderby('daysalesamount', 'Dec')
-    //
-    return   Branchcashstanding::with(['branchName2'])->orderby('id', 'Dec')
-       // ->where('del', 0)
-      //  ->where('branch', $userbranch)
-      //  ->where('explevel', 1)
+    if($branchname != '900')
+{
+    return   Branchcashstanding::with(['branchName2','countryBranchstanding', 'companyBranchstanding'])->orderby('id', 'Dec')
+    ->where('countryname', $countryname)
+    ->where('companyname', $companyname)
+    ->where('branch', $branchname)
        ->paginate(35);
-      }
+}
      
-
-
-       // return Student::all();
-     //  return   Submheader::with(['maincomponentSubmenus'])->latest('id')
-       // return   MainmenuList::latest('id')
-     //    ->where('del', 0)
-         //->paginate(15)
-     //    ->get();
-
-   //   return   Branchpayout::with(['ExpenseTypeconnect','expenseCategory','payingUserdetails'])->latest('id')
-     //  return   Branchpayout::latest('id')
-     //   ->where('del', 0)
-     //  ->paginate(13);
-
-       //  return Submheader::latest()
-         //  -> where('ucret', $userid)
-           
-
-
-
-
-
-
-
-
-
-
-       // {
-      // return Submheader::latest()
-      //  -> where('ucret', $userid)
-    //    ->paginate(15);
-      //  }
-
+if($branchname == '900')
+{
+    return   Branchcashstanding::with(['branchName2','countryBranchstanding', 'companyBranchstanding'])->orderby('id', 'Dec')
+    ->where('countryname', $countryname)
+    ->where('companyname', $companyname)
+     
+      
+       ->paginate(35);
+}
       
     }
 

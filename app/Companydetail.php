@@ -58,8 +58,11 @@ class Companydetail extends Authenticatable
         // creating a relationship between the students model 
         return $this->hasMany(Monthlyexpense::class, 'companyname', 'id'); 
     } 
-
-
+    public function companyBranchstanding(){
+        // creating a relationship between the students model 
+        return $this->hasMany(Branchcashstanding::class, 'companyname', 'id'); 
+    } 
+    
 
 
 

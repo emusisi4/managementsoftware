@@ -20,10 +20,17 @@ class Branchcashstanding extends Authenticatable
         // creating a relationship between the students model 
         return $this->belongsTo(Branch::class, 'branch'); 
     }
-
     public function branchName2(){
         // creating a relationship between the students model 
         return $this->belongsTo(Branch::class, 'branch'); 
+    }
+    
+    public function countryBranchstanding(){
+        // creating a relationship between the students model 
+        return $this->belongsTo(Country::class, 'countryname'); 
+    }
+    public function companyBranchstanding(){
+    return $this->belongsTo(Companydetail::class, 'companyname'); 
     }
     
     protected $hidden = [

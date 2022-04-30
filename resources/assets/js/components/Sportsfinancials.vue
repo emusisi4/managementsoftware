@@ -183,19 +183,98 @@
                              
 
                                 <div role="tabpanel" class="tab-pane fade in active" id="company_details_tab">
+
+
+
+
+
+ <!-- <form @submit.prevent="savenewRecordtoview()">
+                
+                      <div class="form-group">
+                   
+
+
+
+
+
+
+
+
+
+
+
+  <label> Branch :</label>
+                            <select v-model="branch" id="xx3"    @change='getFloatcodes()'>
+                             
+                              <option v-for='data in brancheslist' :value='data.id'>{{ data.branchname }}</option>
+                            </select>
+
+  
+
+
+        <label for="exampleInputEmail1">Float code :</label>
+                 
+                 
+
+         <select name ="codeinuse" v-model="form.codeinuse" 
+         id ="branch" v-on:change="myClickEventtosavesalesreportbydate"   :class="{'is-invalid': form.errors.has('codeinuse')}">
+
+
+<option  v-for='data in floatcodes' v-bind:value='data.floatcode'> {{ data.floatcode }}</option>
+
+</select>
+            <has-error :form="form" field="codeinuse"></has-error>
+
+
+
+                              
+             <button type="submit" style="display:none" id="submit" hidden="hidden"
+              name= "submit" ref="theButtontosabemonthlyreportvie" class="btn btn-primary btn-sm">Saveit</button>         
+
+                                
+                     
+       
+       
+                   
+          </div>
+
+
+        
+
+                </form> -->
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                   <form @submit.prevent="savethemonthlyreportforallbranches()">
                  
                       <div class="form-group">
               
 
-       <input v-model="form.actionaidsalesreportbydate" type="hidden" readonly="" name="actionaidsalesreportbydate">
+       <input v-model="form.actionaidsalesreportbydate"  type="hidden" readonly="" name="actionaidsalesreportbydate">
     
 
   <label for="exampleInputEmail1">Country :</label>
                  
                  
 
-       <select name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+       <select name ="type" v-model="form.countryname" @change='getcompanies()' v-on:change="myClickEventtosavemonthlyreportallbranches" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
                                        data-live-search="true">
                                         <option></option>
                                         <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
@@ -1122,7 +1201,66 @@
 
 
                                 <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
+    <form @submit.prevent="savethemonthlyreportforallbranches()">
+                 
+                      <div class="form-group">
+              
 
+       <input v-model="form.actionaidsalesreportbydate" type="hidden" readonly="" name="actionaidsalesreportbydate">
+    
+
+  <label for="exampleInputEmail1">Country :</label>
+                 
+                 
+
+       <select name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches299" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+                                       data-live-search="true">
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+
+
+           
+                                   
+
+                                        <label for="password_2">Company</label>
+                                  
+                                               <select name ="companyname" v-model="form.companyname"  
+                                             v-on:change="myClickEventtosavemonthlyreportallbranches299" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                       data-live-search="true">
+                                        <option></option>
+                                        <option v-for='data in companieslist' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                   
+
+
+  <label for="exampleInputEmail1">Branch :</label>
+                 
+                 
+
+         <select name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches299"
+          :class="{'is-invalid': form.errors.has('branchname')}">
+<option value="900"> All </option>
+<option v-for='data in brancheslist' v-bind:value='data.id'> {{ data.branchname }}</option>
+
+</select>
+            <has-error :form="form" field="branchname"></has-error>
+
+
+                              
+             <button type="submit" id="submit" style="display:none;" hidden="hidden" name= "submit" ref="theButtontotosalesreportmonthly299" class="btn btn-primary btn-sm">Saveit</button>         
+
+                                
+                     
+       
+       
+                   
+          </div>
+
+
+        
+
+                </form>
  <div class="bethapa-table-header">
 <!-- 
  <form @submit.prevent="SaveRoletoaddmainmenu()">
@@ -1180,8 +1318,11 @@
                       
                          
                                 <td>{{allmainmenus.id}}</td>
-                                    <td>{{allmainmenus.countryname}}</td>
-                                       <td>{{allmainmenus.companyname}}</td>
+                                   <td>   <template v-if="allmainmenus.country_branchstanding">
+                                     	{{allmainmenus.country_branchstanding.countryname}}</template></td>
+                                  <td>   <template v-if="allmainmenus.company_branchstanding">
+                                     	{{allmainmenus.company_branchstanding.companyname}}</template></td>
+                                     
  
                                  
                              
@@ -2850,6 +2991,13 @@
                 countrieslist:[],
                   companieslist:[],
 
+    value: 60,
+           country: 0,
+             state: 0,
+           branch:0,
+              branches: [],
+           floatcode:0,
+ floatcodes: [],
 
 
             ///////////////////////////////////
@@ -2921,7 +3069,7 @@ shopbalancngname: null,
                 rolename:'',
                 type:'',
 mainmenus:'',
-
+branch:'',
 
 ///////////////////////////////////
 
@@ -2976,6 +3124,50 @@ companycontactperson:'',
          },
 
 methods:{
+
+getFloatcodes: function() {
+                axios.get('/api/getFloatcodes',{params: {branch: this.branch       }
+                 
+              }).then(function(response){
+                    this.floatcodes = response.data;
+                }.bind(this));
+            xx3.hide
+        },
+      savenewRecordtoview(){
+this.loading = true;
+                                this.$Progress.start();
+                                this.form.post('api/dailybranchfloatcodesperformance')
+                                .then(()=>{
+
+ axios.get("api/codedetails").then(({ data }) => (this.codedetails = data));
+ axios.get("api/seleceteddatefordailyreportenddate").then(({ data }) => (this.seleceteddatefordailyreportenddate = data));
+     axios.get("api/seleceteddatefordailyreport").then(({ data }) => (this.seleceteddatefordailyreport = data));
+        axios.get("api/tatalgeneratedbythecode").then(({ data }) => (this.tatalgeneratedbythecode = data));
+             axios.get("api/totalcodecredits").then(({ data }) => (this.totalcodecredits = data));
+axios.get("api/totalnumberofdaysforcode").then(({ data }) => (this.totalnumberofdaysforcode = data));
+ axios.get("api/currentlyselecteddebitcollectionsreport").then(({ data }) => (this.currentlyselecteddebitcollectionsreport = data));                              //  Fire.$emit('AfterAction');
+
+                               // $('#addNew').modal('hide');
+
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Record Added Successfully'
+                                });
+this.loading = false;
+
+                                this.$Progress.finish();
+                                  this.form.clear();
+        this.form.reset();
+                                })
+                                .catch(()=>{
+
+                                })
+
+}, 
+
+  myClickEventtosavesalesreportbydate($event) { const elem = this.$refs.theButtontosabemonthlyreportvie
+            elem.click()
+        },
      savethemonthlyreportforallbranches(){
 
                                 this.loading = true;
@@ -2985,6 +3177,7 @@ axios.get("api/currentbalancingrecords").then(({ data }) => (this.shopbalancingd
  axios.get("api/fishcollections").then(({ data }) => (this.fishcollectionrecords = data));
  axios.get("api/cashoutfromofficeforfish").then(({ data }) => (this.fishcashcreditrecords = data));
 axios.get("api/collectionsaccountcurrentbalance").then(({ data }) => (this.collectionsaccountcurrentbalance = data));
+this.loadBranchstandingaccounts();
                                 Toast.fire({
                                 icon: 'success',
                                 title: 'Record Added Successfully'
@@ -3001,6 +3194,10 @@ axios.get("api/collectionsaccountcurrentbalance").then(({ data }) => (this.colle
 
 }, 
 myClickEventtosavemonthlyreportallbranches($event) { const elem = this.$refs.theButtontotosalesreportmonthly
+            elem.click()
+        },
+        
+        myClickEventtosavemonthlyreportallbranches299($event) { const elem = this.$refs.theButtontotosalesreportmonthly299
             elem.click()
         },
 myClickEventtosavemonthlyreportallbranches2($event) { const elem = this.$refs.theButtontotosalesreportmonthly2
@@ -3324,8 +3521,45 @@ allwedetodeleteBalancingrecord: function(){axios.get("api/allowedtodeleteshopBal
 
 
 
+
+
+
+
+
+
+getcompanies: function()
+{ axios.get('/api/getcompaniesdetails').then(function (response) { this.companieslist = response.data;}.bind(this));
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  getShopbalancingrecords: function(){ axios.get('/api/currentbalancingrecords').then(function (response) { this.shopbalancingdatarecords = response.data;}.bind(this));},
-getcompanies: function(){ axios.get('/api/getcompaniesdetails').then(function (response) { this.companieslist = response.data;}.bind(this));},
 getcountries: function(){ axios.get('/api/getCountries').then(function (response) { this.countrieslist = response.data;}.bind(this));},
 getRoles: function(){ axios.get('/api/getRoles').then(function (response) { this.roleslist = response.data;}.bind(this));},
 getBranches: function(){  axios.get('/api/branchDetails').then(function (response) { this.brancheslist = response.data;}.bind(this));},
@@ -4449,7 +4683,7 @@ balancescheck(){
 this.loadBranches();
       });
       
-  //setInterval(() =>this.loadcurrentmacineCodebranch(),1000);
+ // setInterval(() =>this.getFloatcodes(),1000);
         }
     }
 </script>
