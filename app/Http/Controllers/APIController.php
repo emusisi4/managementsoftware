@@ -2674,10 +2674,16 @@ public function collectionsaccountcurrentbalance()
  $userid =  auth('api')->user()->id;
  $userbranch =  auth('api')->user()->branch;
  $userrole =  auth('api')->user()->type;
+ $companyname =  auth('api')->user()->companyname;
+ $countryname =  auth('api')->user()->countryname;
 
      
   $currentdate = date('Y-m-d');
- return $startdate  = \DB::table('expensewalets')->where('id', 1)->value('bal');
+ return $startdate  = \DB::table('expensewalets')
+ ->where('walletno', 1)
+ ->where('companyname', $companyname)
+ ->where('countryname', $countryname)
+ ->value('bal');
   
  
 }
