@@ -994,7 +994,7 @@
 <!-- Sub Menu Access settings Start -->
 
                                 <div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
-        <form @submit.prevent="savethemonthlyreportforallBranches()">
+        <form @submit.prevent="saveexpensesreporttoviewbranches()">
                  
                       <div class="form-group">
               
@@ -3069,6 +3069,49 @@ companycontactperson:'',
          },
 
 methods:{
+    myClickEventtosavesalesreportbydate2($event) { const elem = this.$refs.mybtnforgrneralsalesreport2
+            elem.click()
+        },
+
+ saveexpensesreporttoviewbranches (){
+
+                                this.loading = true;
+                                this.form.post('api/expensesreportstoviewnows')
+                                .then(()=>{
+axios.get("api/totalmonthlycollectionsselectedreport").then(({ data }) => (this.totalmonthlycollectionsselectedreport = data));
+axios.get("api/allbranchesmreports").then(({ data }) => (this.allbranchesmreports = data));
+  axios.get("api/selectedreporttype").then(({ data }) => (this.selectedreporttype = data));
+   axios.get("api/mothlyreportmonth").then(({ data }) => (this.mothlyreportmonth = data));
+       axios.get("api/mothlyreportyear").then(({ data }) => (this.mothlyreportyear = data));
+        axios.get("api/branchandmonthreport").then(({ data }) => (this.branchandmonthreport = data));
+       axios.get("api/branchandyearreport").then(({ data }) => (this.branchandyearreport = data));
+          axios.get("api/totalmonthlysalesselectedreport").then(({ data }) => (this.totalmonthlysalesselectedreport = data));
+        axios.get("api/totalmonthlypayoutselectedreport").then(({ data }) => (this.totalmonthlypayoutselectedreport = data));
+         axios.get("api/totalmonthlyprofitselectedreport").then(({ data }) => (this.totalmonthlyprofitselectedreport = data));
+//  axios.get("api/dailycodesreportdata").then(({ data }) => (this.dailycodesreportdata = data));
+
+                              //  Fire.$emit('AfterAction');
+
+                               // $('#addNew').modal('hide');
+
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Record Added Successfully'
+                                });
+
+                                                              this.loading = false;
+
+                                  this.form.clear();
+        this.form.reset();
+                                })
+                                .catch(()=>{
+
+                                })
+
+}, 
+
+
+
   savethemonthlyreportforallBranches (){
 
                                 this.loading = true;

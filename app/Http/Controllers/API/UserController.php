@@ -21,7 +21,7 @@ class UserController extends Controller
 
      //   $this->authorize('isSuperadmin'); 
      //   return   User::with(['userRole','userBranch'])->latest('id')
-  return   User::with(['userRole', 'userCompany', 'userBranch','createdbyName'])->latest('id')
+  return   User::with(['userRole', 'userCompany', 'userCountry','userBranch','createdbyName'])->latest('id')
 
      // ->where('del', 0)
      ->paginate(20);

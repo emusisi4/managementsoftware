@@ -50,11 +50,14 @@ class User extends Authenticatable
     }
     public function userCompany(){
         // creating a relationship between the students model 
-        return $this->belongsTo(Companydetail::class, 'comp'); 
+        return $this->belongsTo(Companydetail::class, 'companyname'); 
+    }
+    public function userCountry(){
+    return $this->belongsTo(Country::class, 'countryname'); 
     }
     public function userCompanycintransfers(){
         // creating a relationship between the students model 
-        return $this->hasMany(Cintransfer::class, 'comp', 'id'); 
+        return $this->hasMany(Cintransfer::class, 'companyname', 'id'); 
     }
 
     

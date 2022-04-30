@@ -339,11 +339,14 @@
                     <tr>
                    
                       <th > # </th>
-                      <th > NAME </th>
+                      <th > FULL NAME </th>
+                        <th > COUNTRY </th>
+                          <th > COMPANY </th>
+                           <th > BRANCH </th>
                       <th > USERNAME </th>
                        <th >USER ROLE </th>
-                       <th > COMPANY </th>
-                      <th > BRANCH </th>
+                       
+                     
                       <th > CREATED </th>
                        <th > CREATED BY </th>
                      <th >  </th>
@@ -364,18 +367,23 @@
  
                              
                                   <td>{{usersdata.name}}</td>
+                                      <td> 
+                                     <template v-if="usersdata.user_country">	{{usersdata.user_country.countryname}}</template> 
+                                  </td>
+                                      <td> 
+                                     <template v-if="usersdata.user_company">	{{usersdata.user_company.companyname}}</template> 
+                                  </td>
+                                      <td> 
+                                     <template v-if="usersdata.user_branch">	{{usersdata.user_branch.branchname}}</template> 
+                                  </td>
 
                                   <td>{{usersdata.email}}</td>
                                    <td> 
                                      <template v-if="usersdata.user_role">	{{usersdata.user_role.rolename}}</template> 
                                   </td>
-                                     <td> 
-                                     <template v-if="usersdata.user_company">	{{usersdata.user_company.companyname}}</template> 
-                                  </td>
+                                 
 
-                                      <td> 
-                                     <template v-if="usersdata.user_branch">	{{usersdata.user_branch.branchname}}</template> 
-                                  </td>
+                                  
 
                                     <td> 
                                      <template v-if="usersdata.createdby_name">	{{usersdata.createdby_name.name}}</template> 

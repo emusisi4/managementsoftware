@@ -541,7 +541,7 @@ Route::get('customerslist', 'APIController@customerslist');
 Route::apiResources(['roletobalance' => 'API\RoletoaddcomponentsController']);
 
 
-
+Route::apiResources(['expensesreportstoviewnows' => 'API\ExpensesreportstoviewController']);
 
 Route::apiResources(['saleareportsview' => 'API\SalesreporttoviewController']);
 Route::apiResources(['castransactionstoview' => 'API\Cashtransactionstoview']);

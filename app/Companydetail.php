@@ -23,7 +23,7 @@ class Companydetail extends Authenticatable
     
     public function userCompany(){
         // creating a relationship between the students model 
-        return $this->hasMany(User::class, 'comp', 'id'); 
+        return $this->hasMany(User::class, 'companyname', 'id'); 
     }
     public function companyCintransfers(){
         // creating a relationship between the students model 

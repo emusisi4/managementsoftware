@@ -1784,18 +1784,18 @@ public function cashierslist()
      
      
       $data = Branch::get(); 
-      return response()->json($data);
-      // if($userrole == '1')
-      // {
-      //   $data = Branch::get(); return response()->json($data);
-      // }
-      // if($userrole != '1')
-      // {
-      //   $data = Branch::latest('id')
-      //   ->where('countryname', '=', $usercountry)
-      //   ->where('companyname', '=', $usercompany)
-      //   ->get(); return response()->json($data);
-      // }
+     // return response()->json($data);
+      if($userrole == '1')
+      {
+        $data = Branch::get(); return response()->json($data);
+      }
+      if($userrole != '1')
+      {
+        $data = Branch::latest('id')
+        ->where('countryname', '=', $usercountry)
+        ->where('companyname', '=', $usercompany)
+        ->get(); return response()->json($data);
+      }
    }
     public function getcomponentslist()
     {

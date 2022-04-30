@@ -24,45 +24,26 @@ class MonthlyexpensesController extends Controller
       $userid =  auth('api')->user()->id;
       $userbranch =  auth('api')->user()->branch;
      $userrole =  auth('api')->user()->type;
-        if($userrole = 1)
+     $usercompany =  auth('api')->user()->companyname;
+     $usercountry =  auth('api')->user()->countryname;
 
 
+     $monthtodisplay = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('monthname');
+     $yeartodisplay = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('yearname');
+     $branch = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('branch');
+   
+     $companyname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('companyname');
+     $countryname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('countryname');
 
 
-
-       // return Student::all();
-     //  return   Submheader::with(['maincomponentSubmenus'])->latest('id')
-       // return   MainmenuList::latest('id')
-     //    ->where('del', 0)
-         //->paginate(15)
-     //    ->get();
-
-     if($userrole != '101')
-     {
-      
      return   Monthlyexpense::with(['countryMonthlyexpense','companyMonthlyexpense','branchMonthlyexpense','expenseMonthlyexpense'])->latest('id')
-       //return   Monthlyexpense::latest('id') 
-    //   ->where('del', 0)
+      
+      ->where('companyname', $usercompany)
+      ->where('countryname', $usercountry)
        ->paginate(20);
-     }
-       //  return Submheader::latest()
-         //  -> where('ucret', $userid)
-           
-
-
-
-
-
-
-
-
-
-
-       // {
-      // return Submheader::latest()
-      //  -> where('ucret', $userid)
-    //    ->paginate(15);
-      //  }
+    
+    
+     
 
       
     }

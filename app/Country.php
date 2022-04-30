@@ -30,10 +30,14 @@ class Country extends Authenticatable
         return $this->hasMany(Branchperformancereport::class, 'countryname', 'id'); 
     }
 
-
     public function countryName(){
      
         return $this->hasMany(Companydetail::class, 'countryname', 'id'); 
+    }
+
+    public function userCountry(){
+     
+        return $this->hasMany(User::class, 'countryname', 'id'); 
     }
     public function countryBranchstanding(){
         // creating a relationship between the students model 
