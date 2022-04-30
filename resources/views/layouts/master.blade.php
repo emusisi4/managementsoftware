@@ -84,7 +84,7 @@
     
         <div>
            
-        <img style="align:left"  src="images/SREE-Logo.png" width="60" height="60" alt="" class="d-inline-block align-top">
+        <!-- <img style="align:left"  src="images/SREE-Logo.png" width="60" height="60" alt="" class="d-inline-block align-top"> -->
 
             <b>
         <?php $useridtousess = Auth::user()->id;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sena Hardware Ltd</title>
+    <title>Etech Software</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -28,7 +28,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);"><b>HARDWARE POS</b></a>
+            <a href="javascript:void(0);"><b>Etech - IT Solutions</b></a>
             
         </div>
         <div class="card">
