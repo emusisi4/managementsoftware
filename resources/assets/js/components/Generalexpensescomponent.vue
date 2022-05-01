@@ -111,7 +111,7 @@
 
                                 <li role="presentation">
                                     <a href="#profile_with_icon_title" @click="loadGeneralExpenses()" data-toggle="tab">
-                                        <i class="material-icons"></i> Expenses
+                                        <i class="material-icons"></i> Expense
                                     </a>
                                 </li>
                                 <li role="presentation" >
