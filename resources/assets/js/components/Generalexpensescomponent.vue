@@ -98,11 +98,11 @@
                                     </a>
                                 </li>
 
-                                <li role="presentation" >
+                                <!-- <li role="presentation" >
                                     <a href="#home_with_icon_title" @click="loadfishcollectionrecords()" data-toggle="tab">
                                         <i class="material-icons"></i>Expense types
                                     </a>
-                                </li>
+                                </li> -->
 
 
 
@@ -115,7 +115,7 @@
                                     </a>
                                 </li>
                                 <li role="presentation" >
-                                    <a href="#messages_with_icon_title" data-toggle="tab"  @click="loadExpensesmadebyoffice()">
+                                <a href="#messages_with_icon_title" data-toggle="tab"  @click="loadExpensesmadebyoffice()">
                                         <i class="material-icons"></i> Expense Requests
                                     </a>
                                 </li>
