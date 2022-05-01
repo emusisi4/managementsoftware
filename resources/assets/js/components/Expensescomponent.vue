@@ -347,10 +347,11 @@ pre {
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs tab-nav-right" role="tablist">
                                 <li role="presentation" v-if="expensecategoriesaccessSettings > 0 " class="active"><a href="#home" @click="loadExpensecategories()" data-toggle="tab" aria-expanded="false">Expense Categories</a></li>
-                                <li role="presentation"  v-if="expensetypesaccessSettings > 0 " class=""><a href="#profile" @click="loadExpensetypes()" data-toggle="tab" aria-expanded="false">Expense Types</a></li>
+                                <li role="presentation"  v-if="expensetypesaccessSettings > 550 " class=""><a href="#profile" @click="loadExpensetypes()" data-toggle="tab" aria-expanded="false">Expense Types</a></li>
                                 <li role="presentation" class=""  v-if="allcompanyexpensesaccessSettings > 0 "><a href="#messages" 
                                 data-toggle="tab" @click="loadGeneralExpenses()" aria-expanded="false">Expenses List</a></li>
-                                <li role="presentation" v-if="makeofficeexpenseaccessSettings > 0 "><a href="#settings" data-toggle="tab"   @click="loadExpensesmadebyoffice()"  aria-expanded="true">Expense Requests</a></li>
+                                <li role="presentation" ><a href="#settings" data-toggle="tab"
+                                   @click="loadExpensesmadebyoffice()"  aria-expanded="true">Expense Requests</a></li>
                             </ul>
 
                             <!-- Tab panes -->
