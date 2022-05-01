@@ -1345,7 +1345,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Add Component Access</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update Record</h3> </h4> 
+                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update </h3> </h4> 
                         </div>
                   <form class="form-horizontal" @submit.prevent="editmode ? updateUser():createAuthorisedrole()"> 
                             
