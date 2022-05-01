@@ -114,7 +114,7 @@
                                         <i class="material-icons"></i> Expenses
                                     </a>
                                 </li>
-                                <li role="presentation" v-if="mainmenuaccessSettings > 0 "  >
+                                <li role="presentation" >
                                     <a href="#messages_with_icon_title" data-toggle="tab"  @click="loadExpensesmadebyoffice()">
                                         <i class="material-icons"></i> Expense Requests
                                     </a>

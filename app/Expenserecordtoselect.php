@@ -14,7 +14,8 @@ class Expenserecordtoselect extends Authenticatable
   
     
     protected $fillable = [
-        'expensename', 'branch', 'ucret','displaynumber','countryname', 'companyname',
+       
+        'branch', 'expensename', 'displaynumber', 'ucret', 'companyname', 'countryname', 'brancename'
     ];
     
 

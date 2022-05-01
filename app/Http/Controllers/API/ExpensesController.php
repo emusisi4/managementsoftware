@@ -25,18 +25,8 @@ class ExpensesController extends Controller
       $userid =  auth('api')->user()->id;
       $userbranch =  auth('api')->user()->branch;
      $userrole =  auth('api')->user()->type;
-        if($userrole = 1)
+       
 
-
-
-
-
-       // return Student::all();
-     //  return   Submheader::with(['maincomponentSubmenus'])->latest('id')
-       // return   MainmenuList::latest('id')
-     //    ->where('del', 0)
-         //->paginate(15)
-     //    ->get();
 
      if($userrole != '101')
      {
