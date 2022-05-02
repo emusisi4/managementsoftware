@@ -1365,10 +1365,10 @@ $wordCount = \DB::table('collectionreporttoviews')
        $userrole =  auth('api')->user()->type;
       /// $roleto  = Bran::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('rolename');  
      
-      $data = Expensewalet::latest('id')
+     // $data = Expensewalet::latest('id')
       //->where('sysname', '!=', $component)
-      ->get();
-              return response()->json($data);
+    //  ->get();
+    //          return response()->json($data);
  }
  
  public function unitmeasurelist()
