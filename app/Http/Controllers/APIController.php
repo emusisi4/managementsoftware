@@ -4566,9 +4566,17 @@ $data = Expense::latest('id')
 
 public function expensablewallets()
 {
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $usertype =  auth('api')->user()->type;
+  $userrolle =  auth('api')->user()->mmaderole;
+  $usercompany =  auth('api')->user()->companyname;
+  $usercountry =  auth('api')->user()->countryname;
  
 $data = Expensewalet::latest('id')
-->where('recievableincome', 1)
+->where('companyname',   $usercompany )
+->where('countryname',   $usercountry )
+->where('spendable', 1)
 ->get();
     return response()->json($data);
 }
