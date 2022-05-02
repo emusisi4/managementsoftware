@@ -2125,7 +2125,7 @@
                                                <select name ="walletinaction" v-model="form.walletinaction" v-on:change="myClicktoaddBranchcollection"  id ="walletinaction" :class="{'is-invalid': form.errors.has('branchnametobalance')}"
                                       class="form-control show-tick" data-live-search="true">
                                         <option></option>
-                                        <option v-for='data in walletlist' :value='data.id'>{{ data.name }}</option>
+                                        <option v-for='data in walletsofeapenselist' :value='data.walletno'>{{ data.name }}</option>
                                     </select>
                    
                
@@ -2940,6 +2940,7 @@
             ///////////////////////////////////
           brancheslist: [],
           walletlist:[],
+          walletsofeapenselist:[],
           expensecategorieslist:[],
           expensetypeslist:[],
            currencydetails:null,
@@ -3360,7 +3361,8 @@ loadExpensesmadebyoffice(){
         axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
         axios.get('/api/getWalletlist').then(function (response) { this.walletlist = response.data;}.bind(this));
        
-      
+       axios.get('/api/walletsofeapenselist').then(function (response) { this.walletsofeapenselist = response.data;}.bind(this));
+       
         axios.get("api/branchpayoutaccessSettings").then(({ data }) => (this.branchpayoutaccessSettings = data));
         axios.get("api/cashcollectionaccessSetting").then(({ data }) => (this.cashcollectionaccessSetting = data));
 ///

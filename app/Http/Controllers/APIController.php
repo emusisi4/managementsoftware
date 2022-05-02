@@ -1365,10 +1365,10 @@ $wordCount = \DB::table('collectionreporttoviews')
        $userrole =  auth('api')->user()->type;
       /// $roleto  = Bran::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('rolename');  
      
-     // $data = Expensewalet::latest('id')
+      $data = Expensewalet::latest('id')
       //->where('sysname', '!=', $component)
-    //  ->get();
-    //          return response()->json($data);
+      ->get();
+              return response()->json($data);
  }
  
  public function unitmeasurelist()
@@ -1390,16 +1390,22 @@ public function walletstorecievemoney()
     $userbranch =  auth('api')->user()->branch;
     $userrole =  auth('api')->user()->mmaderole;
     $userwallet =  auth('api')->user()->mywallet;
+    $usercountryname =  auth('api')->user()->countryname;
+    $usercompanyname =  auth('api')->user()->companyname;
   
   if($userrole == '101')
  {  
    $data = Expensewalet::latest('id')
-   ->where('id', '=', $userwallet)
+   ->where('wallenno', '=', $userwallet)
+   ->where('usercompany', '=', $usercompanyname)
+   ->where('usercountry', '=', $usercountryname)
    ->get();
   }
   if($userrole != '101')
   {  
     $data = Expensewalet::latest('id')
+    ->where('usercompany', '=', $usercompanyname)
+    ->where('usercountry', '=', $usercountryname)
     ->where('recievableincome', '=', 1)
     ->get();
    }
@@ -1410,9 +1416,12 @@ public function walletsofeapenselist()
     $userid =  auth('api')->user()->id;
     $userbranch =  auth('api')->user()->branch;
     $userrole =  auth('api')->user()->type;
-  
-  
+    $companyname =  auth('api')->user()->companyname;
+    $countryname =  auth('api')->user()->countryname;
+   
    $data = Expensewalet::latest('id')
+   ->where('usercompany', '=', $usercompanyname)
+   ->where('usercountry', '=', $usercountryname)
    ->where('spendable', '=', 0)
    ->get();
            return response()->json($data);
