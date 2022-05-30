@@ -29,14 +29,18 @@ class ExpensecategoriesController extends Controller
       $userid =  auth('api')->user()->id;
       $userbranch =  auth('api')->user()->branch;
       $userrole =  auth('api')->user()->type;
-
+      $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+      $countryname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('countryname');
+    //  $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+      $branchname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
     //  if($userrole == '101')
       {
     //  return   Product::with(['userbalancingBranch','branchinBalance'])->latest('id')
    // return   Productcategory::with(['brandName','productCategory','productSupplier','unitMeasure'])->latest('id')
       return   Expensescategory::latest('id')
        //  return   Branchpayout::latest('id')
-        // ->where('branch', $userbranch)
+         ->where('companyname', $companyname2)
+         ->where('countryname', $countryname2)
         ->paginate(20);
       }
 

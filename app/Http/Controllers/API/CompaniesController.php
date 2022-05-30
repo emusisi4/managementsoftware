@@ -14,11 +14,8 @@ use App\Branchstatement;
 use App\Companydetail;
 class CompaniesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+  
     public function __construct()
     {
        $this->middleware('auth:api');
@@ -51,15 +48,15 @@ class CompaniesController extends Controller
 
 
        $this->validate($request,[
-        'currency'   => 'required | String |max:191',
+        'currency'   => 'required |max:191',
         'currencysymbol'   => 'required',
-
+        'tradename'=> 'required',
         'countryname' => 'required',
 
-        'location'   => 'required | String |max:191',
-      
-        'currency'   => 'required | String |max:191',
-      //  'companyname'   => 'required',
+        'location'   => 'required |max:191',
+        'description'   => 'required',
+        
+        'companyname'   => 'required',
         'emailaddress'   => 'required | email |max:191',
         'contactperson'   => 'required',
         'contactnumber'   => 'required',

@@ -51,7 +51,7 @@ class AuthorisedbranchandmachineController extends Controller
 
 
        $this->validate($request,[
-       'branch'   => 'required',
+       'branchname'   => 'required',
        'machinename'   => 'required',
        'machinmultiplier' => 'required',
        'countryname'   => 'required',
@@ -62,7 +62,7 @@ class AuthorisedbranchandmachineController extends Controller
 
   $datepaid = date('Y-m-d');
 //  $inpbranch = $request['branchnametobalance'];
-$bn = $request['branch'];
+$bn = $request['branchname'];
 $prod = $request['machinename'];
      
 $dateinq =  $request['datedone'];
@@ -71,7 +71,7 @@ DB::table('branchesandmachines')->where('branchname', $bn)->where('machinename',
        return Branchesandmachine::Create([
     
 
-      'branchname' => $request['branch'],
+      'branchname' => $request['branchname'],
      'machinename'=> $request['machinename'],
      'machinmultiplier'=> $request['machinmultiplier'],
      'companyname'=> $request['companyname'],

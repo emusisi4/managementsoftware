@@ -17,7 +17,7 @@ class Componentsaccesse extends Authenticatable
      * @var array
      */
     protected $fillable = ['componentto',
-        'mmaderole','countryname', 'companyname','ucret',
+        'mmaderole','countryname', 'companyname','ucret','countryname','companyname'
     ];
     //public function maincomponentSubmenus(){
         // creating a relationship between the students model 

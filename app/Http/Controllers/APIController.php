@@ -52,13 +52,122 @@ use App\Customer;
 use App\Companydetail;
 use App\Branchcashstanding;
 use App\Generalwalet;
-
+use App\Ncssidtype;
+use App\Ncssclient;
+use App\Ncssemployee;
 use Terbilang;
+use App\Ncssloansecurity;
+use App\Ncsscompanypaymentplan;
 class APIController extends Controller
 
 {
+  
 
 ////  sportsbetting
+public function generalclientdetails()
+{
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+$usercompany =  auth('api')->user()->companyname;
+$usercountry =  auth('api')->user()->countryname;
+
+
+$superadminselectedcountry =    \DB::table('countryinactions')->where('ucret', '=', $userid)->value('countryname');
+$data = Ncssclient::latest('id')
+ // ->where('countryname', '=', $superadminselectedcountry)
+  ->get();
+   return response()->json($data);
+
+////
+// if($userrole == '1')
+// { $data = Ncssclient::latest('id')
+//  // ->where('countryname', '=', $superadminselectedcountry)
+//   ->get();
+//    return response()->json($data); }
+
+
+
+// if($userrole != '1')
+// { $data = Companydetail::latest('id')
+//   ->where('id', '=', $usercompany)
+//   ->get();
+//    return response()->json($data); 
+//   }
+
+
+
+}
+
+
+public function companypaymentplanslist()
+{
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+$usercompany =  auth('api')->user()->companyname;
+$usercountry =  auth('api')->user()->countryname;
+if($userrole == '1')
+{
+$data = Ncsscompanypaymentplan::latest('id')
+//  ->where('countryname', '=', $superadminselectedcountry)
+  ->get();
+   return response()->json($data);
+}
+if($userrole != '1')
+{
+
+$data = Ncsscompanypaymentplan::latest('id')
+ ->where('countryname', '=', $usercountry)
+ ->where('companyname', '=', $usercompany)
+ ->get();
+  return response()->json($data);
+
+}
+
+}
+public function generalbranches()
+{
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+$usercompany =  auth('api')->user()->companyname;
+$usercountry =  auth('api')->user()->countryname;
+
+$data = Branch::latest('id')
+ // ->where('countryname', '=', $superadminselectedcountry)
+  ->get();
+   return response()->json($data);
+
+}
+public function generalloanofficers()
+{
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+$usercompany =  auth('api')->user()->companyname;
+$usercountry =  auth('api')->user()->countryname;
+
+$data = Ncssemployee::latest('id')
+ // ->where('countryname', '=', $superadminselectedcountry)
+  ->get();
+   return response()->json($data);
+
+}
+public function getgeneralloansecurities()
+{
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+$usercompany =  auth('api')->user()->companyname;
+$usercountry =  auth('api')->user()->countryname;
+
+$data = Ncssloansecurity::latest('id')
+ // ->where('countryname', '=', $superadminselectedcountry)
+  ->get();
+   return response()->json($data);
+
+}
 public function getcompaniesdetails()
 {
 $userid =  auth('api')->user()->id;
@@ -112,6 +221,28 @@ if($userrole != '1')
 
 
 
+public function brancheslist()
+
+{ 
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $usercompany =  auth('api')->user()->companyname;
+  $usercountry =  auth('api')->user()->countryname;
+  if($userrole == '1')
+  {
+    $data = Branch::get(); return response()->json($data);
+  }
+  if($userrole != '1')
+  {
+    $data = Branch::latest('id')
+    ->where('countryname', '=', $usercountry)
+    ->where('companyname', '=', $usercompany)
+    ->get(); return response()->json($data);
+  }
+ 
+
+}
 
 
 
@@ -409,6 +540,486 @@ public function gettheinvoicedeliverystatus()
 }
 
 //////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function clientnumberinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $cno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+     
+     
+             return response()->json($cno);
+    }
+
+
+
+
+public function clientnameinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+    $fname =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('firstname');
+    $middlename =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('middlename');
+    $lastname =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('lastname');
+     $cnma = $fname." ".$middlename." ".$lastname;
+             return response()->json($cnma);
+    }
+
+
+
+
+public function clientidtypeinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+    $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+    $idtype =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientidnature');
+    $idname =    \DB::table('ncssidtypes')->where('id', '=', $idtype)->value('idtypename');
+ 
+  
+             return response()->json($idname);
+    }
+
+
+
+
+public function clientidnumberinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+    $idnumber =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientidno');
+     
+             return response()->json($idnumber);
+    }
+
+
+
+public function clientresidenseinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $clientresidense =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientresidence');
+     
+             return response()->json($clientresidense);
+    }
+
+
+
+
+public function clientdatejoinedinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $datejoined =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('datejoined');
+     
+             return response()->json($datejoined);
+    }
+
+
+
+
+public function clientnoknameinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $nokname =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('nokname');
+     
+             return response()->json($nokname);
+    }
+
+
+
+
+public function clientstatusinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $invoiceno =    \DB::table('invoicetoviews')->where('ucret', '=', $userid)->value('invoiceno');
+      $vattotal =    \DB::table('purchases')->where('supplierinvoiceno', '=', $invoiceno)->sum('vattotal');
+     
+             return response()->json($vattotal);
+    }
+
+
+
+
+public function clientnokcontactinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $nokcontactone =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('nokcontactone');
+     
+             return response()->json($nokcontactone);
+    }
+
+
+
+
+public function clientnokresidenceinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $nokresidence =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('nokresidence');
+     
+             return response()->json($nokresidence);
+    }
+
+
+
+
+public function clientaccountnumberinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+     
+             return response()->json($actno);
+    }
+
+
+
+
+public function clienttotalnumberofloansinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+      // $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+      $totalloans = \DB::table('ncssloans')
+
+  
+    ->where('clientname', '=', $ctview)
+    ->where('accountnumber', '=', $actno)
+    ->count();
+             return response()->json($totalloans);
+    }
+
+
+
+
+public function clienttotalamountofloansinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+      // $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+      $totalloans = \DB::table('ncssloans')
+
+  
+    ->where('clientname', '=', $ctview)
+    ->where('accountnumber', '=', $actno)
+    ->sum('loanamount');
+     
+             return response()->json($totalloans);
+    }
+
+
+
+    public function clienttotalamountofloanstoreturn()
+    {
+      
+        $userid =  auth('api')->user()->id;
+        $userbranch =  auth('api')->user()->branch;
+        $userrole =  auth('api')->user()->type;
+      
+        $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+        $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+        // $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+        $totalloans = \DB::table('ncssloans')
+  
+    
+      ->where('clientname', '=', $ctview)
+      ->where('accountnumber', '=', $actno)
+      ->sum('totalreturn');
+       
+               return response()->json($totalloans);
+      }
+  
+
+public function clienttotalamountofloanspaidinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+      // $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+      $totalloanspaid = \DB::table('ncssloanpayments')
+
+  
+    ->where('clientname', '=', $ctview)
+    ->where('accountnumber', '=', $actno)
+    ->sum('amountpaid');
+             return response()->json($totalloanspaid);
+    }
+
+
+
+
+public function clienttotalloanbalanceinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+      // $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+      $totalloanspaid = \DB::table('ncssloanpayments')
+
+  
+    ->where('clientname', '=', $ctview)
+    ->where('accountnumber', '=', $actno)
+    ->sum('amountpaid');
+    $totalloantaken = \DB::table('ncssloans')
+
+  
+    ->where('clientname', '=', $ctview)
+    ->where('accountnumber', '=', $actno)
+    ->sum('totalreturn');
+
+    $loanbalance = $totalloantaken-$totalloanspaid;
+     
+             return response()->json($loanbalance);
+    }
+
+
+
+
+public function clienttotalsavingsmadeinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+      $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+      
+      
+      $savingtimes =    \DB::table('ncssclientdeposits')
+       ->where('clientname', '=', $ctview)
+       ->where('accountnumber', '=', $actno)
+       ->where('del', '=', 0)
+       ->count();
+    
+     
+             return response()->json($savingtimes);
+    }
+
+
+
+
+public function clienttotalamountofsavingsinquestion()
+  {
+    
+    $userid =  auth('api')->user()->id;
+    $userbranch =  auth('api')->user()->branch;
+    $userrole =  auth('api')->user()->type;
+    $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+    $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+    // $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+    
+    
+    $totalsavingsddff = \DB::table('ncssclientdeposits')
+
+
+  ->where('clientname', '=', $ctview)
+  ->where('accountnumber', '=', $actno)
+  ->sum('amount');
+   
+           return response()->json($totalsavingsddff);
+    }
+
+
+
+
+public function clienttotalamountwithdrawninquestion()
+  {
+    
+    $userid =  auth('api')->user()->id;
+    $userbranch =  auth('api')->user()->branch;
+    $userrole =  auth('api')->user()->type;
+    $ctview =    \DB::table('ncssclienttoviewdetails')->where('ucret', '=', $userid)->value('clientname');
+    $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('actno');
+    // $actno =    \DB::table('ncssclients')->where('id', '=', $ctview)->value('clientno');
+    
+    
+    $totalsavingsddff = \DB::table('ncssclientwithdraws')
+
+
+  ->where('clientname', '=', $ctview)
+  ->where('accountnumber', '=', $actno)
+  ->where('del', '=', 0)
+  ->sum('amount');
+   
+           return response()->json($totalsavingsddff);
+           
+    }
+
+
+
+
+
+public function clientavailablesavingsbalanceinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $invoiceno =    \DB::table('invoicetoviews')->where('ucret', '=', $userid)->value('invoiceno');
+      $vattotal =    \DB::table('purchases')->where('supplierinvoiceno', '=', $invoiceno)->sum('vattotal');
+     
+             return response()->json($vattotal);
+    }
+
+
+
+
+public function clientnokrelationshipinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $invoiceno =    \DB::table('invoicetoviews')->where('ucret', '=', $userid)->value('invoiceno');
+      $vattotal =    \DB::table('purchases')->where('supplierinvoiceno', '=', $invoiceno)->sum('vattotal');
+     
+             return response()->json($vattotal);
+    }
+
+
+
+
+public function clientprimarycontactinquestion()
+  {
+    
+      $userid =  auth('api')->user()->id;
+      $userbranch =  auth('api')->user()->branch;
+      $userrole =  auth('api')->user()->type;
+    
+      $invoiceno =    \DB::table('invoicetoviews')->where('ucret', '=', $userid)->value('invoiceno');
+      $vattotal =    \DB::table('purchases')->where('supplierinvoiceno', '=', $invoiceno)->sum('vattotal');
+     
+             return response()->json($vattotal);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1875,6 +2486,24 @@ $data = Customer::latest('id')
 ->get();
         return response()->json($data);
     }
+    
+    public function loanofficerslist()
+    {
+     
+$data = Ncssemployee::latest('id')
+//->where('del', 0)
+->get();
+        return response()->json($data);
+    }
+    public function idtypeslist()
+    {
+     
+$data = Ncssidtype::latest('id')
+//->where('del', 0)
+->get();
+        return response()->json($data);
+    }
+
     public function mainmenulist()
     {
      
@@ -1915,14 +2544,264 @@ $data = Formcomponent::latest('id')
 
         
 
-        public function getFloatcodes(Request $request)
+        // public function getFloatcodes(Request $request)
+
+        // {
+        //    $data = Branchandcode::where('branch', $request->branch)->get();
+        //     return response()->json($data); 
+        //   }
+        
+        
+        public function getcompanysecurities(Request $request)
 
         {
-           $data = Branchandcode::where('branch', $request->branch)->get();
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+
+$countryinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('countryname');
+$companyinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('companyname');
+           $data = Ncssloansecurity::where('companyname', $companyinaction)-> where('countryname', $countryinaction)->get();
             return response()->json($data); 
           }
-    
 
+
+
+
+
+
+
+
+
+
+
+        public function getcompanyemployees(Request $request)
+
+        {
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+
+$countryinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('countryname');
+$companyinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('companyname');
+           $data = Ncssemployee::where('companyname', $companyinaction)-> where('countryname', $countryinaction)->get();
+            return response()->json($data); 
+          }
+
+          public function getcompanywallets(Request $request)
+
+          {
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  
+  
+  $companyinaction = \DB::table('countryandcorrespondings')
+  // ->where('countryname', $inpbranch)
+  // ->where('countryname', '=', $countryname)
+  ->where('ucret', '=', $userid)
+  ->orderBy('id', 'Desc')
+  ->limit(1)
+  ->value('companyname');
+  $countryinaction = \DB::table('countryandcorrespondings')
+  // ->where('countryname', $inpbranch)
+  // ->where('countryname', '=', $countryname)
+  ->where('ucret', '=', $userid)
+  ->orderBy('id', 'Desc')
+  ->limit(1)
+  ->value('countryname');
+             $data = Expensewalet::where('companyname', $companyinaction)
+             ->where('countryname', '=', $countryinaction)
+             ->get();
+              return response()->json($data); 
+            }
+        
+          public function getcompanyexpenses(Request $request)
+
+          {
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  
+  
+  $companyinaction = \DB::table('countryandcorrespondings')
+  // ->where('countryname', $inpbranch)
+  // ->where('countryname', '=', $countryname)
+  ->where('ucret', '=', $userid)
+  ->orderBy('id', 'Desc')
+  ->limit(1)
+  ->value('companyname');
+  $countryinaction = \DB::table('countryandcorrespondings')
+  // ->where('countryname', $inpbranch)
+  // ->where('countryname', '=', $countryname)
+  ->where('ucret', '=', $userid)
+  ->orderBy('id', 'Desc')
+  ->limit(1)
+  ->value('countryname');
+             $data = Expense::where('companyname', $companyinaction)
+             ->where('countryname', '=', $countryinaction)
+             ->get();
+              return response()->json($data); 
+            }
+  
+
+
+
+        public function getcompanybranches(Request $request)
+
+        {
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+
+
+$companyinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('companyname');
+           $data = Branch::where('companyname', $companyinaction)->get();
+            return response()->json($data); 
+          }
+
+
+
+
+
+
+
+
+
+        public function getcompanieswallets(Request $request)
+
+        {
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->type;
+
+
+$companyinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('companyname');
+           $data = Expensewalet::where('companyname', $companyinaction)->get();
+            return response()->json($data); 
+          }
+
+          
+
+
+//           public function getcompanybranches(Request $request)
+
+//           {
+//             $userid =  auth('api')->user()->id;
+//  $userbranch =  auth('api')->user()->branch;
+//  $userrole =  auth('api')->user()->type;
+  
+ 
+//  $countryinaction = \DB::table('countryandcorrespondings')
+// // ->where('countryname', $inpbranch)
+// // ->where('countryname', '=', $countryname)
+// ->where('ucret', '=', $userid)
+// ->orderBy('id', 'Desc')
+// ->limit(1)
+// ->value('countryname');
+// $compainactions = \DB::table('countryandcorrespondings')
+// // ->where('countryname', $inpbranch)
+// // ->where('countryname', '=', $countryname)
+// ->where('ucret', '=', $userid)
+// ->orderBy('id', 'Desc')
+// ->limit(1)
+// ->value('companyname');
+//              $data = Ncssemployee::where('countryname', $countryinaction)->where('companyname', $compainactions)->get();
+//               return response()->json($data); 
+//             }
+
+
+
+          public function companyactiveclients(Request $request)
+
+          {
+            $userid =  auth('api')->user()->id;
+ $userbranch =  auth('api')->user()->branch;
+ $userrole =  auth('api')->user()->type;
+  
+ 
+ $countryinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('countryname');
+$compainactions = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('companyname');
+             $data = Ncssclient::where('countryname', $countryinaction)->where('companyname', $compainactions)->get();
+              return response()->json($data); 
+            }
+
+
+
+
+
+
+
+
+
+
+
+          public function getcountriescompanies(Request $request)
+
+          {
+            $userid =  auth('api')->user()->id;
+ $userbranch =  auth('api')->user()->branch;
+ $userrole =  auth('api')->user()->type;
+  
+ 
+ $countryinaction = \DB::table('countryandcorrespondings')
+// ->where('countryname', $inpbranch)
+// ->where('countryname', '=', $countryname)
+->where('ucret', '=', $userid)
+->orderBy('id', 'Desc')
+->limit(1)
+->value('countryname');
+             $data = Companydetail::where('countryname', $countryinaction)->get();
+              return response()->json($data); 
+            }
 
     public function getStates(Request $request)
 
@@ -4003,7 +4882,27 @@ $comp ='generalPointofsalecomponentaccess';
     return $roleisallowedtoaccess;
    
 }
+public function loidrerror()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
 
+    return $assignedrole;
+   
+}
+public function loidtypeerror()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $usertype =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+  
+    return $usertype;
+   
+}
 
 
 public function generalcomponentaccessComponentfeatures()

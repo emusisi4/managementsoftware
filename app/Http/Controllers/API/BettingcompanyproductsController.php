@@ -36,18 +36,7 @@ class BettingcompanyproductsController extends Controller
       }
 
 
-     // if($userrole == '100')
-      {
-      
-      
-     // return   Product::with(['userbalancingBranch','branchinBalance'])->latest('id')
-      
-      // return   Product::latest('id')
-       //  return   Branchpayout::latest('id')
-    //     ->where('del', 0)
-     //   ->paginate(20);
-      
-    }
+   
       
     }
 

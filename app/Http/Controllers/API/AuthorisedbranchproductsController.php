@@ -51,7 +51,7 @@ class AuthorisedbranchproductsController extends Controller
 
 
        $this->validate($request,[
-       'branch'   => 'required',
+       'branchname'   => 'required',
        'product'   => 'required'
        // 'dorder'   => 'sometimes |min:0'
      ]);
@@ -61,6 +61,8 @@ class AuthorisedbranchproductsController extends Controller
 //  $inpbranch = $request['branchnametobalance'];
 $bn = $request['branch'];
 $prod = $request['product'];
+$countryname = $request['countryname'];
+$companyname = $request['companyname'];
 $systemprodname = DB::table('bettingproducts')->where('id', $prod)->value('sysname');
 $dateinq =  $request['datedone'];
 DB::table('branchandproducts')->where('branch', $bn)->where('product', $prod)->delete();
@@ -68,7 +70,9 @@ DB::table('branchandproducts')->where('branch', $bn)->where('product', $prod)->d
        return Branchandproduct::Create([
     
 
-      'branch' => $request['branch'],
+      'branch' => $request['branchname'],
+      'companyname' => $companyname,
+      'countryname' => $countryname,
      'product'=> $request['product'],
      'sysname'=> $systemprodname,
      

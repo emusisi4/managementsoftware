@@ -9,55 +9,61 @@
 <div  v-if="generalcomponentaccessComponentfeatures > 0 "> 
 
  <div>
+<div class="col-md-12">
+              <div class="card">
+                <div class="
+                    d-flex
+                    border-bottom
+                    title-part-padding
+                    align-items-center
+                  ">
+                  <div>
+                    <h2 class="card-title mb-0">COMPONENTS AND FORM FEATURES</h2>
+                  </div>
+               
+                </div>
+                <div class="card-body">
+                 
+                 
+                  <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab"  @click="loadManinmens()" href="#home" role="tab">
+                          <span>Main menu</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab"  @click="loadSubmenus()" href="#profile" role="tab">
+                          <span>Sub-Menu</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab"  @click="loadVuecomponents()" href="#messages" role="tab">
+                          <span>VUE - Components</span>
+                        </a>
+                      </li>
+
+
+                        <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab"  @click="loadComponentfeatures()" href="#messages1" role="tab">
+                          <span>Form / Component Features</span>
+                        </a>
+                      </li>
 
 
 
- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h1>
-                               COMPONENTS AND FEATURES 
-                            </h1>
-                            
-                        </div>
-                        <div class="body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#home_with_icon_title"   @click="loadManinmens()" data-toggle="tab">
-                                        <i class="material-icons"></i> MAIN MENUS
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#profile_with_icon_title"  @click="loadSubmenus()" data-toggle="tab">
-                                        <i class="material-icons"></i> SUB-MENUS
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#messages_with_icon_title" @click="loadVuecomponents()"  data-toggle="tab">
-                                        <i class="material-icons"></i> VUE COMPONENTS
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#settings_with_icon_title"  @click="loadComponentfeatures()"  data-toggle="tab">
-                                        <i class="material-icons"></i> FORM / COMPONENT FEATURES
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="home_with_icon_title">
-                                                      <div class="bethapa-table-header">
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="home" role="tabpanel">
+                        <div class="p-3">
+                                     <div class="bethapa-table-header">
                     SYSTEM MAIN MENUS <button  type="button" class="add-newm" @click="newMainmenumodal" >Add New </button>
                      </div>
        <!-- v-if="allowedtoaddmainmenu > 0" -->
         
-
-
-
-
-                       <table class="table">
+     <table class="table">
 
 
                              
@@ -101,11 +107,7 @@
               
                     
                   </tbody>
-                  <tfoot>
-                        <tr>
-                      
-                    </tr>
-                  </tfoot>
+               
                 </table>
          
  
@@ -115,130 +117,15 @@
                    <pagination :data="mainmenurecords" @pagination-change-page="paginationResultmainmemurecords"></pagination>
                 </ul>
               </div>
-
-<div class="modal fade" id="addnewMainmenumodal">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">ADD NEW RECORD</h3> 
-                <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                        
                         </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateMainmenu():createMainmenu()"> 
-
-                
-<div class ="bethapa-table-sectionheader">MENU DETAILS</div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Menu Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <input v-model="form.mainmenuname" type="text" name="mainmenuname"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('mainmenuname') }">
-                    <has-error :form="form" field="mainmenuname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Icon Class</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.iconclass" type="text" name="iconclass"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('iconclass') }">
-                    <has-error :form="form" field="iconclass"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Display Order</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.dorder" type="number" name="dorder"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('dorder') }">
-                    <has-error :form="form" field="dorder"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                        <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Openning Balance</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.openningbalance" type="number" name="openningbalance"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('openningbalance') }">
-                    <has-error :form="form" field="openningbalance"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <!-- <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">fgh</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select class="form-control show-tick" data-live-search="true">
-                                        <option></option>
-                                        <option>Burger, Shake and a Smile</option>
-                                        <option>Sugar, Spice and all things nice</option>
-                                    </select>
-                    <has-error :form="form" field="openningbalance"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-
-
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
+                      </div>
 
 
 
-
-
-
-
-
-
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    <div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title">
-                                  
-                                     <div class="bethapa-table-header">
+                      <div class="tab-pane p-3" id="profile" role="tabpanel">
+                     
+                                                        <div class="bethapa-table-header">
                       SYSTEM SUB MENUS
                       <button type="button"  class="add-newm" @click="newSubmenumodal" >Add New </button> 
                      </div>
@@ -287,11 +174,7 @@
               
                     
                   </tbody>
-                  <tfoot>
-                        <tr>
-                      
-                    </tr>
-                  </tfoot>
+                
                 </table>
 
 
@@ -300,125 +183,64 @@
                    <pagination :data="submenurecords" @pagination-change-page="paginationResultsSubmenus"></pagination>
                 </ul>
               </div>
+                        
+                        
+                   
+                      </div>
+
+                       <div class="tab-pane p-3" id="messages1" role="tabpanel">
+                     
+                                                        <div class="bethapa-table-header">
+                      Form Features
+                      <button type="button"  class="add-newm" @click="newComponentfeaturesmodal" >Add New </button> 
+                     </div>
+     <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Component NAME</th>
+
+                        <th>SYSTEM NAME</th>
+                       <th>Description</th>
+                         <th></th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                       <tr v-for="vuereco in componentfeaturesrecords.data" :key="vuereco.id">
+                    <td>{{vuereco.id}}</td>
+                     <td>{{vuereco.featurename}}</td>
+                     <td>{{vuereco.sysname}}</td>
+                      <td>{{vuereco.description}}</td>
+                         <td>     
+                   <button type="button"   class="btn  bg-gradient-secondary btn-xs fas fa-edit"  @click="editcomponentfeature(vuereco)"> Edit  </button>
+                            <button type="button" class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="deleteomponentfeature(vuereco.id)"> DEl </button>
+                      </td>
+                    </tr>
+              
+                    
+                  </tbody>
+                  
+              
+                                   </table>
 
 
 
-             
- 
 
-<div class="modal fade" id="addnewsubmenuModal">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">ADD NEW SUB MENU</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update SUPPLIER</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ?  updateSubmenu():createSubmenu()"> 
+    <div class="card-footer">
+                <ul class="pagination pagination-sm m-0 float-right">
+                   <pagination :data="componentfeaturesrecords" @pagination-change-page="paginationResultscomponentfeatures"></pagination>
+                </ul>
+              </div>
+                        
+                        
+                   
+                      </div>
 
-                
-<div class ="bethapa-table-sectionheader">Sub Menu Details</div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <input v-model="form.submenuname" type="text" name="submenuname"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('submenuname') }">
-                    <has-error :form="form" field="submenuname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-
-                               <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Main Menu</label>
-                                    </div>
-                                
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select name ="type" v-model="form.mainheadercategory" id ="type" :class="{'is-invalid': form.errors.has('mainheadercategory')}" class="form-control show-tick" data-live-search="true">
-                                        <option></option>
-                                        <option v-for='data in mainmenulist' :value='data.id'>{{ data.mainmenuname }}</option>
-                                    </select>
-                    <has-error :form="form" field="mainheadercategory"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                               </div>
-                              
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Route</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.linkrouterre" type="text" name="linkrouterre"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('linkrouterre') }">
-                    <has-error :form="form" field="linkrouterre"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Order</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.dorder" type="text" name="dorder"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('dorder') }">
-                    <has-error :form="form" field="dorder"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                           <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Description</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                         <textarea v-model="form.description" type="text" name="description"
-                class="form-control form-control-sm" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
-              <has-error :form="form" field="description"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
- 
-
-   
-
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
-
-
+                      
+                      <div class="tab-pane p-3" id="messages" role="tabpanel">
+                      
  <div class="bethapa-table-header">
                      VUE-COMPONENT DETAILS  <button type="button" class="add-newm" @click="newVuecomponentmodal" >Add New </button>
                      </div>
@@ -453,9 +275,7 @@
                     
                   </tbody>
                   
-                 <tfoot>
-
-                 </tfoot>
+             
                                    </table>
 
 
@@ -469,234 +289,660 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                 <!-- Vue Components modal -->
-                                 
-            <div class="modal fade" id="addnewvuecomponentmodal">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">ADD NEW COMPONENT</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update SUPPLIER</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ?  updatevuecomponent():createvuecomponent()">
-
-                
-<div class ="bethapa-table-sectionheader">VUE COMPONENT DETAILS</div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <input v-model="form.componentname" type="text" name="componentname"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('componentname') }">
-                    <has-error :form="form" field="componentname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                             
-                             
-                              
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">System Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.sysname" type="text" name="sysname"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('sysname') }">
-                    <has-error :form="form" field="sysname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  
-
-                                           <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Description</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                         <textarea v-model="form.description" type="text" name="description"
-                class="form-control form-control-sm" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
-              <has-error :form="form" field="description"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
- 
-
-   
-
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
-                                 
-                                 
-
-
-                                <div class="bethapa-table-header">
-                     COMPONENT FEATURES  <button type="button" class="add-newm" @click="newComponentfeaturesmodal" >Add New </button>
-                     </div>
-
-          
-            
-           <table class="table">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Component NAME</th>
-
-                        <th>SYSTEM NAME</th>
-                       <th>Description</th>
-                         <th></th>
-                     
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                       <tr v-for="vuereco in componentfeaturesrecords.data" :key="vuereco.id">
-                    <td>{{vuereco.id}}</td>
-                     <td>{{vuereco.featurename}}</td>
-                     <td>{{vuereco.sysname}}</td>
-                      <td>{{vuereco.description}}</td>
-                         <td>     
-                   <button type="button"   class="btn  bg-gradient-secondary btn-xs fas fa-edit"  @click="editcomponentfeature(vuereco)"> Edit  </button>
-                            <button type="button" class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="deleteomponentfeature(vuereco.id)"> DEl </button>
-                      </td>
-                    </tr>
-              
-                    
-                  </tbody>
-                  
-                 <tfoot>
-
-                 </tfoot>
-                                   </table>
-
-
-
-
-    <div class="card-footer">
-                <ul class="pagination pagination-sm m-0 float-right">
-                   <pagination :data="componentfeaturesrecords" @pagination-change-page="paginationResultscomponentfeatures"></pagination>
-                </ul>
-              </div>
-                 <!-- features modal -->
-
-                  <div class="modal fade" id="addnewcomponentfeaturemodal">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">ADD NEW COMPONENT FEATURE</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update SUPPLIER</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updatecomponentfeature():createcomponentfeature()">
-
-                
-<div class ="bethapa-table-sectionheader">Features Details</div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <input v-model="form.featurename" type="text" name="featurename"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('featurename') }">
-                    <has-error :form="form" field="featurename"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                             
-                             
-                              
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">System Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.sysname" type="text" name="sysname"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('sysname') }">
-                    <has-error :form="form" field="sysname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  
-
-                                           <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Description</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                         <textarea v-model="form.description" type="text" name="description"
-                class="form-control form-control-sm" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
-              <has-error :form="form" field="description"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
- 
-
-   
-
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>              
-                    
-                    
                       
-                    
-                                </div>
-                            </div>
-                        </div>
+                      </div>
                     </div>
+
+
+                    
+
+
+                  </div>
                 </div>
+              </div>
+            </div>
+
+
+
 
 </div> 
+
+<!-- component features -->
+<div
+                        class="modal fade"
+                        id="addnewcomponentfeaturemodal"
+                           data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                        tabindex="-1"
+                        aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                          Add New form feature
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+             <form class="form-horizontal" @submit.prevent="editmode ? updatecomponentfeature():createcomponentfeature()">
+
+           
+           
+                           <div class="card-body">
+                    <div class="bethapa-table-sectionheader">Features Details </div>
+                 <!-- <form @submit.prevent="savenewRecordtoview()">    
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                     <has-error :form="form" field="countryname"></has-error>
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydate" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-select" >
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+                   
+                      </div>
+                    </div>
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                         <has-error :form="form" field="companyname"></has-error>
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydate" @change='getCompanywallets(); getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-select">
+                                        <option></option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                      </div>
+                    </div>
+
+
+                 </form>
+                 <hr>    -->
+        <!-- <form @submit.prevent="SaveRoletoaddmainmenu()">     -->
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Name</label>
+                      <div class="col-sm-9">
+                    
+                                             <input v-model="form.featurename" type="text" name="featurename"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('featurename') }">
+                    <has-error :form="form" field="featurename"></has-error>
+                      </div>
+                    </div>
+
+
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">System Name</label>
+                      <div class="col-sm-9">
+                             <input v-model="form.sysname" type="text" name="sysname"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('sysname') }">
+                    <has-error :form="form" field="sysname"></has-error>
+                      </div>
+                    </div>
+                    
+
+                  <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Description</label>
+                      <div class="col-sm-9">
+                     
+                                       <textarea v-model="form.description" type="text" name="description"
+                class="form-control form-control-sm" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
+                    <has-error :form="form" field="description"></has-error>
+                   
+                      </div>
+                    </div>
+                   
+             <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportvie" class="btn btn-primary btn-sm">Saveit</button>         
+
+        <!-- </form> -->
+
+                   
+
+                 </div>
+            
+                  <div class="p-3 border-top">
+                    <div class="text-end">
+                     
+                     
+                    </div>
+                  </div>
+              
+                            <!-- </div> -->
+                            
+                            <div class="modal-footer">
+                               <button type="submit" class="
+                          btn btn-info
+                          rounded-pill
+                          px-4
+                          waves-effect waves-light
+                        ">
+                        Create
+                      </button>
+                              <button
+                                type="button"
+                                class="
+                                  btn btn-light-danger
+                                  text-danger
+                                    rounded-pill
+                          px-4
+                          waves-effect waves-light
+                                "
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
+                        
+                        <!-- /.modal-dialog -->
+                      </div>
+
+
+<!-- end of componet features -->
+
+<!-- vue components access  -->
+<div
+                        class="modal fade"
+                        id="addnewvuecomponentmodal"
+                           data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                        tabindex="-1"
+                        aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                          Add New Component
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+           
+                    <form class="form-horizontal" @submit.prevent="editmode ?  updatevuecomponent():createvuecomponent()">
+
+           
+           
+                           <div class="card-body">
+                    <div class="bethapa-table-sectionheader">VUE COMPONENT DETAILS</div>
+                 <!-- <form @submit.prevent="savenewRecordtoview()">    
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                     <has-error :form="form" field="countryname"></has-error>
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydate" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-select" >
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+                   
+                      </div>
+                    </div>
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                         <has-error :form="form" field="companyname"></has-error>
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydate" @change='getCompanywallets(); getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-select">
+                                        <option></option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                      </div>
+                    </div>
+
+
+                 </form>
+                 <hr>    -->
+        <!-- <form @submit.prevent="SaveRoletoaddmainmenu()">     -->
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Name</label>
+                      <div class="col-sm-9">
+                    
+                                             <input v-model="form.componentname" type="text" name="componentname"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('componentname') }">
+                    <has-error :form="form" field="componentname"></has-error>
+                      </div>
+                    </div>
+
+
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">System Name</label>
+                      <div class="col-sm-9">
+                             <input v-model="form.sysname" type="text" name="sysname"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('sysname') }">
+                    <has-error :form="form" field="sysname"></has-error>
+                      </div>
+                    </div>
+
+
+                  <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Description</label>
+                      <div class="col-sm-9">
+                     
+                                       <textarea v-model="form.description" type="text" name="description"
+                class="form-control form-control-sm" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
+                    <has-error :form="form" field="description"></has-error>
+                   
+                      </div>
+                    </div>
+                   
+             <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportvie" class="btn btn-primary btn-sm">Saveit</button>         
+
+        <!-- </form> -->
+
+                   
+
+                 </div>
+            
+                  <div class="p-3 border-top">
+                    <div class="text-end">
+                     
+                     
+                    </div>
+                  </div>
+              
+                            <!-- </div> -->
+                            
+                            <div class="modal-footer">
+                               <button type="submit" class="
+                          btn btn-info
+                          rounded-pill
+                          px-4
+                          waves-effect waves-light
+                        ">
+                        Create
+                      </button>
+                              <button
+                                type="button"
+                                class="
+                                  btn btn-light-danger
+                                  text-danger
+                                    rounded-pill
+                          px-4
+                          waves-effect waves-light
+                                "
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
+                        
+                        <!-- /.modal-dialog -->
+                      </div>
+<!-- end of vue components -->
+
+<!-- start of component features -->
+
+
+<div
+                        class="modal fade"
+                        id="addnewsubmenuModal"
+                           data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                        tabindex="-1"
+                        aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                          Add New Sub menu
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+           
+              <form class="form-horizontal" @submit.prevent="editmode ?  updateSubmenu():createSubmenu()"> 
+
+           
+           
+                           <div class="card-body">
+                    <div class="bethapa-table-sectionheader">Details</div>
+                 <!-- <form @submit.prevent="savenewRecordtoview()">    
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                     <has-error :form="form" field="countryname"></has-error>
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydate" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-select" >
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+                   
+                      </div>
+                    </div>
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                         <has-error :form="form" field="companyname"></has-error>
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydate" @change='getCompanywallets(); getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-select">
+                                        <option></option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                      </div>
+                    </div>
+
+
+                 </form>
+                 <hr>    -->
+        <!-- <form @submit.prevent="SaveRoletoaddmainmenu()">     -->
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Sub menu name</label>
+                      <div class="col-sm-9">
+                     <has-error :form="form" field="mainmenuname"></has-error>
+                                               <input v-model="form.submenuname" type="text" name="submenuname"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('submenuname') }">
+                    <has-error :form="form" field="submenuname"></has-error>
+                      </div>
+                    </div>
+
+
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Main Menu</label>
+                      <div class="col-sm-9">
+                        <select name ="type" v-model="form.mainheadercategory" id ="type" :class="{'is-invalid': form.errors.has('mainheadercategory')}" 
+                        class="form-select"
+                        >
+                                        <option></option>
+                                        <option v-for='data in mainmenulist' :value='data.id'>{{ data.mainmenuname }}</option>
+                                    </select>
+                    <has-error :form="form" field="mainheadercategory"></has-error>
+                      </div>
+                    </div>
+
+ <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Main Menu</label>
+                      <div class="col-sm-9">
+                      <input v-model="form.linkrouterre" type="text" name="linkrouterre"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('linkrouterre') }">
+                    <has-error :form="form" field="linkrouterre"></has-error>
+                      </div>
+                    </div>
+
+
+  
+   <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Display Order</label>
+                      <div class="col-sm-9">
+                     
+                                            <input v-model="form.dorder" type="text" name="dorder"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('dorder') }">
+
+                    <has-error :form="form" field="dorder"></has-error>
+                   
+                      </div>
+                    </div>
+
+                  <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Description</label>
+                      <div class="col-sm-9">
+                     
+                                       <textarea v-model="form.description" type="text" name="description"
+                class="form-control form-control-sm" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
+                    <has-error :form="form" field="description"></has-error>
+                   
+                      </div>
+                    </div>
+                   
+             <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportvie" class="btn btn-primary btn-sm">Saveit</button>         
+
+        <!-- </form> -->
+
+                   
+
+                 </div>
+            
+                  <div class="p-3 border-top">
+                    <div class="text-end">
+                     
+                     
+                    </div>
+                  </div>
+              
+                            <!-- </div> -->
+                            
+                            <div class="modal-footer">
+                               <button type="submit" class="
+                          btn btn-info
+                          rounded-pill
+                          px-4
+                          waves-effect waves-light
+                        ">
+                        Create
+                      </button>
+                              <button
+                                type="button"
+                                class="
+                                  btn btn-light-danger
+                                  text-danger
+                                    rounded-pill
+                          px-4
+                          waves-effect waves-light
+                                "
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
+                        
+                        <!-- /.modal-dialog -->
+                      </div>
+
+<div
+                        class="modal fade"
+                        id="addnewMainmenumodal"
+                           data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                        tabindex="-1"
+                        aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                          Add New Main menu
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+           
+             <form class="form-horizontal" @submit.prevent="editmode ? updateMainmenu():createMainmenu()"> 
+
+           
+           
+                           <div class="card-body">
+                    <div class="bethapa-table-sectionheader">Details</div>
+                 <!-- <form @submit.prevent="savenewRecordtoview()">    
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                     <has-error :form="form" field="countryname"></has-error>
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydate" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-select" >
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+                   
+                      </div>
+                    </div>
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                         <has-error :form="form" field="companyname"></has-error>
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydate" @change='getCompanywallets(); getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-select">
+                                        <option></option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                      </div>
+                    </div>
+
+
+                 </form>
+                 <hr>    -->
+        <!-- <form @submit.prevent="SaveRoletoaddmainmenu()">     -->
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Menu Name</label>
+                      <div class="col-sm-9">
+                     <has-error :form="form" field="mainmenuname"></has-error>
+                                               <input v-model="form.mainmenuname" type="text" name="mainmenuname"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('mainmenuname') }">
+                  
+                      </div>
+                    </div>
+
+
+                   
+                    <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Icon Class</label>
+                      <div class="col-sm-9">
+                     <has-error :form="form" field="componentname"></has-error>
+                                               <input v-model="form.iconclass" type="text" name="iconclass"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('iconclass') }">
+                    <has-error :form="form" field="iconclass"></has-error>
+                   
+                      </div>
+                    </div>
+
+
+  
+   <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Display Order</label>
+                      <div class="col-sm-9">
+                     
+                                              <input v-model="form.dorder" type="number" name="dorder"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('dorder') }">
+                    <has-error :form="form" field="dorder"></has-error>
+                   
+                      </div>
+                    </div>
+
+
+                   
+             <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportvie" class="btn btn-primary btn-sm">Saveit</button>         
+
+        <!-- </form> -->
+
+                   
+
+                 </div>
+            
+                  <div class="p-3 border-top">
+                    <div class="text-end">
+                     
+                     
+                    </div>
+                  </div>
+              
+                            <!-- </div> -->
+                            
+                            <div class="modal-footer">
+                               <button type="submit" class="
+                          btn btn-info
+                          rounded-pill
+                          px-4
+                          waves-effect waves-light
+                        ">
+                        Create
+                      </button>
+                              <button
+                                type="button"
+                                class="
+                                  btn btn-light-danger
+                                  text-danger
+                                    rounded-pill
+                          px-4
+                          waves-effect waves-light
+                                "
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
+                        
+                        <!-- /.modal-dialog -->
+                      </div>
+
+
 </div>
 <!-- closure of allowed -->
 

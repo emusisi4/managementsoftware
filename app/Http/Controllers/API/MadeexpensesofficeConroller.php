@@ -37,56 +37,36 @@ class MadeexpensesofficeConroller extends Controller
      $expensename = \DB::table('expenserecordtoselects')->where('ucret', $userid )->value('expensename');
      $displaynumber = \DB::table('expenserecordtoselects')->where('ucret', $userid )->value('displaynumber');
 
-     if($userrole == '101')
-      {
-      
-         return   Madeexpense::with(['branchName','expenseName','expenseWallet'])->latest('datemade')
-      // return   Madeexpense::latest('id')
-        ->where('del', 0)
-        ->where('branch', $userbranch)
-        ->where('walletexpense', $userwallet)
+
+     $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+     $countryname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('countryname');
+   //  $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+     $branchname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
+
+      if($branchname2 == '900')
+        { return   Madeexpense::with(['branchName','expenseName','expenseWallet'])->latest('datemade')
+     
+      ->where('companyname', $companyname2)
+      ->where('countryname', $countryname2)
+      ->where('del', 0)
+      //  ->where('branch', $branchname2)
+     //   ->where('walletexpense', $userwallet)
        ->paginate(30);
+      
       }
      
-  //{  
-    return   Madeexpense::with(['branchName','expenseName','expenseWallet'])->latest('datemade')
-        
-    //->where('expense', $expensename)
- //    ->where('branch', $branchinb)
-     ->paginate(30);  
-  //     if($branchinb != '900' && $expensename != '900'  )
-      
-  //    {   return   Madeexpense::with(['branchName','expenseName'])->latest('datemade')
-        
-  //     ->where('expense', $expensename)
-  //      ->where('branch', $branchinb)
-  //      ->paginate($displaynumber);
-  //     }// all branches
-  //     if($branchinb == '900' && $expensename == '900')
-      
-  //     {   return   Madeexpense::with(['branchName','expenseName'])->latest('datemade')
-         
-  //  //    ->where('expense', $expensename)
-  //    //   ->where('branch', $branchinb)
-  //       ->paginate($displaynumber);
-  //      }// all branches
-  //      if($branchinb == '900' && $expensename != '900')
-      
-  //      {   return   Madeexpense::with(['branchName','expenseName'])->latest('datemade')
-          
-  //   ->where('expense', $expensename)
-  //     //   ->where('branch', $branchinb)
-  //        ->paginate($displaynumber);
-  //       }// all branches
+      if($branchname2 != '900')
+      { return   Madeexpense::with(['branchName','expenseName','expenseWallet'])->latest('datemade')
    
-  //       if($branchinb != '900' && $expensename == '900')
-      
-  //       {   return   Madeexpense::with(['branchName','expenseName'])->latest('datemade')
-           
-  //  //  ->where('expense', $expensename)
-  //        ->where('branch', $branchinb)
-  //         ->paginate($displaynumber);
-  //        }// all branches}
+    ->where('companyname', $companyname2)
+    ->where('countryname', $countryname2)
+    ->where('del', 0)
+    ->where('branch', $branchname2)
+   //   ->where('walletexpense', $userwallet)
+     ->paginate(30);
+    
+    }
+ 
       
     }
 
@@ -126,7 +106,9 @@ $this->validate($request,[
     'datemade'  => 'required',
     'countryname'  => 'required',
     'companyname'  => 'required',
-    'branch'  => 'required',
+    'branchname'  => 'required',
+    'walletexpense'   => 'required',
+  
    // 'expensetype'   => 'sometimes |min:0'
  ]);
  
@@ -142,7 +124,7 @@ $this->validate($request,[
       'description' => $request['description'],
       'amount' => $request['amount'],
       'datemade' => $request['datemade'],
-      'branch' => $request['branch'],
+      'branch' => $request['branchname'],
       'walletexpense' => $request['walletexpense'],
     //  'explevel' => $expl,
       'category' => $expcat,

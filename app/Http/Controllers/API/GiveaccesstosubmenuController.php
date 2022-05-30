@@ -59,12 +59,8 @@ class GiveaccesstosubmenuController extends Controller
       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
+    
     public function store(Request $request)
     {
         //
@@ -77,19 +73,25 @@ class GiveaccesstosubmenuController extends Controller
 
        $this->validate($request,[
       'roleforsubmenuaccess'   => 'required |max:191',
-       'submenus'   => 'required'
+       'submenus'   => 'required',
+       'countryname'   => 'required',
+       'companyname'   => 'required'
        // 'dorder'   => 'sometimes |min:0'
      ]);
      $roleee = $request['roleyouareaddingtocomponent'];
      $compo =  $request['submenus'];
+     $companyname =  $request['companyname'];
+     $countryname =  $request['countryname'];
      /// Getting the main header
      
      $mainheader  = Submheader::where('id', $compo)->value('mainheadercategory');
      $roleto  = Roleinaction::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('rolename');
-     DB::table('rolenaccsumbmens')->where('roleto', $roleee)->where('component', $compo)->delete();
+     DB::table('rolenaccsumbmens')->where('roleto', $roleee)->where('component', $compo)->where('companyname', $companyname)->where('countryname', $countryname)->delete();
        return Rolenaccsumbmen::Create([
       'roleto' => $request['roleforsubmenuaccess'],
       'component' => $request['submenus'],
+      'companyname' => $request['companyname'],
+      'countryname' => $request['countryname'],
       'mainheader' => $mainheader,
 
 

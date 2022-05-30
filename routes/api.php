@@ -26,6 +26,13 @@ Route::apiResources(['user' => 'API\UserController']);
 /////////// Sports betting
 Route::apiResources(['machines' => 'API\MachinesController']); 
 Route::get('getcompaniesdetails', 'APIController@getcompaniesdetails');
+
+Route::get('companypaymentplanslist', 'APIController@companypaymentplanslist');
+Route::get('generalbranches', 'APIController@generalbranches');
+Route::get('generalloanofficers', 'APIController@generalloanofficers');
+Route::get('getgeneralloansecurities', 'APIController@getgeneralloansecurities');
+Route::get('generalclientdetails', 'APIController@generalclientdetails');
+
 Route::apiResources(['branches' => 'API\BranchesController']);
 
 Route::apiResources(['companywalletrecords' => 'API\CompanywalletsController']);
@@ -531,6 +538,14 @@ Route::get('walletstorecievemoney', 'APIController@walletstorecievemoney');
 Route::get('getStates', 'APIController@getStates');
 Route::get('getFloatcodes', 'APIController@getFloatcodes');
 
+Route::get('getcompanysecurities', 'APIController@getcompanysecurities');
+Route::get('getcompanyemployees', 'APIController@getcompanyemployees');
+Route::get('companyactiveclients', 'APIController@companyactiveclients');
+Route::get('getcountriescompanies', 'APIController@getcountriescompanies');
+Route::get('getcompanieswallets', 'APIController@getcompanieswallets');
+Route::get('getcompanybranches', 'APIController@getcompanybranches');
+Route::get('getcompanywallets', 'APIController@getcompanywallets');
+Route::get('getcompanyexpenses', 'APIController@getcompanyexpenses');
 Route::get('invoiceslist', 'APIController@invoiceslist');
 Route::get('supplierslist', 'APIController@supplierslist');
 Route::get('customerslist', 'APIController@customerslist');
@@ -577,6 +592,7 @@ Route::apiResources(['correctmydaterecords' => 'API\AutocorrectdatedetailsContro
 Route::apiResources(['companywalletdetails' => 'API\WalletdetailsController']);
 
 
+Route::apiResources(['saveclienttoviedetails' => 'API\ClienttoviewController']);
 Route::apiResources(['authorisedbranchmachines' => 'API\AuthorisedbranchandmachineController']);
 Route::apiResources(['roletoaddsumenu' => 'API\RoletoaddsubmenuController']);
 Route::apiResources(['roletoaddmainmenu' => 'API\RoletoaddmainmenuController']);
@@ -599,6 +615,70 @@ Route::apiResources(['authorisedcomponents' => 'API\AuthorisedcomponentsControll
 Route::apiResources(['saveaccesstovuecomponent' => 'API\GiveaccesstovuecomponentController']);
 Route::apiResources(['saveaccesstowallet' => 'API\GiveaccesstowalletController']);
 Route::get('getlistofcomponents', 'APIController@getcomponentslist');
+
+
+
+
+Route::get('clientnumberinquestion', 'APIController@clientnumberinquestion');
+
+Route::get('clientnameinquestion', 'APIController@clientnameinquestion');
+
+Route::get('clientresidenseinquestion', 'APIController@clientresidenseinquestion');
+
+Route::get('clientidtypeinquestion', 'APIController@clientidtypeinquestion');
+
+Route::get('clientidnumberinquestion', 'APIController@clientidnumberinquestion');
+
+Route::get('clientdatejoinedinquestion', 'APIController@clientdatejoinedinquestion');
+
+Route::get('clientnoknameinquestion', 'APIController@clientnoknameinquestion');
+
+Route::get('clientstatusinquestion', 'APIController@clientstatusinquestion');
+
+Route::get('clientnokcontactinquestion', 'APIController@clientnokcontactinquestion');
+
+Route::get('clientnokresidenceinquestion', 'APIController@clientnokresidenceinquestion');
+
+Route::get('clientaccountnumberinquestion', 'APIController@clientaccountnumberinquestion');
+
+Route::get('clienttotalnumberofloansinquestion', 'APIController@clienttotalnumberofloansinquestion');
+Route::get('clienttotalamountofloansinquestion', 'APIController@clienttotalamountofloansinquestion');
+Route::get('clienttotalamountofloanstoreturn', 'APIController@clienttotalamountofloanstoreturn');
+
+Route::get('clienttotalamountofloanspaidinquestion', 'APIController@clienttotalamountofloanspaidinquestion');
+
+Route::get('clienttotalloanbalanceinquestion', 'APIController@clienttotalloanbalanceinquestion');
+
+Route::get('clienttotalsavingsmadeinquestion', 'APIController@clienttotalsavingsmadeinquestion');
+
+Route::get('clienttotalamountofsavingsinquestion', 'APIController@clienttotalamountofsavingsinquestion');
+
+Route::get('clienttotalamountwithdrawninquestion', 'APIController@clienttotalamountwithdrawninquestion');
+
+Route::get('clientavailablesavingsbalanceinquestion', 'APIController@clientavailablesavingsbalanceinquestion');
+
+Route::get('clientnokrelationshipinquestion', 'APIController@clientnokrelationshipinquestion');
+
+Route::get('clientprimarycontactinquestion', 'APIController@clientprimarycontactinquestion');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('generalreportselectedstartdate', 'APIController@generalreportselectedstartdate');
 Route::get('generalreportselectedenddate', 'APIController@generalreportselectedenddate');
@@ -684,6 +764,9 @@ Route::apiResources(['savemainmenuaccess' => 'API\GiveaccesstomainmenuController
 //axios.get("api/mainmenulist").then(({ data }) => (this.mainmenulist = data));
 Route::get('orderlistfordatesalesreport', 'APIController@orderlistfordatesalesreport');
 Route::get('mainmenulist', 'APIController@mainmenulist');
+Route::get('brancheslist', 'APIController@brancheslist');
+Route::get('loanofficerslist', 'APIController@loanofficerslist');
+Route::get('idtypeslist', 'APIController@idtypeslist');
 Route::get('getSubmenues', 'APIController@getSubmenues');
 Route::apiResources(['cashoutfromoffice' => 'API\CashCreditController']);
 Route::apiResources(['authorisedmainmenus' => 'API\AuthorisedmainmenuController']);
@@ -693,6 +776,14 @@ Route::apiResources(['branchoutstandingsrecords' => 'API\BranchstandingControlle
 Route::get('contactscomponentaccess', 'APIController@acccesscontactscomponentaccesscomponent');
 
 Route::apiResources(['mainmenucomponents' => 'API\MainmenucomponentController']);
+Route::apiResources(['ncsscleintrecords' => 'API\NcssclientsController']);
+Route::apiResources(['ncssloansaccountrecords' => 'API\NcssclientsloanController']);
+Route::apiResources(['ncssloandetailsforclient' => 'API\NcssclientloandetailsController']);
+Route::apiResources(['ncssloansrecords' => 'API\NcssloansrecordsController']);
+
+
+Route::apiResources(['newloanapplication' => 'API\NcssloansController']);
+Route::apiResources(['newclientregistration' => 'API\NcssclientsController']);
 Route::apiResources(['submenus' => 'API\SubmenusController']);
 Route::apiResources(['dailyexpensesreportsummary' => 'API\DailyexpensesreportsummaryController']);
 Route::apiResources(['dailyexpensesrecords' => 'API\ExpensereportsdailyController']);
@@ -759,7 +850,8 @@ Route::get('creditinvoicecustomername', 'APIController@creditinvoicecustomername
 
 
 
-
+         Route::get('loidtypeerror', 'APIController@loidtypeerror');
+         Route::get('loidrerror', 'APIController@loidrerror');
 
 
 Route::get('generalProductscomponentAccess', 'APIController@generalProductscomponentAccess');
@@ -936,7 +1028,7 @@ Route::apiResources(['maycashoutdetails' => 'API\UsercashoutdetailsController'])
 Route::apiResources(['expensesreportbybranch' => 'API\ExpensereportstoviewController']);
 
 Route::apiResources(['dailycollectionsreport' => 'API\CollectionsreporttoviewController']);
-
+Route::apiResources(['countrycompanies' => 'API\CountrycompaniesController']);
 Route::apiResources(['dailybranchfloatcodesperformance' => 'API\DaillydailybranchfloatcodesperformancereportController']);
 Route::apiResources(['dailycodesreportdata' => 'API\DailysalessummaryreportController']);
 

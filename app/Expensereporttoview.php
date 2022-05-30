@@ -12,18 +12,12 @@ class Expensereporttoview extends Authenticatable
 
 
     protected $fillable = [
-        'branch', 'startdate', 'enddate', 'ucret','category','countryname', 'companyname', 'wallet'
+      'ucret', 'startdate', 'enddate', 'branchname', 'category', 'wallet', 'companyname', 'countryname'
     ];
     
 
+   
     
-
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
       //  'hid', 'id',
     ];

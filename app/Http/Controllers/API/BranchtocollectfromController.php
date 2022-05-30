@@ -68,12 +68,8 @@ class BranchtocollectfromController extends Controller
       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
+    
     public function store(Request $request)
     {
         //
@@ -81,7 +77,7 @@ class BranchtocollectfromController extends Controller
 
 
        $this->validate($request,[
-        'branchnametobalance'   => 'required',
+        'branchname'   => 'required',
       // 'enddate'   => 'required'
      //'amount'   => 'sometimes |min:0'
      ]);
@@ -96,7 +92,7 @@ class BranchtocollectfromController extends Controller
      
   //       $dats = $id;
        return Branchtocollect::Create([
-      'branchnametobalance' => $request['branchnametobalance'],
+      'branchnametobalance' => $request['branchname'],
       'datedone' => $request['datedone'],
      
  

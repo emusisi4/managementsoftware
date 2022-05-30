@@ -34,7 +34,11 @@ class CurrentmacinecodesController extends Controller
        $userrole =  auth('api')->user()->type;
         $this->validate($request,[
          'machinename'   => 'required | max:191',
-         'branch'   => 'required | max:191',
+         'openningcode'   => 'required | max:191',
+         'closingcode'   => 'required | max:191',
+         'previoussalescode'   => 'required | max:191',
+         'previouspayoutcode'   => 'required | max:191',
+       
          'code'   => 'required'
 
           ]);
@@ -46,7 +50,7 @@ class CurrentmacinecodesController extends Controller
          Codereset::Create([
             'machinecode'   => $request['code'],
             'machine'   => $request['machinename'],
-            'branch'   => $request['branch'],
+            'branch'   => $request['branchname'],
             'companyname'   => $request['companyname'],
             'countryname'   => $request['countryname'],
             'ucret' => $userid,
@@ -57,8 +61,8 @@ class CurrentmacinecodesController extends Controller
          Currentmachinecode::Create([
             'machinecode'   => $request['code'],
             'machineno'   => $request['machinename'],
-            'branch'   => $request['branch'],
-            'datedone'   => $request['branch'],
+            'branch'   => $request['branchname'],
+            'datedone'   => $request['branchname'],
             'companyname'   => $request['companyname'],
             'countryname'   => $request['countryname'],
             'ucret' => $userid,
@@ -70,7 +74,7 @@ class CurrentmacinecodesController extends Controller
 //currentpayoutfigure, currentsalesfigure, totalcredits, totalcollection, resetstatus, ucret, created_at, updated_at, dorder, daysalesamount, daypayoutamount, monthmade, yearmade
 
         Dailyreportcode::Create([
-            'branch'   => $request['branch'],
+            'branch'   => $request['branchname'],
 
             'machineno'   => $request['machinename'],
             'openningcode'   => $request['openningcode'],

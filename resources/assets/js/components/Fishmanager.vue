@@ -17,125 +17,69 @@
 
         <!-- Start of the -->
 
-<link href="plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
-<link href="plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                        FISH MACHINES SETTINGS
-                            </h2>
-                            
-                        </div>
-                        <div class="body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
 
 
+<div class="card">
+                <div class="
+                    d-flex
+                    border-bottom
+                    title-part-padding
+                    align-items-center
+                  ">
+                  <div>
+                    <h4 class="card-title mb-0">Fish Manager</h4>
+                  </div>
+                
+                
+                </div>
+                <div class="card-body">
+                
+                  <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#home"  @click="loadMacines()"  role="tab">
+                          <span>FISH MACHINES</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#profile" @click="loadBettingproducts()" role="tab">
+                          <span>PRODUCTS</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#messages" @click="loadAuthorisedbranchmachines()" role="tab">
+                          <span>BRANCHES AND MACHINES</span>
+                        </a>
+                      </li>
 
-                                <li role="presentation" class="active" >
-                                    <a href="#company_details_tab" @click="loadMacines()" data-toggle="tab">
-                                        <i class="material-icons"></i>FISH MACHINES
-                                    </a>
-                                </li>
-
-                                <li role="presentation" >
-                                    <a href="#home_with_icon_title" @click="loadBettingproducts()" data-toggle="tab">
-                                        <i class="material-icons"></i>COMPANY PRODUCTS
-                                    </a>
-                                </li>
-
-
-
-
-
-
-                                <li role="presentation">
-                                    <a href="#profile_with_icon_title" @click="loadAuthorisedbranchproducts()" data-toggle="tab">
-                                        <i class="material-icons"></i> BRANCHES && PRODUCTS
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#six_with_icon_title" data-toggle="tab"  @click="loadAuthorisedbranchmachines()">
-                                        <i class="material-icons"></i> Branch && Machines
-                                    </a>
-                                </li>
-                               <li role="presentation">
-                                    <a href="#messages_with_icon_title" data-toggle="tab"  @click="loadfishresetcodesRecords()">
-                                        <i class="material-icons"></i> FISH RESET CODES
-                                    </a>
-                                </li>
-                            <li role="presentation">
-                                    <a href="#settings_with_icon_title" @click="loadBranchfloatcodes()" data-toggle="tab">
-                                        <i class="material-icons"></i> BRANCHES AND FLOAT CODES
-                                    </a>
-                                </li>
-
-
-
-
-    <!--  
-                                 <li role="presentation">
-                                    <a href="#one_with_icon_title" @click="loadcomponentsAllowedfortherole()" data-toggle="tab">
-                                        <i class="material-icons"></i> Components
-                                    </a>
-                                </li> -->
-                               
-<!-- 
- <li role="presentation">
-                                    <a href="#two_with_icon_title"  @click="loadcomponentsAllowedcomponentfeatures()" data-toggle="tab">
-                                        <i class="material-icons"></i> Comp. Features
-                                    </a>
-                                </li>
-
- <li role="presentation">
-                                    <a href="#three_with_icon_title" data-toggle="tab"  @click="loadMacines()">
-                                        <i class="material-icons"></i> Machines
-                                    </a>
-                                </li>
-
- <li role="presentation">
-                                    <a href="#four_with_icon_title" data-toggle="tab" @click="loadBettingproducts()">
-                                        <i class="material-icons"></i> Products
-                                    </a>
-                                </li>
-
-                                 <li role="presentation">
-                                    <a href="#five_with_icon_title" data-toggle="tab" @click="loadAuthorisedbranchproducts()">
-                                        <i class="material-icons"></i> Branch && Pdts
-                                    </a>
-                                </li>
- 
-
-<li role="presentation">
-                                    <a href="#seven_with_icon_title" data-toggle="tab"  @click="loadBranchesandusers()">
-                                        <i class="material-icons"></i> Branch && Users
-                                    </a>
-                                </li> -->
+                           <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#messages1" @click="loadAuthorisedbranchproducts()" role="tab">
+                          <span>BRANCHES AND PRODUCTS</span>
+                        </a>
+                      </li>
 
 
+                           <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#messages2" @click="loadfishresetcodesRecords()" role="tab">
+                          <span>Fish Reset Codes</span>
+                        </a>
+                      </li>
 
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-
-
-                             
-
-                                <div role="tabpanel" class="tab-pane fade in active" id="company_details_tab">
-                                      <div class="bethapa-table-header">
-                      Fish Machines 
-
-                      <!--  v-if="allowedtoaddbranch > 0 " -->
-                      <button type="button" class="add-newm" @click="newcompanydetailsModal" >Add New </button> 
-                     </div>
+                       <!-- <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#messages3" @click="loadBranchfloatcodes()" role="tab">
+                          <span>Float Codes</span>
+                        </a>
+                      </li> -->
 
 
-      
-
-       <table class="table">
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="home" role="tabpanel">
+                        <div class="p-3">
+                           <div class="table-responsive">
+     <table class="table">
                   <thead>
                     <tr>
                    
@@ -188,134 +132,20 @@
               
  
                                    </table>
-    <div class="card-footer">
-                <ul class="pagination pagination-sm m-0 float-right">
-                   <pagination :data="branchesrecords" @pagination-change-page="paginationResultsBranches"></pagination>
-                </ul>
-    </div>
-          
-          
- 
+   
 
-<div class="modal fade" id="addnewBranchmodal">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">ADD NEW RECORD</h3> 
-                <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                           </div>
                         </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateBranch():createBranch()"> 
-
-                
-        <div class ="bethapa-table-sectionheader">User Details</div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Full Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <input v-model="form.branchname" type="text" name="branchname"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('branchname') }">
-                    <has-error :form="form" field="branchname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Location</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.location" type="text" name="location"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('location') }">
-                    <has-error :form="form" field="location"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Contact</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.contact" type="text" name="contact"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('contact') }">
-                    <has-error :form="form" field="contact"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                        <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Openning Balance</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.openningbalance" type="number" name="openningbalance"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('openningbalance') }">
-                    <has-error :form="form" field="openningbalance"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">fgh</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select class="form-control show-tick" data-live-search="true">
-                                        <option></option>
-                                        <option>Burger, Shake and a Smile</option>
-                                        <option>Sugar, Spice and all things nice</option>
-                                    </select>
-                    <has-error :form="form" field="openningbalance"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                      </div>
 
 
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-
-
-
-
-
-
-
-
-
-                                </div>
-
-
-
-
-
-
-                                <div role="tabpanel" class="tab-pane fade" id="home_with_icon_title">
-                                      <div class="bethapa-table-header">
+                      <div class="tab-pane p-3" id="profile" role="tabpanel">
+                      <div class="bethapa-table-header">
                       List of Company products 
-                      <button type="button" class="add-newm" @click="newUsermodlal" >Add New </button> 
+                      <!-- <button type="button" class="add-newm" @click="newUsermodlal" >Add New </button>  -->
                      </div>
+                            <div class="table-responsive">
+      
 
 
 
@@ -374,138 +204,95 @@
               
  
                                    </table>
-    <div class="card-footer">
-                <ul class="pagination pagination-sm m-0 float-right">
-                   <pagination :data="branchesrecords" @pagination-change-page="paginationResultsBranches"></pagination>
-                </ul>
-    </div>
-          
- 
+   
+                            </div>
+                      </div>
 
-<div class="modal fade" id="addnewBranchmodal">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">ADD NEW RECORD</h3> 
-                <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateBranch():createBranch()"> 
 
+  <div class="tab-pane p-3" id="messages" role="tabpanel">
+                      <div class="bethapa-table-header">
+                   Branches and Machines  <button  type="button"  class="add-newm" @click="newmachineaccessbranch" >Add New </button>
+                     </div>
+
+                   
+                            <div class="table-responsive">
+             <table class="table">
+                  <thead>
+                    <tr>
+                   
+                      <th > # </th>
+                    
+                       <th > BRANCH </th>
+                      <th > MACHINE </th>
+                          <th > MULTIPLIER </th>
+                     <th > STARTED </th>
+                     <th >  </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+
+                                       <tr v-for="allbrmac in allowedbranchmachinesdatarecords.data" :key="allbrmac.id">
+                      
+                 
+                  
                 
-<div class ="bethapa-table-sectionheader">User Details</div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Full Name</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <input v-model="form.branchname" type="text" name="branchname"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('branchname') }">
-                    <has-error :form="form" field="branchname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Location</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.location" type="text" name="location"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('location') }">
-                    <has-error :form="form" field="location"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                      
+                         
+                                <td>{{allbrmac.id}}</td>
                               
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Contact</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.contact" type="text" name="contact"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('contact') }">
-                    <has-error :form="form" field="contact"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+ 
+                             
+                                  <td> <template v-if="allbrmac.branchname_branchmachines">	{{allbrmac.branchname_branchmachines.branchname}}</template></td>
 
-                                        <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Openning Balance</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input v-model="form.openningbalance" type="number" name="openningbalance"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('openningbalance') }">
-                    <has-error :form="form" field="openningbalance"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">fgh</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select class="form-control show-tick" data-live-search="true">
-                                        <option></option>
-                                        <option>Burger, Shake and a Smile</option>
-                                        <option>Sugar, Spice and all things nice</option>
-                                    </select>
-                    <has-error :form="form" field="openningbalance"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-
-
-
-
-
-
-
-
-
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                                <div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title">
+                                  <td> <template v-if="allbrmac.machinename_branchmachines">	{{allbrmac.machinename_branchmachines.machinename}}</template></td>
+       <td>{{allbrmac.machinmultiplier}}</td>
+                               
+                                 <td>{{allbrmac.created_at | myDate }}</td>  
+                                 <td> 
                                   
+                           <!-- v-if="allowedtorevokecomponentaccess > 0" -->
 
-       <form @submit.prevent="Savebranchtoproduct()">
+                            <button type="button"  class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="revokebranchproduct(allbrmac.id)"> Revoke </button>
+
+
+
+
+                             
+                              </td>
+
+
+               
+                              
+                               
+                    </tr>
+              
+                     
+                  </tbody>
+              
+ 
+                                   </table>
+   
+   
+                      <div class="card-footer">
+                <ul class="pagination pagination-sm m-0 float-right">
+                   <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedcomponents"></pagination>
+                </ul>
+              </div>
+   
+                      </div>
+
+                      
+  </div>
+
+
+ <div class="tab-pane p-3" id="messages1" role="tabpanel">
+                      <div class="bethapa-table-header">
+                      Branches and Products 
+                     <button type="button" class="add-newm" @click="newsupplierModal" >Add New </button> 
+                     </div>
+
+                     <form @submit.prevent="Savebranchtoproduct()">
                       <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                         <label for="password_2">Branch</label>
@@ -518,7 +305,7 @@
                     <option v-for='data in brancheslist' v-bind:value='data.id'>{{ data.id }} - {{ data.branchname }}</option>
 
                     </select>
-                       <input type="hidden" name="inone" value="roletoaddcomponent" hidden="hidden"    class="form-control">
+                       <input type="hidden" name="inone" value="roletoaddcomponent" hidden="hidden"    class="">
 
                                 <has-error :form="form" field="mycpmponentto"></has-error>
                                             </div>
@@ -530,21 +317,8 @@
                
                                   <button type="submit" style="display:none" id="submit" name= "submit" ref="myBtnroledd" class="btn btn-primary btn-sm">Saveit</button>
                                 </form>
-
-
-
-
-                                     <div class="bethapa-table-header">
-                      Branches and Products 
-                      <button type="button" class="add-newm" @click="newsupplierModal" >Add New </button> 
-                     </div>
-
-
-
-
-
-                  
-                 <table class="table">
+                            <div class="table-responsive">
+          <table class="table">
                   <thead>
                     <tr>
                    
@@ -608,127 +382,22 @@
                    <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedcomponents"></pagination>
                 </ul>
               </div>
-
-          
- 
-
-<div class="modal fade" id="addnewsupplierModal">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">ADD NEW SUPPLIER</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update SUPPLIER</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateSupplier():createnewBranchproduc()"> 
-
-                <br>
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Branch</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                 <select name ="branch" class='form-control'  v-model="form.branch">
-
-                              <option value="">  </option>
-
-                              <option v-for='data in brancheslist' :value='data.id'>{{ data.branchname }}</option>
-
-                            </select>
-                            
-                               <has-error :form="form" field="branch"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                              
-
-                                                              <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Product</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                 <select name ="product" v-model="form.product" id ="product"  class="form-control" :class="{'is-invalid': form.errors.has('product')}">
-                    <option value=" ">  </option>
-                    <option v-for='data in bettingproductslist' v-bind:value='data.id'>{{ data.productname }}</option>
-
-                    </select>
-                   
-
-                                <has-error :form="form" field="product"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
    
+                      </div>
 
-
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-                                </div>
+                      
+  </div>
 
 
 
-
-
-
-
-
-<!-- main menu access settings start -->
-
-
-                                <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
-
- <div class="bethapa-table-header">
-
- <!-- <form @submit.prevent="SaveRoletoaddmainmenu()"> -->
-                  
-                  
-                    <!-- <div class="form-group">
-                  <label>Select the Role</label>
-                    <select name ="mainmemurolerrtrrr" data-live-search="true" v-model="form.mainmemurolerrtrrr" id ="mainmemurolerrtrrr" v-on:change="myClickEventformainmenuas"  :class="{'is-invalid': form.errors.has('mainmemurolerrtrrr')}">
-                    <option value=" ">  </option>
-                    <option v-for='data in roleslist' v-bind:value='data.id'>{{ data.rolename }}</option>
-
-                    </select>
-                       <input type="hidden" name="inone" value="forsubmenuazccess" class="form-control">
-
-                                <has-error :form="form" field="mainmemurolerrtrrr"></has-error>
-
-                             
-                             
-
-                                
-                                </div>
-                                  <button style="display:none" type="hidden" id="submit" hidden="" name= "submit" ref="myBtnmainmen" class="btn btn-primary btn-sm">uuj</button>
-                                </form>
-                                 --></div>
-
-              <div class="bethapa-table-header">
-                      Machine Reset Codes  <button  type="button"  class="add-newm" @click="newmainmenuaccess" >Add New </button>
-                      <!--  -->
+<div class="tab-pane p-3" id="messages2" role="tabpanel">
+                      <div class="bethapa-table-header">
+                    Machine Reset Codes  <button  type="button"  class="add-newm" @click="newmainmenuaccess" >Add New </button>
                      </div>
-        
-                    
-                    
-          <table class="table">
+
+                   
+                            <div class="table-responsive">
+            <table class="table">
                       <thead>
                     <tr>
                    
@@ -794,873 +463,27 @@
  
                                    </table>
    
-   
-                      <div class="card-footer">
-                <ul class="pagination pagination-sm m-0 float-right">
-                   <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedsubmenues"></pagination>
-                </ul>
-              </div>
-
-<!-- Modal for adding Main Menu -->
-<div class="modal fade" id="addnewbranchmachine">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Add New</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update Record</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateUser():createnewBranchmachinecode()"> 
-                            
-
-
-
-<div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Country : </label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <has-error :form="form" field="countryname"></has-error>
-                                               <select name ="type" v-model="form.countryname"  id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
-                                      class="form-control show-tick" data-live-search="true">
-                                        <option></option>
-                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
-                                    </select>
-                   
-               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-<div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Company</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <has-error :form="form" field="companyname"></has-error>
-                                               <select name ="companyname" v-model="form.companyname"  v-on:focus ="getcompanies()" v-on:click="getcompanies()" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
-                                      class="form-control show-tick" data-live-search="true">
-                                        <option></option>
-                                        <option v-for='data in companieslist' :value='data.id'>{{ data.companyname }}</option>
-                                    </select>
-                   
-               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Branch</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select name ="branch" class='form-control'  v-model="form.branch">
-
-                              <option value=" ">  </option>
-
-                           
-                               <option v-for='data in brancheslist' v-bind:value='data.id'>{{ data.branchname }}</option>
-
-                            </select>
-                            
-                               <has-error :form="form" field="branch"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Machine</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <select name ="machinename" v-model="form.machinename" id ="machinename" 
-                            class="form-control" :class="{'is-invalid': form.errors.has('machinename')}">
-                    <option value=" ">  </option>
-                    <option v-for='data in branchmachineslist' v-bind:value='data.id'>{{ data.machinename }}</option>
-
-                    </select>
-                   
-
-                                <has-error :form="form" field="machinename"></has-error>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                
-     <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Code </label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                 <input v-model="form.code" type="text" name="code"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('code') }">
-                   
-
-                                <has-error :form="form" field="code"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                  <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Openning Code </label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <input v-model="form.openningcode" type="text" name="openningcode"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('openningcode') }">
-                   
-
-                                <has-error :form="form" field="openningcode"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                               <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Closing Code </label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                 <input v-model="form.closingcode" type="text" name="closingcode"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('closingcode') }">
-                   
-
-                                <has-error :form="form" field="closingcode"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Previous Sales </label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                 <input v-model="form.previoussalescode" type="text" name="previoussalescode"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('previoussalescode') }">
-                   
-
-                                <has-error :form="form" field="previoussalescode"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                               <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Previous Payout </label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                  <input v-model="form.previouspayoutcode" type="text" name="previouspayoutcode"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('previouspayoutcode') }">
-                   
-
-                                <has-error :form="form" field="previouspayoutcode"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-                <!-- End of modal for adding main Menu -->
-
-
-                                   
-                                </div>
-
-
-<!-- Main menu access Setting End -->
-
-
-
-
-
-
-
-
-<!-- Sub Menu Access settings Start -->
-
-                                <div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
-                                  
-                                       <!-- <form @submit.prevent="Savebranchfloatcode()">
-                  
-                  
-                    <div class="form-group">
-                  <label>Branch</label>
-                    <select name ="mycpmponentto" v-model="form.mycpmponentto" id ="mycpmponentto" v-on:change="myClickEventroletoaddcomponent"  :class="{'is-invalid': form.errors.has('mycpmponentto')}">
-                    <option value=" ">  </option>
-                    <option v-for='data in brancheslist' v-bind:value='data.id'>{{ data.id }} - {{ data.branchname }}</option>
-
-                    </select>
-                       <input type="text" name="inone" value="roletoaddcomponent" hidden
-                    class="form-control">
-
-                                <has-error :form="form" field="mycpmponentto"></has-error>
-
-                             
-                             
-
-                                
-                                </div>
-                                  <button type="submit" id="submit" hidden="hidden" name= "submit" ref="myBtnroledd" class="btn btn-primary btn-sm">Saveit</button>
-                                </form> -->
-
-
-  <div class="bethapa-table-header">
-                      Branches and Float codes <button  type="button" class="add-newm" @click="newsubmenuaccess" >Add New </button>
-                      <!-- v-if="allowedtoaddsubmenuaccess > 0" -->
-                     </div>
-               <table class="table">
-                  <thead>
-                    <tr>
-                   
-                      <th > # </th>
-                    
-                       <th > BRANCH </th>
-                      <th > FLOAT CODE </th>
-                     <th > DATE RECIEVED </th>
-                     <th >  </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-
-                                       <tr v-for="fvdds in brachfloatcoderecords.data" :key="fvdds.id">
-                      
-                 
-                  
-                
-                      
-                         
-                                <td>{{fvdds.id}}</td>
-                                
- 
-                             
-                                  <td> <template v-if="fvdds.branch_namebettingproducts">	{{fvdds.branch_namebettingproducts.branchname}}</template></td>
-  <td>{{fvdds.floatcode }}</td>  
-                                  <!-- <td> <template v-if="allcomponentsdata.branch_productname">	{{fvdds.branch_productname.productname}}</template></td> -->
-
-                               
-                                 <td>{{fvdds.created_at | myDate }}</td>  
-                                 <td> 
-                                  
-                           <!-- v-if="allowedtorevokecomponentaccess > 0" -->
-
-                            <button type="button"  class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="revokebranchproduct(allcomponentsdata.id)"> Revoke </button>
-
-
-
-
-                             
-                              </td>
-
-
-               
-                              
-                               
-                    </tr>
-              
-                     
-                  </tbody>
-              
- 
-                                   </table>
-   
-   
                       <div class="card-footer">
                 <ul class="pagination pagination-sm m-0 float-right">
                    <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedcomponents"></pagination>
                 </ul>
               </div>
-                
-
-
-<!-- Modal for adding Main Menu -->
-<div class="modal fade" id="addnewaccesstosubmenu">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Allow Sub Menu Access</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update Record</h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateUser():createSubmenuaccess()"> 
-                            
-                            <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Select Role</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select  name ="roleforsubmenuaccess" v-model="form.roleforsubmenuaccess" 
-                            id ="roleforsubmenuaccess"  :class="{'is-invalid': form.errors.has('roleforsubmenuaccess')}" class="form-control show-tick" data-live-search="true">
-                                       <option value=" ">  </option>
-                    <option v-for='data in roleslist' v-bind:value='data.id'>{{ data.rolename }}</option>
-                                    </select>
-                    <has-error :form="form" field="roleforsubmenuaccess"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Main Menddu</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select  name ="submenus" v-model="form.submenus" 
-                            id ="submenus"  :class="{'is-invalid': form.errors.has('submenus')}" class="form-control show-tick" data-live-search="true">
-                                       <option value=" ">  </option>
-                  <option v-for='data in submenulist' v-bind:value='data.id'>{{ data.submenuname }}</option>
-                                    </select>
-                    <has-error :form="form" field="submenus"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                
-
-                             
-                             
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-                <!-- End of modal for adding main Menu -->
-
-
-
-
-
-
-
-
-
-
-
-
-                                </div>
-
-
-<!-- Sub Menu access Settings End -->
-
-<!-- Start of Componets -->
-                                  <div role="tabpanel" class="tab-pane fade" id="one_with_icon_title">
-                                         <form @submit.prevent="SaveRoletoaddcomponent()">
-                  
-                  
-                    <div class="form-group">
-                  <label>Select the Role</label>
-                    <select name ="mycpmponentto" v-model="form.mycpmponentto"  class="show-tick" data-live-search="true" id ="mycpmponentto" v-on:change="myClickEventroletoaddcomponent"  :class="{'is-invalid': form.errors.has('mycpmponentto')}">
-                    <option value=" ">  </option>
-                    <option v-for='data in roleslist' v-bind:value='data.id'> {{ data.rolename }}</option>
-
-                    </select>
-                       <input  style="display:none" type="text" name="inone" value="roletoaddcomponent" hidden
-                    class="form-control">
-
-                                <has-error :form="form" field="mycpmponentto"></has-error>
-
-                             
-                             
-
-                                
-                                </div>
-                                  <!-- <button  style="display:none" type="submit" id="submit" hidden="hidden" name= "submit" ref="myBtnroledd" class="btn btn-primary btn-sm">Saveit</button> -->
-                                </form>
-
-              <div class="bethapa-table-header">
-                   
-       
-                      AUTHORISED COMPONENTS  <button type="button" class="add-newm" @click="newcomponentadd" >Add New </button>
-                     </div>
-<!--  v-if="allowedtogivecomponentaccess > 0" -->
-
-            <table class="table">
-                  <thead>
-                    <tr>
-                   
-                      <th > # </th>
-                     
-                       <th > COMPONENT </th>
-                      <th > AUTHORISED </th>
-                     <th >  </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-
-                                       <tr v-for="allcomponentsdata in allowedrolecomponentsObject.data" :key="allcomponentsdata.id">
-                      
-                 
-                  
-                
-                      
-                         
-                                <td>{{allcomponentsdata.id}}</td>
-                              
- 
-                             
-                                  <td>{{allcomponentsdata.componentto}}</td>
-
-                                
-                               
-                                 <td>{{allcomponentsdata.created_at | myDate }}</td>  
-                                 <td> 
-                                  
-                           
-
-                            <button type="button" v-if="allowedtorevokecomponentaccess > 0" class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="revokeroleComponent(allcomponentsdata.id)"> Revoke </button>
-
-
-
-
-                             
-                              </td>
-
-
-               
-                              
-                               
-                    </tr>
-              
-                     
-                  </tbody>
-              
- 
-                                   </table>
    
-   
-                      <div class="card-footer">
-                <ul class="pagination pagination-sm m-0 float-right">
-                   <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedcomponents"></pagination>
-                </ul>
-              </div>
-              
-               
-<!-- Modal for adding Main Menu -->
+                      </div>
 
-
-
-
-
-
-
-
-
-
-<div class="modal fade" id="addnewComponenttotheRole">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Add Component Access</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update Record</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateUser():createAuthorisedrole()"> 
-                            
-                            <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Select Role</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select  name ="roleyouareaddingtocomponent" v-model="form.roleyouareaddingtocomponent" 
-                            id ="roleyouareaddingtocomponent"  :class="{'is-invalid': form.errors.has('roleyouareaddingtocomponent')}" class="form-control show-tick" data-live-search="true">
-                                       <option value=" ">  </option>
-                    <option v-for='data in roleslist' v-bind:value='data.id'>{{ data.rolename }}</option>
-                                    </select>
-                    <has-error :form="form" field="roleyouareaddingtocomponent"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Main Menu</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select  name ="components" v-model="form.components" 
-                            id ="components"  :class="{'is-invalid': form.errors.has('components')}" class="form-control show-tick" data-live-search="true">
-                                       <option value=" ">  </option>
-                      <option v-for='data in componentslist' v-bind:value='data.sysname'>{{ data.sysname }} - {{ data.componentname }}</option>
-                                    </select>
-                    <has-error :form="form" field="components"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                
-
-                             
-                             
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-                <!-- End of modal for adding main Menu -->                    
-                                </div>
-
-          <!-- End of component access -->
-
-          <!-- Start of component features access -->
-                                  <div role="tabpanel" class="tab-pane fade" id="two_with_icon_title">
-                                     <form @submit.prevent="SaveRoletoaddformcomponent()">
-                  
-                  
-                    <div class="form-group">
-                  <label>Role</label>
-                    <select name ="roletoallow"  class="show-tick" data-live-search="true" v-model="form.roletoallow" id ="roletoallow"   :class="{'is-invalid': form.errors.has('roletoallow')}">
-                    <option value=" ">  </option>
-                    <option v-for='data in roleslist' v-bind:value='data.id'> {{ data.rolename }}</option>
-
-                    </select>
-                    
-
-                                <has-error :form="form" field="roletoallow"></has-error>
-
-
-                     <label>Component</label>
-                    <select name ="componentto" v-model="form.componentto" id ="componentto"   :class="{'is-invalid': form.errors.has('componentto')}"  class="show-tick" data-live-search="true">
-                    <option value=" ">  </option>
-                    <option v-for='data in componentslist' v-bind:value='data.sysname'> ({{ data.sysname }}) - {{ data.componentname }}</option>
-
-                    </select>
-                    
-
-
-                    
-
-                                <has-error :form="form" field="componentto"></has-error>
-                       <button type="submit" id="submit" name= "submit" ref="myBtn" class="btn btn-info btn-sm">Proceed</button>
-                                    </div>
-                                </form>
-                  
-                       <div class="bethapa-table-header">
-                      AUTHORISED COMPONENTS FEATURES <button type="button" class="add-newm" @click="newcomponentfeatureadd" >Add New </button>
-                     </div>
-
-
-                   <table class="table">
-                  <thead>
-                    <tr>
-                   
-                      <th > # </th>
-                      <th > COMPONENT </th>
-                      <th > FEATURE </th>
                       
-                      <th > ACTIVATED </th>
-                     <th >  </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-
-                              <tr v-for="allcompfetures in allowedrolecomponentfeaturesObject.data" :key="allcompfetures.id">
-                      
-                 
-                  
-                
-                      
-                         
-                                <td>{{allcompfetures.id}}</td>
-                               
-                                <td>{{allcompfetures.component}}</td>
-                             
-                                <td>{{allcompfetures.formcomponent}}</td>
-
-                                
-                               
-                                 <td>{{allcompfetures.created_at | myDate }}</td>  
-                                 <td> 
-                                  
-                           
-
-                            <button type="button" class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="revokeroleComponentfeature(allcompfetures.id)"> Revoke Feature</button>
+  </div>
 
 
 
-
-                             
-                              </td>
-
-
-               
-                              
-                               
-                    </tr>
-              
-                     
-                  </tbody>
-              
- 
-                                   </table>
-   
-   
-                      <div class="card-footer">
-                <ul class="pagination pagination-sm m-0 float-right">
-                   <pagination :data="allowedrolecomponentfeaturesObject" @pagination-change-page="paginationroleAuthorisedcomponentsfeature"></pagination>
-                </ul>
-              </div>
-
-      
-                             <!-- Modal for adding Main Menu -->
-<div class="modal fade" id="addnewcomponentfeature">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Add Component Feature</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update Record</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateUser():createAuthorisecomponentfeature()"> 
-                            
-                            <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Select Role</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select  name ="roleyouareaddingtocomponent" v-model="form.roleyouareaddingtocomponent" 
-                            id ="roleyouareaddingtocomponent"  :class="{'is-invalid': form.errors.has('roleyouareaddingtocomponent')}" class="form-control show-tick" data-live-search="true">
-                                       <option value=" ">  </option>
-                    <option v-for='data in roleslist' v-bind:value='data.id'>{{ data.rolename }}</option>
-                                    </select>
-                    <has-error :form="form" field="roleyouareaddingtocomponent"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Component</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select  name ="componentname" v-model="form.componentname" 
-                            id ="componentname"  :class="{'is-invalid': form.errors.has('componentname')}" class="form-control show-tick" data-live-search="true">
-                                       <option value=" ">  </option>
-                      <option v-for='data in componentslist' :value='data.sysname'>{{ data.componentname }}</option>
-                                    </select>
-                    <has-error :form="form" field="componentname"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                
-
-                             <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Feature</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <select  name ="formfeatures" v-model="form.formfeatures" 
-                            id ="formfeatures"  :class="{'is-invalid': form.errors.has('formfeatures')}" class="form-control show-tick" data-live-search="true">
-                                       <option value=" ">  </option>
-                        <option v-for='data in formfeatures' v-bind:value='data.sysname'>{{ data.featurename }}</option>
-               </select>
-                    <has-error :form="form" field="formfeatures"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                             
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
-                 </form>
-                       </div>
-                          </div>
-                </div>
-                
-                <!-- End of modal for adding main Menu -->         
-                                </div>
-
-                                <!-- End of component axccess features -->
-
-
-
-<!-- fish machines  start-->
-                                  <div role="tabpanel" class="tab-pane fade" id="three_with_icon_title">
-                                 
-
-
-                                 
-                                 
-                                </div>
-
-
-                                <!-- fish machines end -->
-                                  <div role="tabpanel" class="tab-pane fade" id="four_with_icon_title">
-                                    <b>Settings Content</b>
-                                    <p>
-                                    four
-                                    </p>
-                                </div>
-
-  <div role="tabpanel" class="tab-pane fade" id="five_with_icon_title">
-                                    <b>Settings Content</b>
-                                    <p>
-                                       five
-                                    </p>
-                                </div>
-
-
-
- <div role="tabpanel" class="tab-pane fade" id="six_with_icon_title">
-                                   <div class="bethapa-table-header">
-                      Branches and Machines  <button  type="button"  class="add-newm" @click="newmachineaccessbranch" >Add New </button>
-                      <!--  -->
-                     </div>
-        
-<!--                     
-                                //  <table class="table table-bordered table-striped"> -->
-
-              <table class="table">
-                  <thead>
-                    <tr>
-                   
-                      <th > # </th>
-                    
-                       <th > BRANCH </th>
-                      <th > MACHINE </th>
-                          <th > MULTIPLIER </th>
-                     <th > STARTED </th>
-                     <th >  </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-
-                                       <tr v-for="allbrmac in allowedbranchmachinesdatarecords.data" :key="allbrmac.id">
-                      
-                 
-                  
-                
-                      
-                         
-                                <td>{{allbrmac.id}}</td>
-                              
- 
-                             
-                                  <td> <template v-if="allbrmac.branchname_branchmachines">	{{allbrmac.branchname_branchmachines.branchname}}</template></td>
-
-                                  <td> <template v-if="allbrmac.machinename_branchmachines">	{{allbrmac.machinename_branchmachines.machinename}}</template></td>
-       <td>{{allbrmac.machinmultiplier}}</td>
-                               
-                                 <td>{{allbrmac.created_at | myDate }}</td>  
-                                 <td> 
-                                  
-                           <!-- v-if="allowedtorevokecomponentaccess > 0" -->
-
-                            <button type="button"  class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="revokebranchproduct(allbrmac.id)"> Revoke </button>
-
-
-
-
-                             
-                              </td>
-
-
-               
-                              
-                               
-                    </tr>
-              
-                     
-                  </tbody>
-              
- 
-                                   </table>
-   
-   
-                      <div class="card-footer">
-                <ul class="pagination pagination-sm m-0 float-right">
-                   <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedcomponents"></pagination>
-                </ul>
-              </div>
- </div>
-
-
-
-
-
- <div role="tabpanel" class="tab-pane fade" id="seven_with_icon_title">
-                                    <b>Settings Content</b>
-                                    <p>
-                                       seven
-                                    </p>
-                                </div>
-
-
-
-
-                            </div>
-                        </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+
+
+
+
 
 
 <!-- mmmm models -->
@@ -1907,106 +730,435 @@
                        </div>
                           </div>
                 </div>
+<!-- ////////////////////////////////////////////////////////////// -->
+<div class="modal fade" id="addnewbranchmachine"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                        Machine Reset Codes
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+                              
+              <form class="form-control-line mt-4" @submit.prevent="editmode ? updateUser():createnewBranchmachinecode()"> 
+                  <div class="card-body">
+          
+        <form @submit.prevent="savenewRecordtoview()"> 
 
-        <!-- modal for adding machine branch -->
-            <div class="modal fade" id="addnewmachineaccessbranch" data-backdrop="static">
-         <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  v-show="!editmode"    class="modal-title"><img src="images/logo.png" class="profile-user-img img-fluid img-circle"
-                             style="height: 80px; width: 80px;">Add New Branch Machine</h3> 
-                <h4  v-show="editmode" class="modal-title" ><img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;">Update SUPPLIER</h3> </h4> 
-                        </div>
-                  <form class="form-horizontal" @submit.prevent="editmode ? updateSupplier():createnewBranchmachine()"> 
-
-                <br>
-                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Country : </label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <has-error :form="form" field="countryname"></has-error>
-                                               <select name ="type" v-model="form.countryname"  id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
-                                      class="form-control show-tick" data-live-search="true">
+                 <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                 
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-control form-control-line" >
                                         <option></option>
                                         <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
                                     </select>
-                   
-               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-<div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Company</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                               <has-error :form="form" field="companyname"></has-error>
-                                               <select name ="companyname" v-model="form.companyname"  v-on:focus ="getcompanies()" v-on:click="getcompanies()" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
-                                      class="form-control show-tick" data-live-search="true">
+                       <has-error :form="form" field="countryname"></has-error>
+                      </div>
+                    </div>
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                    
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" @change='getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-control form-control-line">
                                         <option></option>
-                                        <option v-for='data in companieslist' :value='data.id'>{{ data.companyname }}</option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
                                     </select>
+                                         <has-error :form="form" field="companyname"></has-error>
+                      </div>
+                    </div>
+
+
+
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Branch</label>
+                      <div class="col-sm-9">
+                    
+                                              <select name ="branchname" v-model="form.branchname"
+                                                id ="branchname"
+                                               
+                                                :class="{'is-invalid': form.errors.has('branchname')}"
+                                     class="form-control form-control-line" >
+                                        <option></option>
+                                        <option v-for='data in companybrancheslist' :value='data.id'>{{ data.branchname }}</option>
+                                    </select>
+
+                                         <has-error :form="form" field="branchname"></has-error>
+                      </div>
+                    </div>
+
+
+
+ 
+   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Machine</label>
+                      <div class="col-sm-9">
+                    
+                        <select name ="machinename" v-model="form.machinename" id ="machinename" 
+                             class="form-control form-control-line" :class="{'is-invalid': form.errors.has('machinename')}">
+                    <option value=" ">  </option>
+                    <option v-for='data in branchmachineslist' v-bind:value='data.id'>{{ data.machinename }}</option>
+
+                    </select>
+                                         
+
+                                         <has-error :form="form" field="machinename"></has-error>
+                      </div>
+                    </div>
+
+ 
+  <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Code</label>
+                      <div class="col-sm-9">
+                    
+                           <input v-model="form.code" type="text" name="code"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('code') }">
                    
-               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>  
 
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Branch</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                 <select name ="branch" class='form-control'  v-model="form.branch">
+                                <has-error :form="form" field="code"></has-error>
+                      </div>
+                    </div>
 
-                              <option value="">  </option>
+ <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Openning Code</label>
+                      <div class="col-sm-9">
+                    
+                      <input v-model="form.openningcode" type="text" name="openningcode"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('openningcode') }">
+                   
 
-                              <option v-for='data in brancheslist' :value='data.id'>{{ data.branchname }}</option>
+                                <has-error :form="form" field="openningcode"></has-error>
+                      </div>
+                    </div>
 
-                            </select>
+<div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Closing Code</label>
+                      <div class="col-sm-9">
+                    
+                      <input v-model="form.closingcode" type="text" name="closingcode"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('closingcode') }">
+                   
+
+                                <has-error :form="form" field="closingcode"></has-error>
+                      </div>
+                    </div>
+<div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Precious Sales</label>
+                      <div class="col-sm-9">
+                    
+                      <input v-model="form.previoussalescode" type="text" name="previoussalescode"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('previoussalescode') }">
+                   
+
+                                <has-error :form="form" field="previoussalescode"></has-error>
+                      </div>
+                    </div>
+
+
+<div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Precious Payout</label>
+                      <div class="col-sm-9">
+                    
+                       <input v-model="form.previouspayoutcode" type="text" name="previouspayoutcode"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('previouspayoutcode') }">
+                   
+
+                                <has-error :form="form" field="previouspayoutcode"></has-error>
+                      </div>
+                    </div>
+
+
+      <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportviePOOOJJJ" class="btn btn-primary btn-sm">Saveit</button>      
+
+                 </form>
+                 
+     
+
+                   
+
+                 </div>
+            
+                  <div class="p-3 border-top">
+                    <div class="text-end">
+                     
+                     
+                    </div>
+                  </div>
+              
+                            <!-- </div> -->
                             
-                               <has-error :form="form" field="branch"></has-error>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                  <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2">Multiplier</label>
-                                    </div>
-                                                     
-
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                 <has-error :form="form" field="machinmultiplier"></has-error>
-                                                <input v-model="form.machinmultiplier" type="number" name="machinmultiplier"
-                      class="form-control" :class="{ 'is-invalid': form.errors.has('machinmultiplier') }">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div class="modal-footer">
+             <button type="submit" class="btn btn-info rounded-pill  px-4 waves-effect waves-light">
+                        Create
+                      </button>
+                              <button
+                                type="button"
+                                class="
+                                  btn btn-light-danger
+                                  text-danger
+                                    rounded-pill
+                          px-4
+                          waves-effect waves-light
+                                "
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
                         
-                              
+                        <!-- /.modal-dialog -->
+                      </div>
 
-                                                              <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Machine</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                          <select name ="machinename" v-model="form.machinename" id ="machinename" 
+<!-- /////////////////////////////////////////////// -->
+<div class="modal fade" id="addnewsupplierModal"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                        Branch Product Selection
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+                              
+              <form class="form-control-line mt-4"  @submit.prevent="editmode ? updateSupplier():createnewBranchproduc()"> 
+                  <div class="card-body">
+          
+        <form @submit.prevent="savenewRecordtoview()"> 
+
+                 <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                 
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-control form-control-line" >
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+                       <has-error :form="form" field="countryname"></has-error>
+                      </div>
+                    </div>
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                    
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" @change='getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-control form-control-line">
+                                        <option></option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                                         <has-error :form="form" field="companyname"></has-error>
+                      </div>
+                    </div>
+
+
+
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Branch</label>
+                      <div class="col-sm-9">
+                    
+                                              <select name ="branchname" v-model="form.branchname"
+                                                id ="branchname"
+                                               
+                                                :class="{'is-invalid': form.errors.has('branchname')}"
+                                     class="form-control form-control-line" >
+                                        <option></option>
+                                        <option v-for='data in companybrancheslist' :value='data.id'>{{ data.branchname }}</option>
+                                    </select>
+
+                                         <has-error :form="form" field="branchname"></has-error>
+                      </div>
+                    </div>
+
+
+
+ 
+   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Product</label>
+                      <div class="col-sm-9">
+                           <select name ="product" v-model="form.product" id ="product" class="form-control form-control-line" :class="{'is-invalid': form.errors.has('product')}">
+                    <option value=" ">  </option>
+                    <option v-for='data in bettingproductslist' v-bind:value='data.id'>{{ data.productname }}</option>
+
+                    </select>
+                   
+
+                                <has-error :form="form" field="product"></has-error>
+                       
+                      </div>
+                    </div>
+
+ 
+ 
+ 
+
+
+      <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportviePOOOJJJ" class="btn btn-primary btn-sm">Saveit</button>      
+
+                 </form>
+                 
+     
+
+                   
+
+                 </div>
+            
+                  <div class="p-3 border-top">
+                    <div class="text-end">
+                     
+                     
+                    </div>
+                  </div>
+              
+                            <!-- </div> -->
+                            
+                            <div class="modal-footer">
+             <button type="submit" class="btn btn-info rounded-pill  px-4 waves-effect waves-light">
+                        Create
+                      </button>
+                              <button
+                                type="button"
+                                class="
+                                  btn btn-light-danger
+                                  text-danger
+                                    rounded-pill
+                          px-4
+                          waves-effect waves-light
+                                "
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
+                        
+                        <!-- /.modal-dialog -->
+                      </div>
+
+<!-- ////////////////////////////////////////////////// -->
+<div class="modal fade" id="addnewmachineaccessbranch"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                        New Branch Machine
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+                              
+              <form class="form-control-line mt-4"  @submit.prevent="editmode ? updateSupplier():createnewBranchmachine()"> 
+                  <div class="card-body">
+          
+        <form @submit.prevent="savenewRecordtoview()"> 
+
+                 <div class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                 
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-control form-control-line" >
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+                       <has-error :form="form" field="countryname"></has-error>
+                      </div>
+                    </div>
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                    
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" @change='getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-control form-control-line">
+                                        <option></option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                                         <has-error :form="form" field="companyname"></has-error>
+                      </div>
+                    </div>
+
+
+
+
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Branch</label>
+                      <div class="col-sm-9">
+                    
+                                              <select name ="branchname" v-model="form.branchname"
+                                                id ="branchname"
+                                               
+                                                :class="{'is-invalid': form.errors.has('branchname')}"
+                                     class="form-control form-control-line" >
+                                        <option></option>
+                                        <option v-for='data in companybrancheslist' :value='data.id'>{{ data.branchname }}</option>
+                                    </select>
+
+                                         <has-error :form="form" field="branchname"></has-error>
+                      </div>
+                    </div>
+
+   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Machine</label>
+                      <div class="col-sm-9">
+                    
+                                              <select name ="machinename" v-model="form.machinename" id ="machinename" 
                             class="form-control" :class="{'is-invalid': form.errors.has('machinename')}">
                     <option value=" ">  </option>
                     <option v-for='data in branchmachineslist' v-bind:value='data.id'>{{ data.machinename }}</option>
@@ -2015,30 +1167,105 @@
                    
 
                                 <has-error :form="form" field="machinename"></has-error>
+                      </div>
+                    </div>
+
+ 
+   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Multiplier</label>
+                      <div class="col-sm-9">
+                        <input v-model="form.machinmultiplier" type="number" name="machinmultiplier"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('machinmultiplier') }">
                    
 
-                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <has-error :form="form" field="machinmultiplier"></has-error>
+                       
+                      </div>
+                    </div>
+
+ 
+ 
+ 
 
 
+      <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportviePOOOJJJ" class="btn btn-primary btn-sm">Saveit</button>      
 
-
-   <br>
-
-
-                  <div  class="modal-footer">
-                    <button  v-show="!editmode" type="submit" class="btn btn-primary btn-sm">Create</button> 
-                      <button v-show="editmode" type="submit" class="btn btn-success btn-sm" >Update</button>
-                        <button  type="button" data-dismiss="modal" class="btn btn-danger btn-sm">Close</button >
-                        </div>
                  </form>
-                       </div>
-                          </div>
-                </div>
+                 
+     
 
+                   
+
+                 </div>
+            
+                  <div class="p-3 border-top">
+                    <div class="text-end">
+                     
+                     
+                    </div>
+                  </div>
+              
+                            <!-- </div> -->
+                            
+                            <div class="modal-footer">
+             <button type="submit" class="btn btn-info rounded-pill  px-4 waves-effect waves-light">
+                        Create
+                      </button>
+                              <button
+                                type="button"
+                                class="
+                                  btn btn-light-danger
+                                  text-danger
+                                    rounded-pill
+                          px-4
+                          waves-effect waves-light
+                                "
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
+                        
+                        <!-- /.modal-dialog -->
+                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- modal for adding machine branch -->
+        
           <!-- end of the body -->
  </div>
 
@@ -2153,6 +1380,9 @@
                 mainmenulist:[],
                 countrieslist:[],
                   branchmachineslist:[],
+                  companybrancheslist:[],
+                  companiesss:[],
+                 
             ///////////////////////////////////
           brancheslist: [],
           bettingproductslist:[],
@@ -2230,7 +1460,7 @@ mainmenus:'',
   location: '',
   contactperson: '',
   contactnumber: '',
-
+  branchname: '',
 
 
 
@@ -2270,6 +1500,41 @@ companycontactperson:'',
          },
 
 methods:{
+
+getCountrycompanies: function() {
+                axios.get('/api/getcountriescompanies',{params: {companyname: this.companyname       }
+              }).then(function(response){
+                    this.companiesss = response.data;
+                }.bind(this));
+            countryname.hide
+        },
+  getcompanybranches: function() {
+                axios.get('/api/getcompanybranches',{params: {companybranches: this.companybranches       }
+              }).then(function(response){
+                    this.companybrancheslist = response.data;
+                }.bind(this));
+            countryname.hide
+        },
+
+
+    savenewRecordtoview(){
+this.loading = true;
+                           //     this.$Progress.start();
+                                this.form.post('api/countrycompanies')
+                                .then(()=>{
+
+                                })
+                                .catch(()=>{
+
+                                })
+
+}, 
+ 
+ 
+
+myClickEventtosavesalesreportbydatehhhhhhhhhh($event) { const elem = this.$refs.theButtontosabemonthlyreportviePOOOJJJ
+            elem.click()
+        },
 
 
 newmachineaccessbranch(){

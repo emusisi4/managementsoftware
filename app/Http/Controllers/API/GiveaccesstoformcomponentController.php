@@ -15,11 +15,8 @@ use App\Rolenaccmain;
 
 class GiveaccesstoformcomponentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+  
     public function __construct()
     {
        $this->middleware('auth:api');
@@ -73,16 +70,25 @@ class GiveaccesstoformcomponentController extends Controller
        $this->validate($request,[
       'roleyouareaddingtocomponent'   => 'required',
        'componentname'   => 'required',
-       'formfeatures' => 'required'
+       'formfeatures' => 'required',
+       'countryname'   => 'required',
+       'companyname'   => 'required'
        // 'dorder'   => 'sometimes |min:0'
      ]);
      $roleee = $request['roleyouareaddingtocomponent'];
      $compo =  $request['componentname'];
      $formcompo =  $request['formfeatures'];
-     DB::table('mycomponentfeatures')->where('rolein', $roleee)->where('component', $compo)->where('formcomponent', $formcompo)->delete();
+     $companyname =  $request['companyname'];
+     $countryname =  $request['countryname'];
+
+     DB::table('mycomponentfeatures')->where('rolein', $roleee)
+     ->where('companyname', $companyname)->where('countryname', $countryname)
+     ->where('component', $compo)->where('formcomponent', $formcompo)->delete();
        return Mycomponentfeature::Create([
       'rolein' => $request['roleyouareaddingtocomponent'],
       'component' => $request['componentname'],
+      'companyname' => $request['companyname'],
+      'countryname' => $request['countryname'],
       'formcomponent' => $request['formfeatures'],
 
 

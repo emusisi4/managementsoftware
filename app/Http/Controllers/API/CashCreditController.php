@@ -84,7 +84,7 @@ class CashCreditController extends Controller
    { 
        
      $this->validate($request,[
-     'branchnametobalance'   => 'required',
+     'branchname'   => 'required',
      'description'   => 'required',
      'amount'  => 'required',
      'transferdate'  => 'required',
@@ -96,7 +96,7 @@ class CashCreditController extends Controller
   ]);
 
        Couttransfer::Create([
-        'branchto' => $request['branchnametobalance'],
+        'branchto' => $request['branchname'],
         'branchfrom' => $userbranch,
         'description' => $request['description'],
         'amount' => $request['amount'],

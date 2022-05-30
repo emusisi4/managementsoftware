@@ -42,6 +42,8 @@ class UserController extends Controller
          'email'   => 'required | String |email|max:191|unique:users',
          'password'   => 'required  |min:6',
         'branchname' => 'required',
+        'countryname' => 'required',
+        'companyname' => 'required',
          'rolename'   => 'required'
 
 

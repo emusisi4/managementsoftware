@@ -36,13 +36,42 @@ class MonthlyexpensesController extends Controller
      $countryname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('countryname');
 
 
+     $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+     $countryname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('countryname');
+   //  $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+     $branchname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
+
+     if($userrole != '1')
+{
      return   Monthlyexpense::with(['countryMonthlyexpense','companyMonthlyexpense','branchMonthlyexpense','expenseMonthlyexpense'])->latest('id')
       
       ->where('companyname', $usercompany)
       ->where('countryname', $usercountry)
        ->paginate(20);
     
+}
+if($userrole == '1')
+{
+  if($branchname2 == '900')
+  {
+    return   Monthlyexpense::with(['countryMonthlyexpense','companyMonthlyexpense','branchMonthlyexpense','expenseMonthlyexpense'])->latest('id')
+      
+    ->where('companyname', $companyname2)
+    ->where('countryname', $countryname2)
+     ->paginate(20);
+  }
+
+  if($branchname2 != '900')
+  {
+    return   Monthlyexpense::with(['countryMonthlyexpense','companyMonthlyexpense','branchMonthlyexpense','expenseMonthlyexpense'])->latest('id')
+    ->where('branchname', $branchname2)
+    ->where('companyname', $companyname2)
+    ->where('countryname', $countryname2)
+     ->paginate(20);
+  }
     
+    
+}
      
 
       
@@ -62,14 +91,14 @@ class MonthlyexpensesController extends Controller
         'companyname'   => 'required',
         'countryname'  => 'required',
         'description'  => 'required',
-        'branch'  => 'required',
+        'branchname'  => 'required',
         'amount' => 'required',
        // 'expensetype'   => 'sometimes |min:0'
      ]);
 $exp = $request['expense'];
 $companyname = $request['companyname'];
 $countryname = $request['countryname'];
-$branch = $request['branch'];
+$branch = $request['branchname'];
      $userid =  auth('api')->user()->id;
      //$id1  = Expense::latest('id')->where('del', 0)->orderBy('id', 'Desc')->limit(1)->value('expenseno');
     // $hid = $id1+1;
@@ -99,7 +128,7 @@ $branch = $request['branch'];
 
       'expensename' => $request['expense'],
       'description' => $request['description'],
-      'branchname' => $request['branch'],
+      'branchname' => $request['branchname'],
      'amount' => $request['amount'],
      'companyname' => $request['companyname'],
      'countryname' => $request['countryname'],

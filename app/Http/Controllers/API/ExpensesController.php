@@ -26,33 +26,23 @@ class ExpensesController extends Controller
       $userbranch =  auth('api')->user()->branch;
      $userrole =  auth('api')->user()->type;
        
+     $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+     $countryname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('countryname');
+   //  $companyname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
+     $branchname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
+    //  if($branchname2 != '900')
+      {
 
-
-     if($userrole != '101')
-     {
       
          return   Expense::with(['ExpenseTypeconnect','expenseCategory'])->latest('id')
         ->where('del', 0)
+        ->where('companyname', $companyname2)
+        ->where('countryname', $countryname2)
+       // ->where('countryname', $countryname2)
+        ->where('del', 0)
        ->paginate(100);
+     
      }
-       //  return Submheader::latest()
-         //  -> where('ucret', $userid)
-           
-
-
-
-
-
-
-
-
-
-
-       // {
-      // return Submheader::latest()
-      //  -> where('ucret', $userid)
-    //    ->paginate(15);
-      //  }
 
       
     }

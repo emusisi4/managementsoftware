@@ -13,7 +13,9 @@ class Companydetail extends Authenticatable
    
     protected $fillable = [
       
-       'currency', 'currencysymbol', 'logo', 'countryname', 'emailaddress', 'location','countryname', 'companyname', 'contactperson', 'contactnumber'
+       'currency', 'currencysymbol', 'logo',
+       'countryname', 'emailaddress', 'location','countryname', 'companyname',
+        'contactperson', 'contactnumber', 'tradename','description'
         
     ];
     public function students(){

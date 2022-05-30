@@ -74,7 +74,7 @@ class CashCollectionController extends Controller
       { 
           
         $this->validate($request,[
-        'branchnametobalance'   => 'required',
+        'branchname'   => 'required',
         'description'   => 'required',
         'amount'  => 'required',
         'transferdate'  => 'required',
@@ -99,7 +99,7 @@ class CashCollectionController extends Controller
      
   //       $dats = $id;
         Cintransfer::Create([
-      'branchto' => $request['branchnametobalance'],
+      'branchto' => $request['branchname'],
       'branchfrom' => $userbranch,
       'description' => $request['description'],
       'amount' => $request['amount'],
@@ -151,7 +151,7 @@ class CashCollectionController extends Controller
 
 // //       $dats = $id;
 //    Cintransfer::Create([
-//  'branchto' => $request['branchnametobalance'],
+//  'branchto' => $request['branchname'],
 //  'branchfrom' => $userbranch,
 //  'description' => $request['description'],
 //  'amount' => $request['amount'],
@@ -171,7 +171,7 @@ class CashCollectionController extends Controller
   /////////////////////// adding the expensse
   ///id, expense, amount, datemade, ucret, branch, description, approvalstate, del, created_at, updated_at, explevel, walletexpense, category, exptype, monthmade, yearmade
   Madeexpense::Create([
-    'branch' => $request['branchnametobalance'],
+    'branch' => $request['branchname'],
     'expense' => 34,
     'description' => 'Deposit Charge',
     'amount' => 1000,

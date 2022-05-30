@@ -118,7 +118,15 @@ if($existanceofarecord > 0 )
  
   $datedone = $request['datedone'];
 
-  
+  $datebal = strlen($datedone);
+  if($datebal > 0)
+  {
+  $res = \DB::table('branchtobalances')->where('ucret', $userid)->update(['datedone' =>  $datedone]);
+  }
+
+
+
+
   $branbal = strlen($branchnametobalance);
 if($branbal > 0)
 {

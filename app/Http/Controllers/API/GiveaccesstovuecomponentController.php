@@ -14,11 +14,7 @@ use App\Componentsaccesse;
 
 class GiveaccesstovuecomponentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function __construct()
     {
        $this->middleware('auth:api');
@@ -30,6 +26,7 @@ class GiveaccesstovuecomponentController extends Controller
       $userid =  auth('api')->user()->id;
       $userbranch =  auth('api')->user()->branch;
       $userrole =  auth('api')->user()->type;
+
 
       if($userrole == '101')
       {
@@ -57,12 +54,8 @@ class GiveaccesstovuecomponentController extends Controller
       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
+    
     public function store(Request $request)
     {
         //
@@ -70,20 +63,25 @@ class GiveaccesstovuecomponentController extends Controller
        $userid =  auth('api')->user()->id;
        $userbranch =  auth('api')->user()->branch;
        $userrole =  auth('api')->user()->type;
- 
+       $companyname =  $request['companyname'];
+       $countryname =  $request['countryname'];
 
 
        $this->validate($request,[
       'roleyouareaddingtocomponent'   => 'required |max:191',
+      'countryname'   => 'required',
+       'companyname'   => 'required',
        'components'   => 'required'
        // 'dorder'   => 'sometimes |min:0'
      ]);
      $roleee = $request['roleyouareaddingtocomponent'];
      $compo =  $request['components'];
-     DB::table('componentsaccesses')->where('mmaderole', $roleee)->where('componentto', $compo)->delete();
+     DB::table('componentsaccesses')->where('mmaderole', $roleee)->where('companyname', $companyname)->where('countryname', $countryname)->where('componentto', $compo)->delete();
        return Componentsaccesse::Create([
       'mmaderole' => $request['roleyouareaddingtocomponent'],
       'componentto' => $request['components'],
+      'companyname' => $request['companyname'],
+      'countryname' => $request['countryname'],
 
 
       'ucret' => $userid,

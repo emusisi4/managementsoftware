@@ -19,8 +19,8 @@ use App\Fishreportselection;
 use App\Dailyreportcode;
 use App\Monthlyreporttoview;
 use App\Expenserecordtoselect;
-use App\Salesreporttoview;
-class ExpensereportstoviewController extends Controller
+
+class ExpensesreportstoviewController extends Controller
 {
   
     public function __construct()

@@ -11,13 +11,8 @@ class Mycomponentfeature extends Authenticatable
     use HasApiTokens, Notifiable;
 
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-         'component','rolein','ucret','countryname', 'companyname', 'formcomponent',
+         'component','rolein','ucret','countryname', 'companyname', 'formcomponent','companyname','countryname'
     ];
     
 

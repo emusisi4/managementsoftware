@@ -96,6 +96,7 @@ let routes = [
 { path: '/incomedesstatementodocs', component: require('./components/Incomestatement.vue')},
 { path: '/companycontacts', component: require('./components/Contacts.vue')},
 { path: '/customercreditsales', component: require('./components/Customercreditpos.vue')},
+{ path: '/ncssmembers', component: require('./components/Ncssmemberscomponent.vue') },
 
 
 
@@ -104,7 +105,7 @@ let routes = [
 
 
 ///Sports Betting sraty
-
+{ path: '/ncssloansandsavings', component: require('./components/Ncssloansandsavings.vue') },
 { path: '/sporrthumanresource', component: require('./components/Humanresourcesportbetting.vue')},
 { path: '/sportsfinancials', component: require('./components/Sportsfinancials.vue')},
 { path: '/fishmanager', component: require('./components/Fishmanager.vue')},
