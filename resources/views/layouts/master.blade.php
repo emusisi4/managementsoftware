@@ -1260,7 +1260,7 @@ foreach ($allowedmain as $rowall)
 
 ?>    
 
-             
+<div class="dropdown-divider"></div>
 
               <li class="sidebar-item">
                 <a
@@ -1289,6 +1289,7 @@ foreach ($allowedsubmenu as $rowallsub)
  
   
   ?>
+   
   
                   <li class="sidebar-item">
                     <a
@@ -1313,7 +1314,9 @@ foreach ($allowedsubmenu as $rowallsub)
             <?php } 
 
 }
+
 ?>
+ <div class="dropdown-divider"></div>
     <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
