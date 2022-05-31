@@ -57,7 +57,7 @@ class ExpensesController extends Controller
 
 
        $this->validate($request,[
-        'expensename'   => 'required | String |max:191',
+        'expensename'   => 'required',
         'expensecategory'   => 'required',
         'approvaltype'  => 'required',
         'expensegroup'  => 'required',
@@ -85,8 +85,8 @@ class ExpensesController extends Controller
      // 'expensetype' => $request['expensetype'],
      'approvaltype' => $request['approvaltype'],
      'tofixed' => $request['expensegroup'],
-     'expensetype' => $request['companyname'],
-     'companyname' => $request['expensetype'],
+     'expensetype' => $request['expensetype'],
+     'companyname' => $request['companyname'],
      'countryname' => $request['countryname'],
       'ucret' => $userid,
     
