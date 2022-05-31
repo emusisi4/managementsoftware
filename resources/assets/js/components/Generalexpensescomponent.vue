@@ -1108,25 +1108,24 @@
                                   <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <!-- <div class="modal-body"> -->
-                   <form class="form-horizontal"  @submit.prevent="editmode ? updateexpensecategory():createNewcategory()"> 
+                            <!-- <div class="modal-body"> form-control-line mt-4"-->
+                   <form class="form-control-line mt-4"  @submit.prevent="editmode ? updateexpensecategory():createNewcategory()"> 
                   <div class="card-body">
                     <div class="bethapa-table-sectionheader">Details</div>
                  <form @submit.prevent="savenewRecordtoview()">    
-                   
-                    <div class="mb-3 row">
+                     <div class="mb-3 row">
                       <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
                       <div class="col-sm-9">
-                     <has-error :form="form" field="countryname"></has-error>
+                 
                                                <select name ="countryname" v-model="form.countryname"  
-                                                v-on:change="myClickEventtosavesalesreportbydate" id ="countryname"
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" id ="countryname"
                                                  @change='getCountrycompanies()'
                                                 :class="{'is-invalid': form.errors.has('countryname')}"
-                                     class="form-select" >
+                                     class="form-control form-control-line" >
                                         <option></option>
                                         <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
                                     </select>
-                   
+                       <has-error :form="form" field="countryname"></has-error>
                       </div>
                     </div>
 
@@ -1134,61 +1133,54 @@
                    <div class="mb-3 row">
                       <label class="col-sm-3 text-end control-label col-form-label">Company</label>
                       <div class="col-sm-9">
-                         <has-error :form="form" field="companyname"></has-error>
+                    
                                                <select name ="companyname" v-model="form.companyname"
-                                                v-on:change="myClickEventtosavesalesreportbydate" @change='getCompanywallets(); getcompanybranches();'
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" @change='getcompanywallets(); getcompanyexpenses(); getcompanybranches();'
                                                
                                                 id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
-                                     class="form-select">
+                                     class="form-control form-control-line">
                                         <option></option>
                                         <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
                                     </select>
+                                         <has-error :form="form" field="companyname"></has-error>
                       </div>
                     </div>
+
+
+
+
+                                 
+                
+
+          
+
+                      <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Category Name </label>
+                      <div class="col-sm-9">
+                    
+                                            <input v-model="form.expcatcatname" type="text" name="expcatcatname"
+       class="form-control form-control-sm" :class="{ 'is-invalid': form.errors.has('expcatcatname') }">
+      <has-error :form="form" field="expcatcatname"></has-error>
+                      </div>
+                    </div>
+
+
+
+                         <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Category Name </label>
+                      <div class="col-sm-9">
+                    
+                                            <textarea v-model="form.description" name="description" rows="5" cols="30" class="form-control" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
+                 
+                <has-error :form="form" field="description"></has-error>
+
+                      </div>
+                    </div>
+
       <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportvie" class="btn btn-primary btn-sm">Saveit</button>      
 
                  </form>
-                 <hr>   
-        <form @submit.prevent="SaveRoletoaddmainmenu()">    
-                   
-                    <div class="mb-3 row">
-                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Select Role</label>
-                      <div class="col-sm-9">
-                     <has-error :form="form" field="roleformainmenuaccess"></has-error>
-                                               <select name ="roleformainmenuaccess" v-model="form.roleformainmenuaccess"  
-                                                id ="roleformainmenuaccess"
-                                                 @change='getCountrycompanies()'
-                                                :class="{'is-invalid': form.errors.has('roleformainmenuaccess')}"
-                                     class="form-select" >
-                                        <option></option>
-                                        <option v-for='data in roleslist' :value='data.id'>{{ data.rolename }}</option>
-                                    </select>
-                   
-                      </div>
-                    </div>
-
-
-                   <div class="mb-3 row">
-                      <label class="col-sm-3 text-end control-label col-form-label">Main Menu</label>
-                      <div class="col-sm-9">
-                         <has-error :form="form" field="mainmenus"></has-error>
-           <select name ="mainmenus" v-model="form.mainmenus"                                        
-                                                id ="mainmenus" :class="{'is-invalid': form.errors.has('mainmenus')}"
-                                     class="form-select">
-                                        <option></option>
-                                        <option v-for='data in mainmenulist' :value='data.id'>{{ data.mainmenuname }}</option>
-                                    </select>
-                      </div>
-                    </div>
-
-  
-
-
-
-                   
-             <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportvie" class="btn btn-primary btn-sm">Saveit</button>         
-
-        </form>
+             
 
                    
 

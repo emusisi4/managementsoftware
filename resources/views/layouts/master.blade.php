@@ -30,21 +30,9 @@
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet" />
   
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="assets/libs/pickadate/lib/themes/default.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="assets/libs/pickadate/lib/themes/default.date.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="assets/libs/pickadate/lib/themes/default.time.css"
-    />
+    <link rel="stylesheet" type="text/css" href="assets/libs/pickadate/lib/themes/default.css" />
+    <link rel="stylesheet" type="text/css" href="assets/libs/pickadate/lib/themes/default.date.css" />
+    <link rel="stylesheet" type="text/css" href="assets/libs/pickadate/lib/themes/default.time.css"  />
   </head>
 
   <body>
