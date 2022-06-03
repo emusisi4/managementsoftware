@@ -706,7 +706,12 @@ $user->update($request->all());
      $monthmade = \DB::table('madeexpenses')->where('id', $id)->value('monthmade');
      $yearmade = \DB::table('madeexpenses')->where('id', $id)->value('yearmade');
      $countrynameinaction = \DB::table('madeexpenses')->where('id', $id)->value('countryname');
-     $currentaccountbalancespending = \DB::table('expensewalets')->where('id', $walletofexpense)
+     
+     
+     
+     
+     $currentaccountbalancespending = \DB::table('expensewalets')
+     ->where('walletno', $walletofexpense)
      ->where('companyname', $companynameinaction)
      ->where('countryname', $countrynameinaction)
      ->value('bal');
@@ -722,6 +727,8 @@ if($approvalstate == 0 )
     ///updating the expense from wallet
     $updatingthegivingaccount = \DB::table('expensewalets')
     ->where('walletno', $walletofexpense)
+    ->where('countryname', $countryname)
+    ->where('companyname', $companyname)
     ->update(['bal' =>  $newwalletamountrecieving]);
     // confirming product expense
 
