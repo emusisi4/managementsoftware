@@ -541,7 +541,7 @@
                     
                         <th>APPROVED</th>
                       
-                         <th>STATUS</th>
+                   
                          <th></th>
                     </tr>
                   </thead>
@@ -564,7 +564,7 @@
                     
                        <td><template v-if="fishcoll.approved_userdetails">	{{fishcoll.approved_userdetails.name}}</template> <i>{{(fishcoll.comptime)}} </i></td>
                       
-                       <td> <template v-if="fishcoll.status_name">	{{fishcoll.status_name.name}}</template></td>
+                     
                      <td>
                        <button v-show="fishcoll.status < 1" type="button"   class="btn  bg-gradient-secondary btn-xs"  @click="confirmFishcashin(fishcoll.id)"> Confirm Collection </button>
                        <!-- <button v-show="fishcoll.status === 1" type="button"   class="btn  bg-gradient-success btn-xs"  > Confirmed  </button> -->
@@ -866,7 +866,7 @@
                     
                         <th>APPROVED</th>
                       
-                         <th>STATUS</th>
+                         
                          <th></th>
                     </tr>
                   </thead>
@@ -889,7 +889,7 @@
                     
                        <td><template v-if="fishcoll.approved_userdetails">	{{fishcoll.approved_userdetails.name}}</template> <i>{{(fishcoll.comptime)}} </i></td>
                       
-                       <td> <template v-if="fishcoll.status_name">	{{fishcoll.status_name.name}}</template></td>
+                    
                      <td>
                        <button v-show="fishcoll.status < 1" type="button"   class="btn  bg-gradient-secondary btn-xs"  @click="confirmCashouttransfer(fishcoll.id)"> Confirm Credit </button>
                        <!-- <button v-show="fishcoll.status === 1" type="button"   class="btn  bg-gradient-success btn-xs"  > Confirmed  </button> -->
@@ -2338,7 +2338,7 @@ if (result.isConfirmed) {
                           'Transfer Done.',
                           'success'
                         )
-                   
+  axios.get("api/collectionsaccountcurrentbalance").then(({ data }) => (this.collectionsaccountcurrentbalance = data));                 
    axios.get("api/cashindetails").then(({ data }) => (this.shopcintransferrecords = data));
 axios.get("api/cashoutfromofficeforfish").then(({ data }) => (this.fishcashcreditrecords = data));
   }).catch(()=>{

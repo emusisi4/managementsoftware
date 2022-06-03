@@ -141,7 +141,14 @@ $countryname = \DB::table('couttransfers')->where('id', '=', $id)->value('countr
 $currentdate = date("Y-m-d H:i:s");
 
 
-$gettintthewalletbalance = \DB::table('expensewalets')->where('id', '=', $mywallet)->value('bal');
+$gettintthewalletbalance = \DB::table('expensewalets')
+->where('companyname', '=', $companyname)
+->where('countryname', '=', $countryname)
+->where('walletno', '=', $mywallet)->value('bal');
+
+
+
+
 if($gettintthewalletbalance >= $amountrecieved)
 {
 
@@ -149,16 +156,22 @@ if($gettintthewalletbalance >= $amountrecieved)
 /////////////////////////////////////////
 $transferamount  = \DB::table('couttransfers')->where('id', '=', $id)->value('amount');
 $newtrans = \DB::table('couttransfers')->where('id', '=', $id)->value('transactionno');
-$currentwalletbalance  = \DB::table('expensewalets')->where('id', '=', $mywallet)->value('bal');
+$currentwalletbalance  = \DB::table('expensewalets')->where('walletno', '=', $mywallet)
+->where('countryname', $countryname)
+->where('companyname', $companyname)->value('bal');
 $newbalance = $currentwalletbalance-$transferamount;
 DB::table('expensewalets')
-->where('id', $mywallet)
+->where('countryname', $countryname)
+->where('companyname', $companyname)
+->where('walletno', $mywallet)
 ->update(['bal' => $newbalance]);
 //// branch account 
 $currentbranchbalance = \DB::table('branchcashstandings')->where('branch', '=', $branchinact)->value('outstanding');
 $newbranchbalance = $currentbranchbalance+$transferamount;
 
 DB::table('branchcashstandings')
+->where('countryname', $countryname)
+->where('companyname', $companyname)
 ->where('branch', $branchinact)
 ->update(['outstanding' => $newbranchbalance]);
 $totalcreditsdaily = \DB::table('couttransfers')
@@ -175,13 +188,13 @@ $totalcreditsdaily = \DB::table('couttransfers')
  ///
 $totaldaycollections = \DB::table('cintransfers')
 
-->where('monthmade', '=', $monthto)
+  ->where('monthmade', '=', $monthto)
   ->where('yearmade', '=', $yearto)
   ->where('branchto', '=', $branchinact)
- ->where('companyname', '=', $companyname)
- ->where('countryname', '=', $countryname)
- ->where('transferdate', '=', $transactiondate)
- ->where('status', '=', 1)
+  ->where('companyname', '=', $companyname)
+  ->where('countryname', '=', $countryname)
+  ->where('transferdate', '=', $transactiondate)
+  ->where('status', '=', 1)
  
    ->sum('amount');
 //////// monthly report

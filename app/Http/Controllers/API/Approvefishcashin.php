@@ -255,13 +255,17 @@ DB::table('dailyreportcodes')
 
 $transferamount  = \DB::table('cintransfers')->where('id', '=', $id)->value('amount');
 $transactiondate = \DB::table('cintransfers')->where('id', '=', $id)->value('transferdate');
-$currentwalletbalance  = \DB::table('expensewalets')->where('id', '=', $mywallet)->value('bal');
+$currentwalletbalance  = \DB::table('expensewalets')->where('walletno', '=', $mywallet)
+->where('countryname', $countryname)
+->where('companyname', $companyname)->value('bal');
 $newtrans = \DB::table('cintransfers')->where('id', '=', $id)->value('transactionno');
 
 /// updating the collections wallet 
 $newbalance = $currentwalletbalance+$transferamount;
 DB::table('expensewalets')
-->where('id', $mywallet)
+->where('countryname', $countryname)
+->where('companyname', $companyname)
+->where('walletno', $mywallet)
 ->update(['bal' => $newbalance]);
 
 //updating the branch balance
