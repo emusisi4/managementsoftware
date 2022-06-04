@@ -283,11 +283,18 @@
                       <!-- allowedtoaddexpensecategory
 
  -->
-   <button type="button" v-if="allowedtoeditexpensecategory > 0 "   class="btn  bg-gradient-secondary btn-xs fas fa-edit"  @click="editexpensecategory(expcat)">Edit</button>
+  
                              
-
-
-                            <button type="button" v-if="allowedtodeleteexpensecategory > 0 " class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="deleteexpensecategory(expcat.id)"> DEl </button>
+  <button type="button" v-if="allowedtoeditexpensecategory > 0 "  @click="editexpensecategory(expcat)" class="btn waves-effect waves-light btn-xs btn-info">
+                      View
+                    </button>
+<button type="button" v-if="allowedtoeditexpensecategory > 0 "  @click="editexpensecategory(expcat)" class="btn waves-effect waves-light btn-xs btn-secondary">
+                      Edit
+                    </button>
+<button type="button" v-if="allowedtoeditexpensecategory > 0 " 
+  @click="deleteexpensecategory(expcat.id)" class="btn waves-effect waves-light btn-xs btn-danger">
+                      Delete
+                    </button>
 
 
 
@@ -766,8 +773,10 @@
    <td>
        
 
-      <button type="button"  class="btn bg-deep-orange btn-xs waves-effect" @click="deletemadeexpense(offcmadeexp.id)"> Delete Expense </button>
-       
+    
+       <button type="button" @click="deletemadeexpense(offcmadeexp.id)" class="btn waves-effect waves-light btn-xs btn-danger">
+                      Remove Expense
+                    </button>
 
                       </td>    <!---->
                     </tr>
