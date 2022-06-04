@@ -763,7 +763,7 @@
                              
 
                              
-   
+   <td>
        
 
       <button type="button"  class="btn bg-deep-orange btn-xs waves-effect" @click="deletemadeexpense(offcmadeexp.id)"> Delete Expense </button>
