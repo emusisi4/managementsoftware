@@ -44,6 +44,8 @@ Route::apiResources(['savecompanyinaction' => 'API\CompanyuserregController']);
 Route::get('getRoles', 'APIController@getRoles');
 Route::get('userslist', 'APIController@userslist');
 Route::get('getBranches', 'APIController@getBranches');
+
+Route::get('generalExpensesmainpageAccess', 'APIController@generalExpensesmainpageAccess');
 Route::get('generalsportsfinancialsaccessSettings', 'APIController@generalsportsfinancialsaccessSettings');
 Route::apiResources(['currentintermbalancingrecords' => 'API\CurrentShopintermbalancingContoller']);
 Route::apiResources(['currentbalancingrecords' => 'API\CurrentShopbalancingContoller']);
@@ -1040,6 +1042,16 @@ Route::apiResources(['allbranchesexpenserept' => 'API\MonthlyrexpesesreportallbC
 Route::apiResources(['allbranchesmreports' => 'API\MonthlyreportsallbranchesController']);
 Route::apiResources(['monthrlreporyrecords' => 'API\MonthlyreportsController']);
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+                
+                    Route::get('allowedexpensecategories', 'APIController@allowedexpensecategories');
+                    Route::get('allowedcompanyexpenses', 'APIController@allowedcompanyexpenses');
+                    Route::get('allowedrequestexpenses', 'APIController@allowedrequestexpenses');
+                    Route::get('allowedmonthlyexpenses', 'APIController@allowedmonthlyexpenses');
+
+
+
 Route::get('getaddnewexpensecategory', 'APIController@getaddnewexpensecategory');
 Route::get('allowedtodeletecollection', 'APIController@allowedtodeletecollection');
 Route::get('allowedtodeletecredit', 'APIController@allowedtodeletecredit');
