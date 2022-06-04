@@ -46,6 +46,68 @@ Route::get('userslist', 'APIController@userslist');
 Route::get('getBranches', 'APIController@getBranches');
 
 Route::get('generalExpensesmainpageAccess', 'APIController@generalExpensesmainpageAccess');
+
+
+
+
+
+
+Route::get('allowedtosepettycashaccount', 'APIController@allowedtosepettycashaccount');
+Route::get('allowedtoseeadminaccount', 'APIController@allowedtoseeadminaccount');
+Route::get('allowedtoseebankaccount', 'APIController@allowedtoseebankaccount');
+Route::get('allowedtoseecollectionsaccount', 'APIController@allowedtoseecollectionsaccount');
+Route::get('candocredits', 'APIController@candocredits');
+
+Route::get('candocollections', 'APIController@candocollections');
+Route::get('candoshopbalancing', 'APIController@candoshopbalancing');
+Route::get('candeletecredit', 'APIController@candeletecredit');
+Route::get('candeletecollection', 'APIController@candeletecollection');
+Route::get('caneditcredits', 'APIController@caneditcredits');
+
+
+Route::get('caneditcollections', 'APIController@caneditcollections');
+Route::get('allowedbranchstandingcomponent', 'APIController@allowedbranchstandingcomponent');
+Route::get('allowedcreditscomponent', 'APIController@allowedcreditscomponent');
+Route::get('allowedcollectionscomponent', 'APIController@allowedcollectionscomponent');
+Route::get('allowedshopbalancingcomponent', 'APIController@allowedshopbalancingcomponent');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('generalsportsfinancialsaccessSettings', 'APIController@generalsportsfinancialsaccessSettings');
 Route::apiResources(['currentintermbalancingrecords' => 'API\CurrentShopintermbalancingContoller']);
 Route::apiResources(['currentbalancingrecords' => 'API\CurrentShopbalancingContoller']);

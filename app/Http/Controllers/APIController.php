@@ -5436,7 +5436,7 @@ public function allowedmonthlyexpenses()
 //////////// geting the shop to balance
 //$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
 //$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
-$comp ='generalmonthlyexpensescomponent';
+$comp ='collectionsaccountbalancecomponent';
  $roleisallowedtoaccess = \DB::table('componentsaccesses')
 
     ->where('componentto', '=', $comp)
@@ -5472,10 +5472,368 @@ $comp ='generalregisteredcompanyexpensescomponent';
 
 
 
+public function allowedtoseecollectionsaccount()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='collectionsaccountbalancecomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
+
+
+public function allowedtosepettycashaccount()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='pettycashaccountbalancecomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
 
 
 
 
+public function allowedtoseebankaccount()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='bankaccountbalancecomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
+
+
+public function allowedtoseeadminaccount()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='adminaccountbalancecomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+public function candocredits()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $udefinedrole =  auth('api')->user()->mmaderole;
+
+//$data = DB::table('users')->count();
+$component = "shopcreditscomponent";
+$actonaddnew = 'addnew';
+
+ $wordCount = \DB::table('mycomponentfeatures')
+   ->where('component', '=', $component)
+    ->where('formcomponent', '=', $actonaddnew)
+    ->where('rolein', '=', $udefinedrole)
+    ->count();
+
+    return $wordCount;
+    
+  
+}
+
+
+
+public function candocollections()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $udefinedrole =  auth('api')->user()->mmaderole;
+
+//$data = DB::table('users')->count();
+$component = "shopcollectionscomponent";
+$actonaddnew = 'addnew';
+
+ $wordCount = \DB::table('mycomponentfeatures')
+   ->where('component', '=', $component)
+    ->where('formcomponent', '=', $actonaddnew)
+    ->where('rolein', '=', $udefinedrole)
+    ->count();
+
+    return $wordCount;
+    
+  
+}
+
+
+
+
+
+
+
+
+
+
+public function candeletecredit()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $udefinedrole =  auth('api')->user()->mmaderole;
+
+//$data = DB::table('users')->count();
+$component = "shopcreditscomponent";
+$actonaddnew = 'deleterecord';
+
+ $wordCount = \DB::table('mycomponentfeatures')
+   ->where('component', '=', $component)
+    ->where('formcomponent', '=', $actonaddnew)
+    ->where('rolein', '=', $udefinedrole)
+    ->count();
+
+    return $wordCount;
+    
+  
+}
+public function candeletecollection()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $udefinedrole =  auth('api')->user()->mmaderole;
+
+//$data = DB::table('users')->count();
+$component = "shopcollectionscomponent";
+$actonaddnew = 'deleterecord';
+
+ $wordCount = \DB::table('mycomponentfeatures')
+   ->where('component', '=', $component)
+    ->where('formcomponent', '=', $actonaddnew)
+    ->where('rolein', '=', $udefinedrole)
+    ->count();
+
+    return $wordCount;
+    
+  
+}
+
+public function caneditcredits()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $udefinedrole =  auth('api')->user()->mmaderole;
+
+//$data = DB::table('users')->count();
+$component = "shopcreditscomponent";
+$actonaddnew = 'editrecord';
+
+ $wordCount = \DB::table('mycomponentfeatures')
+   ->where('component', '=', $component)
+    ->where('formcomponent', '=', $actonaddnew)
+    ->where('rolein', '=', $udefinedrole)
+    ->count();
+
+    return $wordCount;
+    
+  
+}
+
+public function caneditcollections()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $udefinedrole =  auth('api')->user()->mmaderole;
+
+//$data = DB::table('users')->count();
+$component = "shopcollectionscomponent";
+$actonaddnew = 'editrecord';
+
+ $wordCount = \DB::table('mycomponentfeatures')
+   ->where('component', '=', $component)
+    ->where('formcomponent', '=', $actonaddnew)
+    ->where('rolein', '=', $udefinedrole)
+    ->count();
+
+    return $wordCount;
+    
+  
+}
+
+public function candoshopbalancing()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $udefinedrole =  auth('api')->user()->mmaderole;
+
+//$data = DB::table('users')->count();
+$component = "bettingshopbalancingcomponent";
+$actonaddnew = 'addnew';
+
+ $wordCount = \DB::table('mycomponentfeatures')
+   ->where('component', '=', $component)
+    ->where('formcomponent', '=', $actonaddnew)
+    ->where('rolein', '=', $udefinedrole)
+    ->count();
+
+    return $wordCount;
+    
+  
+}
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+public function allowedbranchstandingcomponent()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='shopstandingcomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
+
+public function allowedcreditscomponent()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='shopcreditscomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
+
+
+
+public function allowedcollectionscomponent()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='shopcollectionscomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
+
+
+
+public function allowedshopbalancingcomponent()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='bettingshopbalancingcomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
 
 
 

@@ -20,7 +20,7 @@
 <!-- /////////////////////////////////////////// -->
  <div class="row">
             <!-- Column -->
-            <div class="col-lg-3 col-md-6">
+            <div v-if="allowedtoseecollectionsaccount > 0 " class="col-lg-3 col-md-6">
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-row">
@@ -50,7 +50,7 @@
             </div>
             <!-- Column -->
             <!-- Column -->
-            <div class="col-lg-3 col-md-6">
+            <div v-if="allowedtosepettycashaccount > 0 " class="col-lg-3 col-md-6">
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-row">
@@ -67,7 +67,7 @@
             </div>
             <!-- Column -->
             <!-- Column -->
-            <div class="col-lg-3 col-md-6">
+            <div  v-if="allowedtoseeadminaccount > 0 " class="col-lg-3 col-md-6">
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-row">
@@ -97,7 +97,7 @@
             </div>
             <!-- Column -->
             <!-- Column -->
-            <div class="col-lg-3 col-md-6">
+            <div  v-if="allowedtoseebankaccount > 0 "  class="col-lg-3 col-md-6">
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-row">
@@ -130,7 +130,9 @@
 <div class="card">
                 <div class="d-flex border-bottom title-part-padding align-items-center ">
                   <div>
-                    <h4 class="card-title mb-0">Finance Management </h4>
+                    <div style="    font-size: 3.125rem;
+    text-align: center;
+    font-weight: bold;">Finance Management </div>
                   </div>
                 
                 
@@ -140,25 +142,25 @@
                   <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                      <li class="nav-item">
+                      <li class="nav-item"  v-if="allowedshopbalancingcomponent > 0 ">
                         <a class="nav-link active" data-bs-toggle="tab" href="#home"  @click="getShopbalancingrecords()" role="tab">
                           <span>Shop Balancing</span>
                         </a>
                       </li>
 
 
-                      <li class="nav-item">
+                      <li class="nav-item"  v-if="allowedcollectionscomponent > 0 ">
                         <a class="nav-link" data-bs-toggle="tab" href="#profile"  @click="loadfishcollectionrecords()" role="tab">
                           <span>Collection</span>
                         </a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item"  v-if="allowedcreditscomponent > 0 ">
                         <a class="nav-link" data-bs-toggle="tab" href="#messages" @click="loadfishcreditsrecords()" role="tab">
                           <span>Credits</span>
                         </a>
                       </li>
 
-                          <li class="nav-item">
+                          <li class="nav-item" v-if="allowedbranchstandingcomponent > 0 ">
                         <a class="nav-link" data-bs-toggle="tab" href="#messages1"  @click="loadBranchstandingaccounts()" role="tab">
                           <span>Branch Standing</span>
                         </a>
@@ -166,7 +168,7 @@
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                      <div class="tab-pane active" id="home" role="tabpanel">
+                      <div class="tab-pane active" id="home"  v-if="allowedshopbalancingcomponent > 0 " role="tabpanel">
                         <div class="p-3">
                               <div class="table-responsive">
                                    <form @submit.prevent="savethemonthlyreportforallbranches()">
@@ -455,7 +457,7 @@
                               </div>
                         </div>
                       </div>
-  <div class="tab-pane p-3" id="profile" role="tabpanel">
+  <div class="tab-pane p-3" id="profile" v-if="allowedcollectionscomponent > 0 " role="tabpanel">
                  <div class="table-responsive">
                             <form @submit.prevent="savethemonthlyreportforallbranches()">
                  
@@ -595,7 +597,7 @@
                     <!-- closure of responsive -->
                       </div>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
-  <div class="tab-pane p-3" id="messages1" role="tabpanel">
+  <div class="tab-pane p-3" id="messages1" v-if="allowedbranchstandingcomponent > 0 " role="tabpanel">
                  <div class="table-responsive">
                          
                          <form @submit.prevent="savethemonthlyreportforallbranches()">
@@ -774,7 +776,7 @@
                       </div>
 
 <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-                      <div class="tab-pane p-3" id="messages" role="tabpanel">
+                      <div class="tab-pane p-3" id="messages"  v-if="allowedcreditscomponent > 0 " role="tabpanel">
 
 
 
@@ -2029,6 +2031,47 @@ companybrancheslist:[],
          // accessusercoponent : null,
          ///// Access authorities
          generalsportsfinancialsaccessSettings:'',
+
+
+   allowedshopbalancingcomponent:'',
+                 allowedcollectionscomponent:'',
+                 allowedcreditscomponent:'',
+                 allowedbranchstandingcomponent:'',
+
+                 caneditcollections:'',
+                 caneditcredits:'',
+                 candeletecollection:'',
+                 candeletecredit:'',
+                 candoshopbalancing:'',
+                 candocollections:'',
+                 candocredits:'',
+allowedtoseecollectionsaccount:'',
+allowedtoseebankaccount:'',
+allowedtoseeadminaccount:'',
+allowedtosepettycashaccount:'',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          branchesccessSettings:'',
            machineonesales: 0,
         machineonepayout: 0,
@@ -2566,18 +2609,15 @@ this.form.post('api/brachtocollectorcredit');
  loadfishcollectionrecords(){
 
  axios.get('/api/fishcollections').then(function (response) { this.fishcollectionrecords = response.data;}.bind(this));
-     //  this.getRoles();
-     //  this.getUsertypes();
-    //  axios.get("api/shopopenningpalance").then(({ data }) => (this.shopopenningpalance = data));
-    //  axios.get("api/todayscashintotal").then(({ data }) => (this.todayscashintotal = data));
-    //  axios.get("api/todayscashouttotal").then(({ data }) => (this.todayscashouttotal = data));
-    //  axios.get("api/todaysexpensestotal").then(({ data }) => (this.todaysexpensestotal = data));
-    //  axios.get("api/todayspayouttotal").then(({ data }) => (this.todayspayouttotal = data));
+     this.checkAutorityaccess();
  },
  loadcurrentmacineCodebranch: function(){ axios.get("api/machineoneopenningcode").then(({ data }) => (this.machineoneopenningcode = data));
 },
 
- loadfishcreditsrecords: function(){ axios.get('/api/cashoutfromofficeforfish').then(function (response) { this.fishcashcreditrecords = response.data;}.bind(this));},
+ loadfishcreditsrecords: function(){ 
+   axios.get('/api/cashoutfromofficeforfish').then(function (response) { this.fishcashcreditrecords = response.data;}.bind(this));
+    this.checkAutorityaccess();
+   },
 getCurrencydetals: function(){ axios.get("api/getcurrencydetails").then(({ data }) => (this.currencydetails = data));},
 allwedetodeleteBalancingrecord: function(){axios.get("api/allowedtodeleteshopBalancingRecord").then(({ data }) => (this.allowedtodeleteshopBalancingRecord = data));},
     
@@ -2625,7 +2665,11 @@ getcompanies: function()
 
 
 
- getShopbalancingrecords: function(){ axios.get('/api/currentbalancingrecords').then(function (response) { this.shopbalancingdatarecords = response.data;}.bind(this));},
+ getShopbalancingrecords: function(){
+    axios.get('/api/currentbalancingrecords').then(function (response) { this.shopbalancingdatarecords = response.data;}.bind(this));
+     this.checkAutorityaccess();
+    
+    },
 getcountries: function(){ axios.get('/api/getCountries').then(function (response) { this.countrieslist = response.data;}.bind(this));},
 getRoles: function(){ axios.get('/api/getRoles').then(function (response) { this.roleslist = response.data;}.bind(this));},
 getBranches: function(){  axios.get('/api/branchDetails').then(function (response) { this.brancheslist = response.data;}.bind(this));},
@@ -2724,11 +2768,32 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
                           });
                       },
   /// users
-  
+   checkAutorityaccess(){
+         
+            axios.get("api/caneditcollections").then(({ data }) => (this.caneditcollections = data));
+            axios.get("api/allowedbranchstandingcomponent").then(({ data }) => (this.allowedbranchstandingcomponent = data));
+            axios.get("api/candeletecredit").then(({ data }) => (this.candeletecredit = data));
+            
+              axios.get("api/allowedcreditscomponent").then(({ data }) => (this.allowedcreditscomponent = data));
+            axios.get("api/allowedcollectionscomponent").then(({ data }) => (this.allowedcollectionscomponent = data));
+            axios.get("api/allowedshopbalancingcomponent").then(({ data }) => (this.allowedshopbalancingcomponent = data));     
+            axios.get("api/allowedtosepettycashaccount").then(({ data }) => (this.allowedtosepettycashaccount = data));
+            axios.get("api/allowedtoseeadminaccount").then(({ data }) => (this.allowedtoseeadminaccount = data));
+            axios.get("api/allowedtoseebankaccount").then(({ data }) => (this.allowedtoseebankaccount = data));
+            axios.get("api/allowedtoseecollectionsaccount").then(({ data }) => (this.allowedtoseecollectionsaccount = data));
+            axios.get("api/candocredits").then(({ data }) => (this.candocredits = data));
+            axios.get("api/candocollections").then(({ data }) => (this.candocollections = data));
+            axios.get("api/candoshopbalancing").then(({ data }) => (this.candoshopbalancing = data));
+            axios.get("api/candeletecredit").then(({ data }) => (this.candeletecredit = data));
+            axios.get("api/candeletecollection").then(({ data }) => (this.candeletecollection = data));
+            axios.get("api/caneditcredits").then(({ data }) => (this.caneditcredits = data));
+
+      
+  },
   loadUsers(){
      
       axios.get("api/userrecords").then(({ data }) => (this.userrecords = data));
-        axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+       
         axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -2741,7 +2806,7 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
   loadRoles(){
      
       axios.get("api/rolesrecords").then(({ data }) => (this.rolesrecords = data));
-        // axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+       
         // axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         // axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         // axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -3665,6 +3730,7 @@ if (result.isConfirmed) {
             /// end of revoke component
  loadBranchstandingaccounts: function(){
              axios.get("api/branchoutstandingsrecords").then(({ data }) => (this.branchoutstandingsrecords = data));
+              this.checkAutorityaccess();
            },
 
   
@@ -3722,6 +3788,7 @@ balancescheck(){
 
 ///////////////////////////////////////////////////
         created() {
+          this.checkAutorityaccess();
           this.loadcurrentmacineCodebranch();
           axios.get('/api/getWalletlist').then(function (response) { this.walletlist = response.data;}.bind(this));
           this.getCollectionsBalance();
@@ -3750,7 +3817,7 @@ balancescheck(){
 this.loadBranches();
       });
       
-  //setInterval(() =>this.loadcurrentmacineCodebranch(),1000);
+ /// setInterval(() =>this.checkAutorityaccess(),1000);
         }
     }
 </script>
