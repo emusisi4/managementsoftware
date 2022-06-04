@@ -736,7 +736,7 @@
                       <th>AMOUNT</th>
                      
                   
-                       <th> STARTED </th>
+                     
                   
                    
                       <th></th>
@@ -761,12 +761,7 @@
                            
                            
                              
-  <td > {{formatPrice((offcmadeexp.ucret))}}</td>
 
-                        
-
-                               
-                        <td> 
                              
    
        
