@@ -44,7 +44,7 @@ class MadeexpensesofficeConroller extends Controller
      $branchname2 = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
 
       if($branchname2 == '900')
-        { return   Madeexpense::with(['branchName','expenseName','expenseWallet'])->latest('datemade')
+        { return   Madeexpense::with(['branchName','expenseName','expenseWallet','madeexpenseCompany','madeexpenseCountry'])->latest('datemade')
      
       ->where('companyname', $companyname2)
       ->where('countryname', $countryname2)
@@ -56,7 +56,7 @@ class MadeexpensesofficeConroller extends Controller
       }
      
       if($branchname2 != '900')
-      { return   Madeexpense::with(['branchName','expenseName','expenseWallet'])->latest('datemade')
+      { return   Madeexpense::with(['branchName','expenseName','expenseWallet' ,'madeexpenseCompany','madeexpenseCountry'])->latest('datemade')
    
     ->where('companyname', $companyname2)
     ->where('countryname', $countryname2)

@@ -17,7 +17,18 @@ class Madeexpense extends Authenticatable
         'tofixed'
     ];
     
-
+    public function madeexpenseCompany(){
+        return $this->belongsTo(Companydetail::class, 'companyname'); 
+    }
+    public function madeexpenseCountry(){
+        return $this->belongsTo(Country::class, 'countryname'); 
+    }
+    public function expenseCountry(){
+        return $this->belongsTo(Country::class, 'countryname'); 
+    }
+    public function expenseCompany(){
+      return $this->belongsTo(Companydetail::class, 'companyname'); 
+    }
     public function expenseName(){
         
         return $this->belongsTo(Expense::class, 'expense'); 

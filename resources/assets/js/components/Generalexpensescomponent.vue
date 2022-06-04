@@ -273,8 +273,9 @@
                     <tr v-for="expcat in expensecategorydetails.data" :key="expcat.id">
                       
                     <td>{{expcat.id}}</td>
-                     <td>{{(expcat.countryname)}}</td>
-                      <td>{{(expcat.companyname)}}</td>
+                   <td>    <template v-if="expcat.expense_categorycountry">	{{expcat.expense_categorycountry.countryname}}</template></td>
+                   
+                     <td>    <template v-if="expcat.expense_categorycompany">	{{expcat.expense_categorycompany.companyname}}</template></td>
                        <td>{{(expcat.expcatcatname)}}</td>
                       <td>{{(expcat.description)}}</td>
                       <td>{{(expcat.created_at)}}</td>
@@ -422,8 +423,8 @@
                     <tr v-for="compexps in datarecordscompanyexpenses.data" :key="compexps.id">
                     
                     <td>{{compexps.id}}</td>
-                    <td>{{compexps.expensename}}</td>
-                     <td>{{compexps.id}}</td>
+                <td>    <template v-if="compexps.expense_country">	{{compexps.expense_country.countryname}}</template></td>
+                        <td>    <template v-if="compexps.expense_company">	{{compexps.expense_company.companyname}}</template></td>
                     <td>{{compexps.expensename}}</td>
                 
                            <td>    <template v-if="compexps.expense_category">	{{compexps.expense_category.expcatcatname}}</template></td>
@@ -574,11 +575,13 @@
                     <tr>
                        <tr v-for="offcmadeexp in officemadeexpensesrecords.data" :key="offcmadeexp.id">
                     <td>{{offcmadeexp.id}}</td>
-                    <td>{{offcmadeexp.id}}</td>
-                    <td>{{offcmadeexp.id}}</td>
+                      <td>{{offcmadeexp.datemade}}</td>
+                    
+                    
+                      <td>    <template v-if="offcmadeexp.madeexpense_country">	{{offcmadeexp.madeexpense_country.countryname}}</template></td>
+                      <td>    <template v-if="offcmadeexp.madeexpense_company">	{{offcmadeexp.madeexpense_company.companyname}}</template></td>
 
-
-                    <td>{{offcmadeexp.datemade}}</td>
+                  
                           <td>    <template v-if="offcmadeexp.branch_name">	{{offcmadeexp.branch_name.branchname}}</template></td>
                             <td>    <template v-if="offcmadeexp.expense_name">	{{offcmadeexp.expense_name.expensename}}</template></td>
                       <td>{{offcmadeexp.description}}</td>

@@ -17,7 +17,22 @@ class Expensescategory extends Authenticatable
        
     ];
     
+    public function expenseCategorycountry(){
+        // creating a relationship between the students model 
+        return $this->belongsTo(Country::class, 'countryname'); 
+    }
+    public function expenseCategorycompany(){
+        // creating a relationship between the students model 
+        return $this->belongsTo(Companydetail::class, 'companyname'); 
+    }
 
+
+
+
+
+
+
+    
     public function students(){
    
         return $this->hasMany(Product::class, 'category', 'id'); 

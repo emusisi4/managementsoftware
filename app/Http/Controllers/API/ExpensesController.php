@@ -34,7 +34,7 @@ class ExpensesController extends Controller
       {
 
       
-         return   Expense::with(['ExpenseTypeconnect','expenseCategory'])->latest('id')
+         return   Expense::with(['ExpenseTypeconnect','expenseCategory','expenseCountry','expenseCompany'])->latest('id')
         ->where('del', 0)
         ->where('companyname', $companyname2)
         ->where('countryname', $countryname2)

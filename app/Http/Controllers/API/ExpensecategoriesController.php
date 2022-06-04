@@ -37,7 +37,8 @@ class ExpensecategoriesController extends Controller
       {
     //  return   Product::with(['userbalancingBranch','branchinBalance'])->latest('id')
    // return   Productcategory::with(['brandName','productCategory','productSupplier','unitMeasure'])->latest('id')
-      return   Expensescategory::latest('id')
+   //   return   Expensescategory::latest('id')
+   return   Expensescategory::with(['expenseCategorycountry','expenseCategorycompany'])->latest('id')
        //  return   Branchpayout::latest('id')
          ->where('companyname', $companyname2)
          ->where('countryname', $countryname2)

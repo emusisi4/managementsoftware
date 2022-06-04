@@ -30,6 +30,21 @@ class Country extends Authenticatable
         return $this->hasMany(Branchperformancereport::class, 'countryname', 'id'); 
     }
 
+    public function expenseCategorycountry(){
+     
+        return $this->hasMany(Expensecategory::class, 'countryname', 'id'); 
+    }
+    
+    public function madeexpenseCountry(){
+     
+        return $this->hasMany(Madeexpense::class, 'countryname', 'id'); 
+    }
+
+    public function expenseCountry(){
+     
+        return $this->hasMany(Expense::class, 'countryname', 'id'); 
+    }
+
     public function countryName(){
      
         return $this->hasMany(Companydetail::class, 'countryname', 'id'); 

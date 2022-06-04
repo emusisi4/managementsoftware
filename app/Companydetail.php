@@ -22,7 +22,37 @@ class Companydetail extends Authenticatable
         // creating a relationship between the students model 
         return $this->hasMany(Product::class, 'brand', 'id'); 
     }
-    
+    public function expenseCategorycompany(){
+     
+        return $this->hasMany(Expensecategory::class, 'companyname', 'id'); 
+    }
+
+
+
+
+
+    public function expenseCompany(){
+     
+        return $this->hasMany(Expense::class,  'companyname', 'id'); 
+    }
+
+    public function madeexpenseCompany(){
+     
+        return $this->hasMany(Madeexpense::class, 'companyname', 'id'); 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function userCompany(){
         // creating a relationship between the students model 
         return $this->hasMany(User::class, 'companyname', 'id'); 

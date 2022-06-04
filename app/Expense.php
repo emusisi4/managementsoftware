@@ -21,6 +21,13 @@ class Expense extends Authenticatable
     ];
     
 
+    public function expenseCountry(){
+        return $this->belongsTo(Country::class, 'countryname'); 
+    }
+    public function expenseCompany(){
+      return $this->belongsTo(Companydetail::class, 'companyname'); 
+    }
+
     public function ExpenseTypeconnect(){
         // creating a relationship between the students model 
         return $this->belongsTo(Expensetype::class, 'expensetype'); 
