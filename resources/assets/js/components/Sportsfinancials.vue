@@ -432,9 +432,10 @@
                                 <!-- v-if="allowedtodeleteshopBalancingRecord > 0" -->
 
   <td>
-                             
-                            <button v-if="allowedtodeleteshopBalancingRecord > 0" type="button"  class="btn bg-brown  btn-xs waves-effect"
-                                @click="deleteShopbalancingrecord(shobalrecs.id)"> Void Record </button>
+                                    <button type="button" v-if="allowedtodeleteshopBalancingRecord > 0 " 
+  @click="deleteShopbalancingrecord(shobalrecs.id)" class="btn waves-effect waves-light btn-xs btn-danger">
+                      Void Record
+                    </button>
                  
                       </td>
                
@@ -567,8 +568,20 @@
                       
                      
                      <td>
-                       <button v-show="fishcoll.status < 1" type="button"   class="btn  bg-gradient-secondary btn-xs"  @click="confirmFishcashin(fishcoll.id)"> Confirm Collection </button>
-                       <!-- <button v-show="fishcoll.status === 1" type="button"   class="btn  bg-gradient-success btn-xs"  > Confirmed  </button> -->
+                       <button  type="button"   class="btn  bg-gradient-secondary btn-xs" ></button>
+                   
+                   
+
+                                 <button type="button" v-show="fishcoll.status < 1" 
+  @click="confirmFishcashin(fishcoll.id)" class="btn waves-effect waves-light btn-xs btn-success">
+                       Confirm Collection 
+                    </button>
+
+
+
+
+
+
                        <div v-if="allowedtodeletecollection > 0">
                            <button type="button"  class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="deletecashcollection(fishcoll.id)"> Delete Collection </button>
                        </div>
@@ -892,8 +905,16 @@
                       
                     
                      <td>
-                       <button v-show="fishcoll.status < 1" type="button"   class="btn  bg-gradient-secondary btn-xs"  @click="confirmCashouttransfer(fishcoll.id)"> Confirm Credit </button>
-                       <!-- <button v-show="fishcoll.status === 1" type="button"   class="btn  bg-gradient-success btn-xs"  > Confirmed  </button> -->
+                     
+
+                                 <button type="button" v-show="fishcoll.status < 1" 
+   @click="confirmCashouttransfer(fishcoll.id)" class="btn waves-effect waves-light btn-xs btn-info">
+                       Confirm Credit 
+                    </button>
+
+
+
+
                        <div v-if="allowedtodeletecollection > 0">
                            <button type="button"  class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="deletecashcollection(fishcoll.id)"> Delete Collection </button>
                        </div>
