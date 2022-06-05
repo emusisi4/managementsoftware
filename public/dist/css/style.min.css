@@ -15218,6 +15218,8 @@ figure {
 img,
 svg {
   vertical-align: middle;
+  width: 61px;
+  margin-left: -119px;
 }
 table {
   caption-side: bottom;

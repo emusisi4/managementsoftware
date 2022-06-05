@@ -1151,7 +1151,8 @@ Route::get('getdeleteexpensetype', 'APIController@getdeleteexpensetype');
 
 
 
-
+Route::get('companynameinaction', 'APIController@companynameinaction');
+Route::get('countrynameinaction', 'APIController@countrynameinaction');
 
 
 

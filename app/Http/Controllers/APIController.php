@@ -64,6 +64,10 @@ class APIController extends Controller
   
 
 ////  sportsbetting
+
+
+
+
 public function generalclientdetails()
 {
 $userid =  auth('api')->user()->id;

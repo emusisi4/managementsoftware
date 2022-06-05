@@ -25,8 +25,7 @@
                 <div class="card-body">
                   <div class="d-flex flex-row">
                     <div
-                      class="
-                        round round-lg
+                      class="round round-lg
                         text-white
                         d-flex
                         align-items-center
@@ -234,8 +233,7 @@
                                       <div class="bethapa-table-header">
                       Shop Balancing records 
 
-                      <!--  v-if="allowedtoaddbranch > 0 " -->
-                      <button type="button" class="add-newm" @click="newcompanydetailsModal" >Balance the shop now </button> 
+                      <button type="button" v-if="candoshopbalancing > 0 " class="add-newm" @click="newcompanydetailsModal" >Balance shop now </button> 
                      </div>
 
 
@@ -435,7 +433,8 @@
 
   <td>
                              
-                            <button v-if="allowedtodeleteshopBalancingRecord > 0" type="button"  class="btn bg-brown  btn-xs waves-effect"  @click="deleteShopbalancingrecord(shobalrecs.id)"> Void Record </button>
+                            <button v-if="allowedtodeleteshopBalancingRecord > 0" type="button"  class="btn bg-brown  btn-xs waves-effect"
+                                @click="deleteShopbalancingrecord(shobalrecs.id)"> Void Record </button>
                  
                       </td>
                
@@ -845,7 +844,7 @@
 
                 </form>
                                      <div class="bethapa-table-header">
-                           Cash CREDIT details 
+                           Cash CREDIT details :  {{countrynameinaction}}  :- {{getCompanynameactive}}
                       <button type="button" class="add-newm" @click="makeBranchcredit" >Make Credit </button> 
                      </div>
 
@@ -2022,6 +2021,15 @@ companybrancheslist:[],
             ///////////////////////////////////
           brancheslist: [],
           walletlist:[],
+
+
+          companynameinaction: [],
+          countrynameinaction:[],
+
+
+
+
+
            currencydetails:null,
             shopopenningbalance:null,
                 collectionsaccountcurrentbalance: null,
@@ -2579,11 +2587,7 @@ this.form.post('api/brachtocollectorcredit');
 
   axios.get("api/cashoutfromoffice").then(({ data }) => (this.admincashoutrecords = data));
   this.form.post('api/brachtocollectorcredit');
- //axios.get("api/branchtobalance").then(({ data }) => (this.clcash = data));
- // axios.get("api/branchalreadybalanced").then(({ data }) => (this.branchbalancedforthisdate = data));
-  //axios.get("api/pendingcashin").then(({ data }) => (this.pendingtransfer = data));
-  // axios.get("api/getbranchopenningb").then(({ data }) => (this.shopopenningbalance = data));
- // axios.get("api/getbranchnamebalancing").then(({ data }) => (this.shopbalancngname = data));
+ 
    axios.get("api/getbranchnametocollectfrom").then(({ data }) => (this.shopbalancngname = data));
 // axios.get("api/getbranchopenningb").then(({ data }) => (this.shopopenningbalance = data));
    
@@ -2619,7 +2623,8 @@ this.form.post('api/brachtocollectorcredit');
     this.checkAutorityaccess();
    },
 getCurrencydetals: function(){ axios.get("api/getcurrencydetails").then(({ data }) => (this.currencydetails = data));},
-allwedetodeleteBalancingrecord: function(){axios.get("api/allowedtodeleteshopBalancingRecord").then(({ data }) => (this.allowedtodeleteshopBalancingRecord = data));},
+allwedetodeleteBalancingrecord: function(){
+  axios.get("api/allowedtodeleteshopBalancingRecord").then(({ data }) => (this.allowedtodeleteshopBalancingRecord = data));},
     
 
 
@@ -2675,6 +2680,16 @@ getRoles: function(){ axios.get('/api/getRoles').then(function (response) { this
 getBranches: function(){  axios.get('/api/branchDetails').then(function (response) { this.brancheslist = response.data;}.bind(this));},
 
 getWalletlist: function(){  axios.get('/api/getWalletlist').then(function (response) { this.walletlist = response.data;}.bind(this));},
+
+
+
+getCompanynameactive: function(){  axios.get('/api/companynameinaction').then(function (response) { this.companynameinaction = response.data;}.bind(this));},
+getCountrynameactive: function(){  axios.get('/api/countrynameinaction').then(function (response) { this.countrynameinaction = response.data;}.bind(this));},
+
+
+
+
+
 
 getUsertypes: function(){ axios.get('/api/getUsertypes').then(function (response) { this.typeslist = response.data;}.bind(this));},
 
@@ -3788,6 +3803,8 @@ balancescheck(){
 
 ///////////////////////////////////////////////////
         created() {
+          this.getCompanynameactive();
+          this.getCountrynameactive();
           this.checkAutorityaccess();
           this.loadcurrentmacineCodebranch();
           axios.get('/api/getWalletlist').then(function (response) { this.walletlist = response.data;}.bind(this));
