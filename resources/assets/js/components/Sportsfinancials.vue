@@ -18,7 +18,37 @@
         <!-- Start of the -->
 
 <!-- /////////////////////////////////////////// -->
+
  <div class="row">
+      <!-- Column -->
+            <div v-if="allowedtoseebranchaccountbalance > 0 " class="col-lg-3 col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-row">
+                    <div
+                      class="round round-lg
+                        text-white
+                        d-flex
+                        align-items-center
+                        justify-content-center
+                        rounded-circle
+                        bg-info
+                      "
+                    >
+                      <i
+                        data-feather="credit-card"
+                        class="fill-white feather-lg"
+                      ></i>
+                    </div>
+                    <div class="ms-2 align-self-center">
+                      <h3 class="mb-0">      {{currencydetails}}: {{formatPrice(myshopbalance) }}</h3>
+                      <h6 class="text-muted mb-0">My Shop Balance</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Column -->
             <!-- Column -->
             <div v-if="allowedtoseecollectionsaccount > 0 " class="col-lg-3 col-md-6">
               <div class="card">
@@ -178,11 +208,11 @@
        <input v-model="form.actionaidsalesreportbydate"  type="hidden" readonly="" name="actionaidsalesreportbydate">
     
 
-  <label for="exampleInputEmail1">Country :</label>
+  <label for="exampleInputEmail1" v-if="lut == '1' ">Country :</label>
                  
                  
 
-       <select name ="type" v-model="form.countryname" @change='getcompanies()' v-on:change="myClickEventtosavemonthlyreportallbranches" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+       <select v-show="lut == 1 " name ="type" v-model="form.countryname" @change='getcompanies()' v-on:change="myClickEventtosavemonthlyreportallbranches" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
                                        data-live-search="true">
                                         <option></option>
                                         <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
@@ -192,9 +222,9 @@
            
                                    
 
-                                        <label for="password_2">Company</label>
+                                        <label v-show="lut == 1 " for="password_2">Company</label>
                                   
-                                               <select name ="companyname" v-model="form.companyname"  
+                                               <select v-show="lut == 1 " name ="companyname" v-model="form.companyname"  
                                              v-on:change="myClickEventtosavemonthlyreportallbranches" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
                                        data-live-search="true">
                                         <option></option>
@@ -203,11 +233,11 @@
                    
 
 
-  <label for="exampleInputEmail1">Branch :</label>
+  <label v-show="lur != 101 " for="exampleInputEmail1">Branch :</label>
                  
                  
 
-         <select name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches"
+         <select v-show="lur != 101 " name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches"
           :class="{'is-invalid': form.errors.has('branchname')}">
 <option value="900"> All </option>
 <option v-for='data in brancheslist' v-bind:value='data.id'> {{ data.branchname }}</option>
@@ -233,7 +263,7 @@
                                       <div class="bethapa-table-header">
                       Shop Balancing records 
 
-                      <button type="button" v-if="candoshopbalancing > 0 " class="add-newm" @click="newcompanydetailsModal" >Balance shop now </button> 
+                      <button type="button" v-if="candoshopbalancing > 0 " class="add-newm" @click="newcompanydetailsModal" @mouseover="getcompanybranches();" >Balance shop now </button> 
                      </div>
 
 
@@ -306,18 +336,16 @@
             
             <th colspan="2" >Profit (Machine Money) </th>
              
-            <!-- virtual -->
+           
            <th>Sales </th>
          
             <th  colspan="2">Payout </th>
            
             <th  colspan="2">GGR (Profit) </th>
-           
-<!-- totals -->
+
             <th></th>
-<!--                        
-            <th></th>
-            <th></th> -->
+
+
                 <th></th>         
                      
         </tr>
@@ -464,14 +492,14 @@
                       <div class="form-group">
               
 
-       <input v-model="form.actionaidsalesreportbydate" type="hidden" readonly="" name="actionaidsalesreportbydate">
+
     
 
-  <label for="exampleInputEmail1">Country :</label>
+  <label  v-show="lut == 1 " for="exampleInputEmail1">Country :</label>
                  
                  
 
-       <select name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches2" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+       <select name ="type"  v-show="lut == 1 " v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches2" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
                                        data-live-search="true">
                                         <option></option>
                                         <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
@@ -483,7 +511,7 @@
 
                                         <label for="password_2">Company</label>
                                   
-                                               <select name ="companyname" v-model="form.companyname"  
+                                               <select  v-show="lut == 1 " name ="companyname" v-model="form.companyname"  
                                              v-on:change="myClickEventtosavemonthlyreportallbranches2" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
                                        data-live-search="true">
                                         <option></option>
@@ -492,11 +520,11 @@
                    
 
 
-  <label for="exampleInputEmail1">Branch :</label>
+  <label  v-show="lur != 101 " for="exampleInputEmail1">Branch :</label>
                  
                  
 
-         <select name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches2"
+         <select  v-show="lur != 101 " name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches2"
           :class="{'is-invalid': form.errors.has('branchname')}">
 <option value="900"> All </option>
 <option v-for='data in brancheslist' v-bind:value='data.id'> {{ data.branchname }}</option>
@@ -521,8 +549,9 @@
                 </form>
                                       <div class="bethapa-table-header">
                       Cash Collection details 
-                      <button type="button" class="add-newm" @click="makeBranchcollection" >Make collection </button> 
+                      <button type="button" v-if="candocollections > 0" class="add-newm" @click="makeBranchcollection" >Make collection </button> 
                      </div>
+
 
 
 
@@ -617,14 +646,14 @@
                  <div class="form-group">
          
 
-  <input v-model="form.actionaidsalesreportbydate" type="hidden" readonly="" name="actionaidsalesreportbydate">
 
 
-<label for="exampleInputEmail1">Country :</label>
+
+<label for="exampleInputEmail1" v-show="lut == 1 ">Country :</label>
             
             
 
-  <select name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches299" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+  <select v-show="lut == 1 " name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches299" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
                                   data-live-search="true">
                                    <option></option>
                                    <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
@@ -634,9 +663,9 @@
       
                               
 
-                                   <label for="password_2">Company</label>
+                                   <label for="password_2" v-show="lut == 1 ">Company</label>
                              
-                                          <select name ="companyname" v-model="form.companyname"  
+                                          <select v-show="lut == 1 " name ="companyname" v-model="form.companyname"  
                                         v-on:change="myClickEventtosavemonthlyreportallbranches299" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
                                   data-live-search="true">
                                    <option></option>
@@ -645,11 +674,11 @@
               
 
 
-<label for="exampleInputEmail1">Branch :</label>
+<label for="exampleInputEmail1" v-show="lur != 101 ">Branch :</label>
             
             
 
-    <select name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches299"
+    <select v-show="lur != 101 " name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches299"
      :class="{'is-invalid': form.errors.has('branchname')}">
 <option value="900"> All </option>
 <option v-for='data in brancheslist' v-bind:value='data.id'> {{ data.branchname }}</option>
@@ -804,11 +833,11 @@
        <input v-model="form.actionaidsalesreportbydate" type="hidden" readonly="" name="actionaidsalesreportbydate">
     
 
-  <label for="exampleInputEmail1">Country :</label>
+  <label v-show="lut == 1 " for="exampleInputEmail1">Country :</label>
                  
                  
 
-       <select name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches3" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+       <select v-show="lut == 1 " name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches3" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
                                        data-live-search="true">
                                         <option></option>
                                         <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
@@ -818,9 +847,9 @@
            
                                    
 
-                                        <label for="password_2">Company</label>
+                                        <label v-show="lut == 1 " for="password_2">Company</label>
                                   
-                                               <select name ="companyname" v-model="form.companyname"  
+                                               <select v-show="lut == 1 " name ="companyname" v-model="form.companyname"  
                                              v-on:change="myClickEventtosavemonthlyreportallbranches3" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
                                        data-live-search="true">
                                         <option></option>
@@ -829,11 +858,11 @@
                    
 
 
-  <label for="exampleInputEmail1">Branch :</label>
+  <label v-show="lur != 101 " for="exampleInputEmail1">Branch :</label>
                  
                  
 
-         <select name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches3"
+         <select v-show="lur != 101 " name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches3"
           :class="{'is-invalid': form.errors.has('branchname')}">
 <option value="900"> All </option>
 <option v-for='data in brancheslist' v-bind:value='data.id'> {{ data.branchname }}</option>
@@ -858,7 +887,7 @@
                 </form>
                                      <div class="bethapa-table-header">
                            Cash CREDIT details :  {{countrynameinaction}}  :- {{getCompanynameactive}}
-                      <button type="button" class="add-newm" @click="makeBranchcredit" >Make Credit </button> 
+                      <button type="button"  v-if="candocredits > 0" class="add-newm" @click="makeBranchcredit" >Make Credit </button> 
                      </div>
 
 
@@ -918,10 +947,8 @@
                        <div v-if="allowedtodeletecollection > 0">
                            <button type="button"  class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="deletecashcollection(fishcoll.id)"> Delete Collection </button>
                        </div>
-                       <!-- <button type="button"  v-show="fishcoll.status < 1"   class="btn  bg-gradient-secondary btn-xs fas fa-edit"  @click="editfishcollection(fishcollectionrecords)">Edit</button>
-                             <button type="button"  v-show="fishcoll.status < 1" class="btn  bg-gradient-danger btn-xs fas fa-trash-alt" @click="deletecashcollection(fishcollectionrecords.id)"> DEl </button> -->
-
-
+                     
+                     
 
                        </td>
                   
@@ -1654,7 +1681,7 @@
           
         <form @submit.prevent="savenewCompanyandcountry()"> 
 
-                 <div class="mb-3 row">
+                 <div v-show="lut == 1 " class="mb-3 row">
                       <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
                       <div class="col-sm-9">
                  
@@ -1671,7 +1698,7 @@
                     </div>
 
 
-                   <div class="mb-3 row">
+                   <div v-show="lut == 1 "  class="mb-3 row">
                       <label class="col-sm-3 text-end control-label col-form-label">Company</label>
                       <div class="col-sm-9">
                         <!-- v-on:change="myClickEventsavennn" -->
@@ -2019,7 +2046,10 @@
              country: 0,
 
                 countries: [],
+              lur:[],
               
+               lut:[],
+             
                 roleslist: [],
                 typeslist:[],
                 mainmenulist:[],
@@ -2054,6 +2084,7 @@ companybrancheslist:[],
            currencydetails:null,
             shopopenningbalance:null,
                 collectionsaccountcurrentbalance: null,
+                myshopbalance:null,
                 pettycashaccountcurrentbalance:null,
                 admincashaccountcurrentbalance:null,
                 bankaccountcurrentbalance:null,
@@ -2075,9 +2106,11 @@ companybrancheslist:[],
                  candocollections:'',
                  candocredits:'',
 allowedtoseecollectionsaccount:'',
+allowedtoseebranchaccountbalance:'',
 allowedtoseebankaccount:'',
 allowedtoseeadminaccount:'',
 allowedtosepettycashaccount:'',
+
 
 
 
@@ -2118,6 +2151,7 @@ shopbalancngname: null,
            admincashindatarecords:{},
           admincashoutrecords:{},
           branchpayoutrecords:{},
+          
           editmode: false,
           userrecords : {},
           rolesrecords : {},
@@ -2314,6 +2348,8 @@ axios.get("api/currentbalancingrecords").then(({ data }) => (this.shopbalancingd
  axios.get("api/fishcollections").then(({ data }) => (this.fishcollectionrecords = data));
  axios.get("api/cashoutfromofficeforfish").then(({ data }) => (this.fishcashcreditrecords = data));
 axios.get("api/collectionsaccountcurrentbalance").then(({ data }) => (this.collectionsaccountcurrentbalance = data));
+
+
 this.loadBranchstandingaccounts();
                                 Toast.fire({
                                 icon: 'success',
@@ -2804,8 +2840,15 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
                           });
                       },
   /// users
+
+ MyshopBalance(){
+         axios.get("api/myshopbalance").then(({ data }) => (this.myshopbalance = data));
+            
+  },
+
+
    checkAutorityaccess(){
-         
+         axios.get("api/myshopbalance").then(({ data }) => (this.myshopbalance = data));
             axios.get("api/caneditcollections").then(({ data }) => (this.caneditcollections = data));
             axios.get("api/allowedbranchstandingcomponent").then(({ data }) => (this.allowedbranchstandingcomponent = data));
             axios.get("api/candeletecredit").then(({ data }) => (this.candeletecredit = data));
@@ -2816,6 +2859,8 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
             axios.get("api/allowedtosepettycashaccount").then(({ data }) => (this.allowedtosepettycashaccount = data));
             axios.get("api/allowedtoseeadminaccount").then(({ data }) => (this.allowedtoseeadminaccount = data));
             axios.get("api/allowedtoseebankaccount").then(({ data }) => (this.allowedtoseebankaccount = data));
+            
+            axios.get("api/allowedtoseebranchaccountbalance").then(({ data }) => (this.allowedtoseebranchaccountbalance = data));
             axios.get("api/allowedtoseecollectionsaccount").then(({ data }) => (this.allowedtoseecollectionsaccount = data));
             axios.get("api/candocredits").then(({ data }) => (this.candocredits = data));
             axios.get("api/candocollections").then(({ data }) => (this.candocollections = data));
@@ -2903,7 +2948,11 @@ loadSubmenaccess(){
   
 this.checkSubmenuaccessfeatures();
   },
+loadRtys(){
+   axios.get("api/lur").then(({ data }) => (this.lur = data));
+    axios.get("api/lut").then(({ data }) => (this.lut = data));
 
+},
 loadMainmenuaccess(){
   this.getRoles();
      this.checkMainmenuaccessfeatures();
@@ -3824,6 +3873,8 @@ balancescheck(){
 
 ///////////////////////////////////////////////////
         created() {
+        
+          this.loadRtys();
           this.getCompanynameactive();
           this.getCountrynameactive();
           this.checkAutorityaccess();
@@ -3855,7 +3906,7 @@ balancescheck(){
 this.loadBranches();
       });
       
- /// setInterval(() =>this.checkAutorityaccess(),1000);
+  setInterval(() =>this.MyshopBalance(),1000);
         }
     }
 </script>

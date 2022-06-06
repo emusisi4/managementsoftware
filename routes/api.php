@@ -56,6 +56,8 @@ Route::get('allowedtosepettycashaccount', 'APIController@allowedtosepettycashacc
 Route::get('allowedtoseeadminaccount', 'APIController@allowedtoseeadminaccount');
 Route::get('allowedtoseebankaccount', 'APIController@allowedtoseebankaccount');
 Route::get('allowedtoseecollectionsaccount', 'APIController@allowedtoseecollectionsaccount');
+
+Route::get('allowedtoseebranchaccountbalance', 'APIController@allowedtoseebranchaccountbalance');
 Route::get('candocredits', 'APIController@candocredits');
 
 Route::get('candocollections', 'APIController@candocollections');
@@ -828,6 +830,8 @@ Route::apiResources(['savemainmenuaccess' => 'API\GiveaccesstomainmenuController
 //axios.get("api/mainmenulist").then(({ data }) => (this.mainmenulist = data));
 Route::get('orderlistfordatesalesreport', 'APIController@orderlistfordatesalesreport');
 Route::get('mainmenulist', 'APIController@mainmenulist');
+Route::get('lur', 'APIController@lur');
+Route::get('lut', 'APIController@lut');
 Route::get('brancheslist', 'APIController@brancheslist');
 Route::get('loanofficerslist', 'APIController@loanofficerslist');
 Route::get('idtypeslist', 'APIController@idtypeslist');
@@ -956,7 +960,7 @@ Route::get('pettycashaccountcurrentbalance', 'APIController@pettycashaccountcurr
 Route::get('bankaccountcurrentbalance', 'APIController@bankaccountcurrentbalance'); 
 Route::get('collectionsaccountcurrentbalance', 'APIController@collectionsaccountcurrentbalance'); 
 
-
+Route::get('myshopbalance', 'APIController@myshopbalance'); 
 
 
 

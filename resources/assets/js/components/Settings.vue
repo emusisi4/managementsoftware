@@ -1437,7 +1437,7 @@
                                                 :class="{'is-invalid': form.errors.has('componentname')}"
                                      class="form-select" >
                                         <option></option>
-                            <option v-for='data in componentslist' :value='data.sysname'>{{ data.componentname }}</option>
+                            <option v-for='data in componentslist' :value='data.sysname'>{{ data.componentname }} ({{ data.sysname }})</option>
                                     </select>
                    
                       </div>
@@ -1455,7 +1455,7 @@
                                                 :class="{'is-invalid': form.errors.has('formfeatures')}"
                                      class="form-select" >
                                         <option></option>
-                                <option v-for='data in formfeatures' v-bind:value='data.sysname'>{{ data.featurename }}</option>
+                                <option v-for='data in formfeatures' v-bind:value='data.sysname'>{{ data.featurename }} </option>
                                     </select>
                    
                       </div>

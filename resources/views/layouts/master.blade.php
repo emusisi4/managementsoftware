@@ -207,18 +207,7 @@ $logedinname = DB::table('users')->where('id', $useridtousess)->value('name');
             </div>
             <!-- User profile text-->
             <div class="profile-text pt-1 dropdown">
-              <a
-                href="#"
-                class="
-                  dropdown-toggle
-                  u-dropdown
-                  w-100
-                  text-white
-                  d-block
-                  position-relative
-                "
-                id="dropdownMenuLink"
-                data-bs-toggle="dropdown"
+              <a href="#" class="dropdown-toggle u-dropdown w-100 text-white d-block position-relative " id="dropdownMenuLink" data-bs-toggle="dropdown"
                 aria-expanded="false"
                 ><?php echo $logedinname; ?></a
               >
@@ -287,9 +276,17 @@ $logedinname = DB::table('users')->where('id', $useridtousess)->value('name');
                 <i class="mdi mdi-dots-horizontal"></i>
                 <span class="hide-menu">Personal</span>
               </li>
-              <?php $useridtousess = Auth::user()->id;
+              <?php
+              
+              $useridtousess = Auth::user()->id;
+              $usercompany = Auth::user()->companyname;
+              $usercountry = Auth::user()->countryname;
+
 /// geting the users role
-$myuserroledefined = DB::table('users')->where('id', $useridtousess)->value('mmaderole'); ?>
+$myuserroledefined = DB::table('users')
+->where('id', $useridtousess)
+
+->value('mmaderole'); ?>
 
 
 
@@ -297,7 +294,11 @@ $myuserroledefined = DB::table('users')->where('id', $useridtousess)->value('mma
 
 <?php 
 /// selecting the allowed menues
-$allowedmain  = DB::table('rolenaccmains')->where('roleto', $myuserroledefined)->get();
+$allowedmain  = DB::table('rolenaccmains')
+->where('roleto', $myuserroledefined)
+// ->where('companyname', $usercompany)
+// ->where('countryname', $usercountry)
+->get();
 foreach ($allowedmain as $rowall)
 {
      $component = ($rowall->component);

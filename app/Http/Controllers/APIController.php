@@ -2507,7 +2507,21 @@ $data = Ncssidtype::latest('id')
 ->get();
         return response()->json($data);
     }
+    public function lut()
+    {
+      $usertype =  auth('api')->user()->type;
+        return response()->json($usertype);
+    }
+    public function lur()
+    {
+     
 
+$userid =  auth('api')->user()->id;
+$userbranch =  auth('api')->user()->branch;
+$userrole =  auth('api')->user()->mmaderole;
+
+        return response()->json($userrole);
+    }
     public function mainmenulist()
     {
      
@@ -2680,9 +2694,41 @@ $companyinaction = \DB::table('countryandcorrespondings')
         {
 $userid =  auth('api')->user()->id;
 $userbranch =  auth('api')->user()->branch;
-$userrole =  auth('api')->user()->type;
+$usertype =  auth('api')->user()->type;
+$userrole =  auth('api')->user()->mmaderole;
+$usercompany =  auth('api')->user()->companyname;
+$usercountry =  auth('api')->user()->countryname;
 
 
+
+
+if($usertype != '1')
+{
+  if($userrole == '100' || $userrole == '102')
+  {
+
+           $data = Branch::where('companyname', $usercompany)->get();
+            return response()->json($data); 
+  } 
+
+  if($userrole == '101')
+  {
+
+           $data = Branch::where('id', $userbranch)->get();
+            return response()->json($data); 
+  } 
+  /// end of shop manager      
+         
+}       
+/// End of usertype ==1   
+
+
+
+
+
+
+if($usertype == '1')
+{
 $companyinaction = \DB::table('countryandcorrespondings')
 // ->where('countryname', $inpbranch)
 // ->where('countryname', '=', $countryname)
@@ -2692,6 +2738,13 @@ $companyinaction = \DB::table('countryandcorrespondings')
 ->value('companyname');
            $data = Branch::where('companyname', $companyinaction)->get();
             return response()->json($data); 
+         
+         
+}       
+/// End of usertype ==1   
+
+         
+         
           }
 
 
@@ -3560,6 +3613,25 @@ public function bankaccountcurrentbalance()
 }
 
 
+public function myshopbalance()
+{
+/// Getting the Logged in User details
+ $userid =  auth('api')->user()->id;
+ $userbranch =  auth('api')->user()->branch;
+ $userrole =  auth('api')->user()->type;
+ $companyname =  auth('api')->user()->companyname;
+ $countryname =  auth('api')->user()->countryname;
+
+     
+  $currentdate = date('Y-m-d');
+ return $startdate  = \DB::table('branchcashstandings')
+ ->where('branch',$userbranch)
+ ->where('companyname', $companyname)
+ ->where('countryname', $countryname)
+ ->value('outstanding');
+  
+ 
+}
 public function collectionsaccountcurrentbalance()
 {
 /// Getting the Logged in User details
@@ -5475,6 +5547,26 @@ $comp ='generalregisteredcompanyexpensescomponent';
 }
 
 
+public function allowedtoseebranchaccountbalance()
+{
+  $userid =  auth('api')->user()->id;
+  $userbranch =  auth('api')->user()->branch;
+  $userrole =  auth('api')->user()->type;
+  $assignedrole =  auth('api')->user()->mmaderole;
+
+//////////// geting the shop to balance
+//$branchto  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branchnametobalance');
+//$dateinquestion  = Branchtobalance::latest('id')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('datedone');
+$comp ='branchaccountbalancecomponent';
+ $roleisallowedtoaccess = \DB::table('componentsaccesses')
+
+    ->where('componentto', '=', $comp)
+    ->where('mmaderole', '=', $assignedrole)
+    ->count();
+
+    return $roleisallowedtoaccess;
+   
+}
 
 public function allowedtoseecollectionsaccount()
 {

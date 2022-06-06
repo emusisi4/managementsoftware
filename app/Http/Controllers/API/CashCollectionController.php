@@ -27,11 +27,64 @@ class CashCollectionController extends Controller
     $userid =  auth('api')->user()->id;
     $userbranch =  auth('api')->user()->branch;
     $userrole =  auth('api')->user()->mmaderole;
+    $usertype =  auth('api')->user()->type;
+
+    $usercompany =  auth('api')->user()->companyname;
+    $usercountry =  auth('api')->user()->countryname;
+
+
+
     $branchname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
     $countryname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('countryname');
     $companyname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
 
+
+    if($usertype  != '1')
+    {
+      if($userrole == '101')
+      {  
+        
+       
+      
+       return   Cintransfer::with(['branchName','branchNamefrom','ceratedUserdetails','approvedUserdetails', 'statusName','companyCintransfers','countryCintransfers'])->latest('id')
+       ->where('branchto', $userbranch)
+       ->where('countryname', $usercountry)
+       ->where('companyname', $usercompany)
+       ->paginate(30);
+      
+      } 
+      //// End of role 101
+
+      if($userrole == '100' || $userrole == '102')
+   {  
+     
+    
     if($branchname != "900")
+    {
+    return   Cintransfer::with(['branchName','branchNamefrom','ceratedUserdetails','approvedUserdetails', 'statusName','companyCintransfers','countryCintransfers'])->latest('id')
+    ->where('branchto', $branchname)
+    ->where('countryname', $usercountry)
+    ->where('companyname', $usercompany)
+    ->paginate(30);
+    }
+
+    if($branchname == "900")
+    {
+    return   Cintransfer::with(['branchName','branchNamefrom','ceratedUserdetails','approvedUserdetails', 'statusName','companyCintransfers','countryCintransfers'])->latest('id')
+  //  ->where('branch', $branchname)
+  ->where('countryname', $usercountry)
+  ->where('companyname', $usercompany)
+    ->paginate(30);
+    }
+  }//// end of user role admin or finance 
+    
+  }
+  ///end of type != 1
+
+    if($usertype  == '1')
+    {
+      
+      if($branchname != "900")
     {
     return   Cintransfer::with(['branchName','branchNamefrom','ceratedUserdetails','approvedUserdetails', 'statusName','companyCintransfers','countryCintransfers'])->latest('id')
     ->where('branchto', $branchname)
@@ -48,6 +101,9 @@ class CashCollectionController extends Controller
     ->where('companyname', $companyname)
     ->paginate(30);
     }
+
+  }
+  ///end of type == 1
 
 
 

@@ -32,11 +32,78 @@ class CurrentShopbalancingContoller extends Controller
     {
       $userid =  auth('api')->user()->id;
       $userbranch =  auth('api')->user()->branch;
-      $userrole =  auth('api')->user()->type;
+      $usertype =  auth('api')->user()->type;
+
+      $userrole =  auth('api')->user()->mmaderole;
+      $usercompany =  auth('api')->user()->companyname;
+      $usercountry =  auth('api')->user()->countryname;
+
+
       $branchname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('branchname');
       $countryname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('countryname');
       $companyname = \DB::table('monthlyreporttoviews')->where('ucret', '=', $userid)->value('companyname');
 
+
+
+
+      if($usertype != "1")
+
+      {
+
+        if($userrole == '100' || $userrole == '102')
+        {
+            if($branchname != "900")
+            {
+            return   Shopbalancingrecord::with(['userbalancingBranch','branchinBalance'])
+            ->where('branch', $branchname)
+            ->where('countryname', $usercountry)
+            ->where('companyname', $usercompany)
+            ->orderBy('datedone', 'Desc')
+             
+            ->paginate(15);
+            } 
+      
+      
+      
+      
+      
+      
+            if($branchname == "900")
+            {
+            return   Shopbalancingrecord::with(['userbalancingBranch','branchinBalance'])
+             ->where('countryname', $countryname)
+            ->where('companyname', $companyname)
+            ->orderBy('datedone', 'Desc')
+            ->paginate(15);
+            } 
+          }
+          // end of admin or Finance manager
+
+          // ////////////////////////////////////////// Start of Branch manager
+          if($userrole == '101')
+          {
+            //  if($branchname != "900")
+              
+              return   Shopbalancingrecord::with(['userbalancingBranch','branchinBalance'])
+              ->where('branch', $userbranch)
+              ->where('countryname', $usercountry)
+              ->where('companyname', $usercompany)
+              ->orderBy('datedone', 'Desc')
+               
+              ->paginate(15);
+            
+        
+      
+            }
+            // end of admin or Finance manager
+      
+          } 
+          ///// End of user type none 1
+
+
+if($usertype == "1")
+
+{
       if($branchname != "900")
       {
       return   Shopbalancingrecord::with(['userbalancingBranch','branchinBalance'])
@@ -44,12 +111,7 @@ class CurrentShopbalancingContoller extends Controller
       ->where('countryname', $countryname)
       ->where('companyname', $companyname)
       ->orderBy('datedone', 'Desc')
-       
-      // return   Shopbalancingrecord::latest('id')
-       //  return   Branchpayout::latest('id')
-      // ->where('branch', $branch)
-        //->where('ucret', $userid)
-        ->paginate(15);
+      ->paginate(15);
       } 
 
 
@@ -60,17 +122,15 @@ class CurrentShopbalancingContoller extends Controller
       if($branchname == "900")
       {
       return   Shopbalancingrecord::with(['userbalancingBranch','branchinBalance'])
-    //  ->where('branch', $branchname)
       ->where('countryname', $countryname)
       ->where('companyname', $companyname)
       ->orderBy('datedone', 'Desc')
-       
-      // return   Shopbalancingrecord::latest('id')
-       //  return   Branchpayout::latest('id')
-      // ->where('branch', $branch)
-        //->where('ucret', $userid)
-        ->paginate(15);
+      ->paginate(15);
       } 
+
+
+    } 
+    ///// End of user type 1
     }
 
 
@@ -103,10 +163,28 @@ class CurrentShopbalancingContoller extends Controller
 
       $userid =  auth('api')->user()->id;
       $userbranch =  auth('api')->user()->branch;
-      $userrole =  auth('api')->user()->type;
-
-      $usercompany =  auth('api')->user()->comp;
+      $userrole =  auth('api')->user()->mmaderole;
+      $usertype =  auth('api')->user()->type;
+      $usercompany =  auth('api')->user()->companyname;
       $usercountry =  auth('api')->user()->countryname;
+     
+     
+     
+     
+      if($usertype == '1')
+      {
+        $countryname    = $request['countryname'];
+        $companyname    = $request['companyname'];
+      }
+      if($usertype != '1')
+      {
+       
+        $countryname    = $usercountry;
+        $companyname    = $usercompany;
+      
+      }
+     
+     
       $branchforaction = $request['branchname'];
       $branchto = $request['branchname'];
 
@@ -134,11 +212,13 @@ $doesthebranchhavevirtual = \DB::table('branchandproducts')->where('branch', $br
 
       //// branch in action
       $branchforaction = $request['branchname'];
-      $countryname    = $request['countryname'];
-      $companyname    = $request['companyname'];
+
+  
+     
     /// number of machines 
     $totalfishmacinesinthebranch = \DB::table('branchesandmachines')->where('branchname', '=', $branchforaction)->count();
-
+if($usertype == '1')
+{
     $this->validate($request,[
       'datedone'   => 'required  |max:191',
       'branchname'   => 'required',
@@ -152,6 +232,25 @@ $doesthebranchhavevirtual = \DB::table('branchandproducts')->where('branch', $br
       'machineonefloat'  => 'required'
     
      ]);
+    }
+
+
+    if($usertype != '1')
+    {
+      $this->validate($request,[
+        'datedone'   => 'required  |max:191',
+        'branchname'   => 'required',
+        'reportedcash' => 'required',
+        'bio' => 'required',
+        'machineonecurrentcode'  => 'required',
+        'machineonesales'  => 'required',
+        'machineonepayout'  => 'required',
+       // 'countryname'  => 'required',
+       // 'companyname'  => 'required',
+        'machineonefloat'  => 'required'
+      
+       ]);
+    }
 
 
      $datepaid = date('Y-m-d');
@@ -298,8 +397,8 @@ $multiplier = \DB::table('branchesandmachines')
            'multiplier' => $multiplier,
 
 
-           'countryname'    => $request['countryname'],
-           'companyname'    => $request['companyname'],
+           'countryname'    => $countryname,
+           'companyname'    => $companyname,
 
            'totalsales' => $todayssales*$multiplier,
            'totalpayout' => $todayspayout*$multiplier,
@@ -360,8 +459,8 @@ $result2 = \DB::table('branchcashstandings')
        Currentmachinecode::Create([
         'machineno' => '101',
         'datedone' => $request['datedone'],
-        'countryname'    => $request['countryname'],
-        'companyname'    => $request['companyname'],
+        'countryname'    => $countryname,
+        'companyname'    => $companyname,
         'branch' => $request['branchname'],
         'machinecode' => $machineoneclosingcode,
         'ucret' => $userid,
