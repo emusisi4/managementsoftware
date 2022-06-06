@@ -71,8 +71,8 @@ class CurrentShopbalancingContoller extends Controller
             if($branchname == "900")
             {
             return   Shopbalancingrecord::with(['userbalancingBranch','branchinBalance'])
-             ->where('countryname', $countryname)
-            ->where('companyname', $companyname)
+             ->where('countryname', $usercountry)
+            ->where('companyname', $usercompany)
             ->orderBy('datedone', 'Desc')
             ->paginate(15);
             } 
