@@ -194,6 +194,12 @@
                           <span>Branch Standing</span>
                         </a>
                       </li>
+
+                          <li class="nav-item" v-if="allowedbranchstandingcomponent > 0 ">
+                        <a class="nav-link" data-bs-toggle="tab" href="#messages2"  @click="loadBranchOperationrecords()" role="tab">
+                          <span>Branch Operation</span>
+                        </a>
+                      </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -636,6 +642,164 @@
                    <pagination :data="fishcollectionrecords" @pagination-change-page="paginationResultsBranches"></pagination>
                 </ul>
               </div>
+                    </div>
+                    <!-- closure of responsive -->
+                      </div>
+
+                      <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <div class="tab-pane p-3" id="messages2" v-if="allowedbranchstandingcomponent > 0 " role="tabpanel">
+                 <div class="table-responsive">
+                         
+                         <form @submit.prevent="savethemonthlyreportforallbranches()">
+                 
+                 <div class="form-group">
+         
+
+
+
+
+<label for="exampleInputEmail1" v-show="lut == 1 ">Country :</label>
+            
+            
+
+  <select v-show="lut == 1 " name ="type" v-model="form.countryname" v-on:change="myClickEventtosavemonthlyreportallbranches299" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+                                  data-live-search="true">
+                                   <option></option>
+                                   <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                               </select>
+
+
+      
+                              
+
+                                   <label for="password_2" v-show="lut == 1 ">Company</label>
+                             
+                                          <select v-show="lut == 1 " name ="companyname" v-model="form.companyname"  
+                                        v-on:change="myClickEventtosavemonthlyreportallbranches299" id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                  data-live-search="true">
+                                   <option></option>
+                                   <option v-for='data in companieslist' :value='data.id'>{{ data.companyname }}</option>
+                               </select>
+              
+
+
+<label for="exampleInputEmail1" v-show="lur != 101 ">Branch :</label>
+            
+            
+
+    <select v-show="lur != 101 " name ="branchname" v-model="form.branchname" id ="branchname" v-on:change="myClickEventtosavemonthlyreportallbranches299"
+     :class="{'is-invalid': form.errors.has('branchname')}">
+<option value="900"> All </option>
+<option v-for='data in brancheslist' v-bind:value='data.id'> {{ data.branchname }}</option>
+
+</select>
+       <has-error :form="form" field="branchname"></has-error>
+
+
+                         
+        <button type="submit" id="submit" style="display:none;" hidden="hidden" name= "submit" ref="theButtontotosalesreportmonthly299" class="btn btn-primary btn-sm">Saveit</button>         
+
+                           
+                
+  
+  
+              
+     </div>
+
+
+   
+
+           </form>
+<div class="bethapa-table-header">
+
+                           </div>
+
+         <div class="bethapa-table-header">
+               BRANCH OPERATION DETAILS
+                 <!--  -->
+                </div>
+   
+               
+               
+     <table class="table">
+             <thead>
+               <tr>
+              
+                 <th > # </th>
+                 <th > COUNTRY </th>
+              
+                 <th > COMPANY </th>
+                 <th > BRANCH  </th>
+                   <th style="text-align: right;" > SHOP CASH BALANCE  </th>
+                    <th style="text-align: right;" > REPORTED CASH AT HAND  </th>
+                      <th style="text-align: right;" > OBSERVABLE DIFFERENCE  </th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+
+                                  <tr v-for="allmainmenus in branchoutstandingsrecords.data" :key="allmainmenus.id">
+                 
+            
+             
+           
+                 
+                    
+                           <td>{{allmainmenus.id}}</td>
+                              <td>   <template v-if="allmainmenus.country_branchstanding">
+                                    {{allmainmenus.country_branchstanding.countryname}}</template></td>
+                             <td>   <template v-if="allmainmenus.company_branchstanding">
+                                    {{allmainmenus.company_branchstanding.companyname}}</template></td>
+                                
+
+                            
+                        
+                            <td style="padding: 5.25px;font-size: 20px;">   <template v-if="allmainmenus.branch_name2">	{{allmainmenus.branch_name2.branchname}}</template></td>
+           
+
+                           
+                          
+                            <td style="text-align: right; padding: 2.25px;">
+          
+                           <button style="font-size: 20px" type="button" class="btn bg-indigo waves-effect">{{ (currencydetails) }} : {{formatPrice(allmainmenus.outstanding)}}</button>
+                              </td>  
+                          
+<td style="text-align: right; padding: 2.25px;">
+          
+                          
+                            
+                            <button style="font-size: 20px" type="button" 
+                            class="btn bg-teal waves-effect">{{ (currencydetails) }} : {{formatPrice(allmainmenus.reportedcash)}}</button>
+                            
+                              </td>  
+
+
+                                <td style="text-align: right; padding: 2.25px; ">
+          <div v-if="((allmainmenus.reportedcash) - (allmainmenus.outstanding) >= '0')">
+                 <button style="text-align: right;  font-size: 20px" type="button" class="btn bg-green waves-effect">{{(allmainmenus.reportedcash) - (allmainmenus.outstanding)}}</button>
+          </div>     
+           <div v-if="((allmainmenus.reportedcash) - (allmainmenus.outstanding) <  '0')">
+                 <button style="text-align: right;  font-size: 20px" type="button" class="btn bg-deep-orange waves-effect">{{(allmainmenus.outstanding) - (allmainmenus.reportedcash)}}</button>
+          </div>  
+                              </td>  
+
+          
+                         
+                          
+               </tr>
+         
+                
+             </tbody>
+         
+
+                              </table>
+
+
+                 <div class="card-footer">
+           <ul class="pagination pagination-sm m-0 float-right">
+              <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedsubmenues"></pagination>
+           </ul>
+         </div>
                     </div>
                     <!-- closure of responsive -->
                       </div>
@@ -3822,6 +3986,11 @@ if (result.isConfirmed) {
               this.checkAutorityaccess();
            },
 
+           
+ loadBranchOperationrecords: function(){
+             axios.get("api/branchoperationrecords").then(({ data }) => (this.branchoperationrecords = data));
+              this.checkAutorityaccess();
+           },
   
    
 

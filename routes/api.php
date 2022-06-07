@@ -840,6 +840,7 @@ Route::apiResources(['cashoutfromoffice' => 'API\CashCreditController']);
 Route::apiResources(['authorisedmainmenus' => 'API\AuthorisedmainmenuController']);
 Route::apiResources(['branchoutstandingsrecords' => 'API\BranchstandingController']);
 
+Route::apiResources(['branchoperationrecords' => 'API\BranchoperationController']);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('contactscomponentaccess', 'APIController@acccesscontactscomponentaccesscomponent');
 

@@ -72,7 +72,7 @@ class CurrentShopbalancingContoller extends Controller
             {
             return   Shopbalancingrecord::with(['userbalancingBranch','branchinBalance'])
              ->where('countryname', $usercountry)
-            ->where('companyname', $usercompany)
+            ->where('companyname', $companyname)
             ->orderBy('datedone', 'Desc')
             ->paginate(15);
             } 
@@ -558,7 +558,7 @@ DB::table('dailyreportcodes')->where('branch', $bxn)->where('datedone', $datedon
       'multiplier' => $multiplier,
       'machineunlockcode' => $machinefloatcodelastloaded,
       'yearmade'     => $yearmade,
-
+    
       'totalsales' => $todayssaes*$multiplier,
       'totalpayout' => $todayspayout*$multiplier,
       'totalcancelled' => 0,

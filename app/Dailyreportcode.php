@@ -25,6 +25,7 @@ class Dailyreportcode extends Authenticatable
         'totalsales',
         'totalpayout',
         'totalcancelled',
+        'multiplier',
         'totalprofit',
         'countryname', 'companyname', 
         'branchcomment',
