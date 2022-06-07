@@ -260,6 +260,7 @@
         
 
                 </form>
+                    <div class="bethapa-table-header"></div>
                                       <div class="bethapa-table-header">
                       Shop Balancing records 
 
@@ -547,6 +548,7 @@
         
 
                 </form>
+                    <div class="bethapa-table-header"></div>
                                       <div class="bethapa-table-header">
                       Cash Collection details 
                       <button type="button" v-if="candocollections > 0" class="add-newm" @click="makeBranchcollection" >Make collection </button> 
@@ -590,7 +592,7 @@
 
                        <td>   <template v-if="fishcoll.branch_name">	{{fishcoll.branch_name.branchname}}</template></td>
                        <td> <template v-if="fishcoll.cerated_userdetails">	{{fishcoll.cerated_userdetails.name}}</template> - <template v-if="fishcoll.branch_namefrom">	{{fishcoll.branch_namefrom.branchname}}</template> </td>
-                       <td> {{formatPrice(fishcoll.amount)}}</td>
+                       <td style="text-align:right;"> {{formatPrice(fishcoll.amount)}}</td>
                         <td>{{(fishcoll.description)}}</td>
                     
                        <td><template v-if="fishcoll.approved_userdetails">	{{fishcoll.approved_userdetails.name}}</template> <i>{{(fishcoll.comptime)}} </i></td>
@@ -602,7 +604,7 @@
                    
 
                                  <button type="button" v-show="fishcoll.status < 1" 
-  @click="confirmFishcashin(fishcoll.id)" class="btn waves-effect waves-light btn-xs btn-success">
+                          @click="confirmFishcashin(fishcoll.id)" class="btn waves-effect waves-light btn-xs btn-success">
                        Confirm Collection 
                     </button>
 
@@ -885,6 +887,7 @@
         
 
                 </form>
+                    <div class="bethapa-table-header"></div>
                                      <div class="bethapa-table-header">
                            Cash CREDIT details :  {{countrynameinaction}}  :- {{getCompanynameactive}}
                       <button type="button"  v-if="candocredits > 0" class="add-newm" @click="makeBranchcredit" >Make Credit </button> 
@@ -927,7 +930,7 @@
 
                        <td>   <template v-if="fishcoll.branch_name">	{{fishcoll.branch_name.branchname}}</template></td>
                        <td> <template v-if="fishcoll.cerated_userdetails">	{{fishcoll.cerated_userdetails.name}}</template> - <template v-if="fishcoll.branch_namefrom">	{{fishcoll.branch_namefrom.branchname}}</template> </td>
-                       <td> {{formatPrice(fishcoll.amount)}}</td>
+                       <td  style="text-align:right;"> {{formatPrice(fishcoll.amount)}}</td>
                         <td>{{(fishcoll.description)}}</td>
                     
                        <td><template v-if="fishcoll.approved_userdetails">	{{fishcoll.approved_userdetails.name}}</template> <i>{{(fishcoll.comptime)}} </i></td>
