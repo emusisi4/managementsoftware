@@ -2598,12 +2598,77 @@ $companyinaction = \DB::table('countryandcorrespondings')
 
 
 
+          public function companynameinaction()
+          {
+          /// Getting the Logged in User details
+           $userid =  auth('api')->user()->id;
+           $userbranch =  auth('api')->user()->branch;
+           $userrole =  auth('api')->user()->type;
+           $companyname =  auth('api')->user()->companyname;
+           $countryname =  auth('api')->user()->countryname;
+          
+           $countryinaction = \DB::table('monthlyreporttoviews')
+           // ->where('countryname', $inpbranch)
+           // ->where('countryname', '=', $countryname)
+           ->where('ucret', '=', $userid)
+           ->orderBy('id', 'Desc')
+           ->limit(1)
+           ->value('countryname');
+           $companyinaction = \DB::table('monthlyreporttoviews')
+           // ->where('countryname', $inpbranch)
+           // ->where('countryname', '=', $countryname)
+           ->where('ucret', '=', $userid)
+           ->orderBy('id', 'Desc')
+           ->limit(1)
+           ->value('companyname');
+
+
+            $currentdate = date('Y-m-d');
+           return $startdate  = \DB::table('companydetails')
+           ->where('id',$companyinaction)
+          
+           ->value('companyname');
+            
+           
+          }
 
 
 
+          public function countrynameinaction()
+          {
+          /// Getting the Logged in User details
+           $userid =  auth('api')->user()->id;
+           $userbranch =  auth('api')->user()->branch;
+           $userrole =  auth('api')->user()->type;
+           $companyname =  auth('api')->user()->companyname;
+           $countryname =  auth('api')->user()->countryname;
+          
+           $countryinaction = \DB::table('monthlyreporttoviews')
+           // ->where('countryname', $inpbranch)
+           // ->where('countryname', '=', $countryname)
+           ->where('ucret', '=', $userid)
+           ->orderBy('id', 'Desc')
+           ->limit(1)
+           ->value('countryname');
+           $companyinaction = \DB::table('monthlyreporttoviews')
+           // ->where('countryname', $inpbranch)
+           // ->where('countryname', '=', $countryname)
+           ->where('ucret', '=', $userid)
+           ->orderBy('id', 'Desc')
+           ->limit(1)
+           ->value('companyname');
 
 
+            $currentdate = date('Y-m-d');
+           return $startdate  = \DB::table('countries')
+           ->where('id',$countryinaction)
+          
+           ->value('countryname');
+            
+           
+          }
 
+        
 
         public function getcompanyemployees(Request $request)
 

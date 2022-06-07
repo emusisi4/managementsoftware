@@ -550,7 +550,7 @@
                 </form>
                     <div class="bethapa-table-header"></div>
                                       <div class="bethapa-table-header">
-                      Cash Collection details 
+                      Cash Collection details : {{ companynameinaction }} - {{ countrynameinaction }}
                       <button type="button" v-if="candocollections > 0" class="add-newm" @click="makeBranchcollection" >Make collection </button> 
                      </div>
 
@@ -889,7 +889,7 @@
                 </form>
                     <div class="bethapa-table-header"></div>
                                      <div class="bethapa-table-header">
-                           Cash CREDIT details :  {{countrynameinaction}}  :- {{getCompanynameactive}}
+                           Cash CREDIT details : {{ companynameinaction }} - {{ countrynameinaction }}
                       <button type="button"  v-if="candocredits > 0" class="add-newm" @click="makeBranchcredit" >Make Credit </button> 
                      </div>
 
@@ -902,8 +902,7 @@
                        <th>#</th>
                       
                       <th>DATE</th>
-                      <th>COUNTRY</th>
-                        <th>COMPANY</th>
+                    
                            <th>BRANCH</th>
                       <th>FROM </th>
                       
@@ -922,9 +921,9 @@
                    <tr v-for="fishcoll in fishcashcreditrecords.data" :key="fishcoll.id">
                        <td>{{fishcoll.id}}</td>
                        <td>{{(fishcoll.transferdate)}}</td>
-                       <td> <template v-if="fishcoll.country_couttransfers">	{{fishcoll.country_couttransfers.countryname}}</template></td>
+                       <!-- <td> <template v-if="fishcoll.country_couttransfers">	{{fishcoll.country_couttransfers.countryname}}</template></td>
                         <td> <template v-if="fishcoll.company_couttransfers">	{{fishcoll.company_coutransfers.companyname}}</template></td>
-
+ -->
 
 
 
@@ -2078,7 +2077,7 @@ companybrancheslist:[],
 
 
           companynameinaction: [],
-          countrynameinaction:[],
+     
 
 
 
@@ -2165,6 +2164,8 @@ shopbalancngname: null,
           companyrecords : {},
           mainmenulist:{},
           suppliers:{},
+               countrynameinaction:{},
+               companynameinaction:{},
           datarecordsSubmenusauthorised:{},
           allowedrolecomponentsObject :{},
           datarecordsMainmenuauthorised:{},
@@ -2351,7 +2352,8 @@ axios.get("api/currentbalancingrecords").then(({ data }) => (this.shopbalancingd
  axios.get("api/fishcollections").then(({ data }) => (this.fishcollectionrecords = data));
  axios.get("api/cashoutfromofficeforfish").then(({ data }) => (this.fishcashcreditrecords = data));
 axios.get("api/collectionsaccountcurrentbalance").then(({ data }) => (this.collectionsaccountcurrentbalance = data));
-
+this.getCountrynameactive();
+this.getCompanynameactive();
 
 this.loadBranchstandingaccounts();
                                 Toast.fire({
@@ -2740,7 +2742,6 @@ getRoles: function(){ axios.get('/api/getRoles').then(function (response) { this
 getBranches: function(){  axios.get('/api/branchDetails').then(function (response) { this.brancheslist = response.data;}.bind(this));},
 
 getWalletlist: function(){  axios.get('/api/getWalletlist').then(function (response) { this.walletlist = response.data;}.bind(this));},
-
 
 
 getCompanynameactive: function(){  axios.get('/api/companynameinaction').then(function (response) { this.companynameinaction = response.data;}.bind(this));},
