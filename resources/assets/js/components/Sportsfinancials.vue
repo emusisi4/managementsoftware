@@ -730,9 +730,21 @@
               
                  <th > COMPANY </th>
                  <th > BRANCH  </th>
-                   <th style="text-align: right;" > SHOP CASH BALANCE  </th>
-                    <th style="text-align: right;" > REPORTED CASH AT HAND  </th>
-                      <th style="text-align: right;" > OBSERVABLE DIFFERENCE  </th>
+                   <th style="text-align: center;" > OPENNING CODE  </th>
+                    <th style="text-align: center;" > SALES CODE  </th>
+                      <th style="text-align: center;" > PAYOUT CODE  </th>
+
+                      <th style="text-align: center;" > CLOSING CODE  </th>
+                    <th style="text-align: center;" >    PROFIT CODE  </th>
+                       <th style="text-align: center;" >    PREVIOUS FLOAT CODE  </th>
+                       <th style="text-align: center;" >   CURRENT  FLOAT CODE  </th>
+                     
+                     
+                      <th style="text-align: center;" > SALES   </th>
+                       <th style="text-align: center;" > PAYOUT  </th>
+                        <th style="text-align: center;" > PROFIT  </th>
+
+                         <th style="text-align: center;" > WORK DURATION  </th>
                </tr>
              </thead>
              <tbody>
