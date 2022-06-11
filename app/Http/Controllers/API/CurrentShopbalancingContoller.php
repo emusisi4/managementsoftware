@@ -361,6 +361,34 @@ $multiplier = \DB::table('branchesandmachines')
      ->limit(1)
      ->value('salescode');
 
+     $latestfloatcode = \DB::table('dailyreportcodes')
+     ->where('branch', $inpbranch)
+     ->where('machineno', '101')
+     ->where('countryname', '=', $countryname)
+     ->where('companyname', '=', $companyname)
+     ->orderBy('id', 'Desc')
+     ->limit(1)
+     ->value('floatcode');
+
+
+
+$currentfcode = $request['machineonefloat'];
+
+     if($latestfloatcode >= $currentfcode)
+     {
+       $timeworkedinminutes = $latestfloatcode - $currentfcode;
+       $timeworkedinhours = (($latestfloatcode - $currentfcode)/60);
+       $remainingtimeinhours =  ($currentfcode/60);
+       $remainningtimeidays = ($currentfcode/60/24);
+     }
+    //  if($latestfloatcode < $currentfcode)
+    //  {
+    //    $timeworkedinminutes = $latestfloatcode - $currentfcode;
+    //    $timeworkedinhours = (($latestfloatcode - $currentfcode)/60);
+    //    $remainingtimeinhours =  ($currentfcode/60);
+    //    $remainningtimeidays = ($currentfcode/60/24);
+    //  }
+
 
      $latestpayoutcode = \DB::table('dailyreportcodes')
      ->where('branch', $inpbranch)
@@ -535,7 +563,7 @@ DB::table('dailyreportcodes')->where('branch', $bxn)->where('datedone', $datedon
       'machineno'    => '101',
       'companyname'     => $request['companyname'],
       'countryname'       => $request['countryname'],
-
+  
       'datedone'     => $request['datedone'],
       'branch'       => $request['branchname'],
       'closingcode'  => $machineoneclosingcode,
