@@ -31,16 +31,52 @@ class FishreporttoviewController extends Controller
     {
         $userid =  auth('api')->user()->id;
         $userbranch =  auth('api')->user()->branch;
-        $userrole =  auth('api')->user()->type;
-         
+        $usertype =  auth('api')->user()->type;
+        $userrole =  auth('api')->user()->mmaderole;
+        $userbranch =  auth('api')->user()->branch;
+        $usercompany =  auth('api')->user()->companyname;
+        $usercountry =  auth('api')->user()->countryname;
+
+
+
       $startdate = \DB::table('fishreportselections')->where('ucret', '=', $userid)->orderby('id', 'desc')->limit('1')->value('startdate');
       $enddate = \DB::table('fishreportselections')->where('ucret', '=', $userid)->orderby('id', 'desc')->limit('1')->value('enddate');
       $companyname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->orderby('id', 'desc')->limit('1')->value('companyname');
       $countryname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->orderby('id', 'desc')->limit('1')->value('countryname');
    
       $branch = \DB::table('fishreportselections')->where('ucret', '=', $userid)->orderby('id', 'desc')->limit('1')->value('branch');
+      if($usertype != "1")
       {
-        if($branch != "900")
+     
+     if($branch != "900")
+       {
+ 
+     return   Dailyreportcode::with(['branchnameDailycodes', 'machinenameDailycodes','generalsalesreportCountry','generalsalesreportCompany'])->orderBy('datedone', 'DESC')
+      
+      ->where('companyname', $usercompany)
+      ->where('countryname', $usercountry)
+     ->where('branch', $branch)
+
+     ->whereBetween('datedone', [$startdate, $enddate])
+      ->paginate(100);
+       }
+       if($branch == "900")
+       {
+   //  return   Dailyreportcode::with(['branchnameDailycodes', 'machinenameDailycodes'])->orderBy('dorder', 'Asc')
+     return   Dailyreportcode::with(['branchnameDailycodes', 'machinenameDailycodes', 'generalsalesreportCountry','generalsalesreportCompany'])->orderBy('datedone', 'DESC')
+      
+     ->where('companyname', $usercompany)
+     ->where('countryname', $usercountry)
+     ->whereBetween('datedone', [$startdate, $enddate])
+      ->paginate(40);
+       }
+     
+     }//// end of super admin
+
+      if($usertype == "1")
+       {
+      
+      if($branch != "900")
         {
   
       return   Dailyreportcode::with(['branchnameDailycodes', 'machinenameDailycodes','generalsalesreportCountry','generalsalesreportCompany'])->orderBy('datedone', 'DESC')
@@ -63,7 +99,9 @@ class FishreporttoviewController extends Controller
       ->whereBetween('datedone', [$startdate, $enddate])
        ->paginate(40);
         }
-      }
+      
+      }//// end of super admin
+      
     
 
       
