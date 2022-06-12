@@ -4295,8 +4295,10 @@ public function totalmonthlyprofitselectedreport()
 /// Getting the Logged in User details
  $userid =  auth('api')->user()->id;
  $userbranch =  auth('api')->user()->branch;
- $userrole =  auth('api')->user()->type;
-
+ $userrole =  auth('api')->user()->mmaderole;
+ $usercompany =  auth('api')->user()->companyname;
+ $usercountry =  auth('api')->user()->countryname;
+ $usertype =  auth('api')->user()->type;
      
   $currentdate = date('Y-m-d');
   $monthto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('monthname');
@@ -4304,88 +4306,106 @@ public function totalmonthlyprofitselectedreport()
   $branch  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branch');
   $countryname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('countryname');
   $companyname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('companyname');
- 
-  if($branch == "900")
- 
-  {
-  $totalsales = \DB::table('dailyreportcodes')
-   
- ->where('monthmade', '=', $monthto)
- ->where('yearmade', '=', $yearto)
+  
+  
+  if($usertype != "1")
 
- ->where('companyname', '=', $companyname)
- ->where('countryname', '=', $countryname)
-  //  ->where('status', '=', 1)
-   ->sum('totalprofit');
-    return $totalsales;
-  }
-  if($branch != "900")
- 
-  {
-  $totalsales = \DB::table('dailyreportcodes')
-   
- ->where('monthmade', '=', $monthto)
- ->where('yearmade', '=', $yearto)
- ->where('branch', '=', $branch)
- ->where('companyname', '=', $companyname)
- ->where('countryname', '=', $countryname)
-  //  ->where('status', '=', 1)
-   ->sum('totalprofit');
-    return $totalsales;
-  }
+  {                  
+          if($userrole == "101")    
+          {
+           
+            $totalsales = \DB::table('dailyreportcodes')
+            
+          ->where('monthmade', '=', $monthto)
+          ->where('yearmade', '=', $yearto)
+          ->where('branch', '=', $userbranch)
+          ->where('companyname', '=', $usercompany)
+          ->where('countryname', '=', $usercountry)
+            //  ->where('status', '=', 1)
+            ->sum('totalprofit');
+              return $totalsales;
+            
+          } 
+          //// End of branch Manager
+                            if($userrole != "101")
+                            {
+                                     
+                                            if($branch == "900")
+                                            
+                                            {
+                                            $totalsales = \DB::table('dailyreportcodes')
+                                            
+                                          ->where('monthmade', '=', $monthto)
+                                          ->where('yearmade', '=', $yearto)
+
+                                          ->where('companyname', '=', $usercompany)
+                                          ->where('countryname', '=', $usercountry)
+                                            //  ->where('status', '=', 1)
+                                            ->sum('totalprofit');
+                                              return $totalsales;
+                                            }
+                                            if($branch != "900")
+                                          
+                                            {
+                                            $totalsales = \DB::table('dailyreportcodes')
+                                            
+                                          ->where('monthmade', '=', $monthto)
+                                          ->where('yearmade', '=', $yearto)
+                                          ->where('branch', '=', $branch)
+                                          ->where('companyname', '=', $usercompany)
+                                          ->where('countryname', '=', $usercountry)
+                                            //  ->where('status', '=', 1)
+                                            ->sum('totalprofit');
+                                              return $totalsales;
+                                            }
+                            } /// end of if the userrole is not Branch manager 
+
+
+          }/// end of usertype != superadmin
+  if($usertype == "1")
+  {                              
+                                if($branch == "900")
+                              
+                                {
+                                $totalsales = \DB::table('dailyreportcodes')
+                                
+                              ->where('monthmade', '=', $monthto)
+                              ->where('yearmade', '=', $yearto)
+
+                              ->where('companyname', '=', $companyname)
+                              ->where('countryname', '=', $countryname)
+                                //  ->where('status', '=', 1)
+                                ->sum('totalprofit');
+                                  return $totalsales;
+                                }
+                                if($branch != "900")
+                              
+                                {
+                                $totalsales = \DB::table('dailyreportcodes')
+                                
+                              ->where('monthmade', '=', $monthto)
+                              ->where('yearmade', '=', $yearto)
+                              ->where('branch', '=', $branch)
+                              ->where('companyname', '=', $companyname)
+                              ->where('countryname', '=', $countryname)
+                                //  ->where('status', '=', 1)
+                                ->sum('totalprofit');
+                                  return $totalsales;
+                                }
+          }/// end of usertype == superadmin
  
 }
 
-// public function totalmonthlycollectionsselectedreport()
-// {
-// /// Getting the Logged in User details
-//  $userid =  auth('api')->user()->id;
-//  $userbranch =  auth('api')->user()->branch;
-//  $userrole =  auth('api')->user()->type;
-
-     
-//   $currentdate = date('Y-m-d');
-//   $monthto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('monthname');
-//   $yearto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('yearname');
-//   $branch  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branch');
-//   $countryname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('countryname');
-//   $companyname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('companyname');
- 
-// if($branch == "900")
-//  {
-//   $totalsales = \DB::table('mlyrpts')
-   
-//   ->where('monthdone', '=', $monthto)
-// ->where('yeardone', '=', $yearto)
-//   ->where('companyname', '=', $companyname)
-//  ->where('countryname', '=', $countryname)
-//  //->where('status', '=', 1)
-//    ->sum('collections');
-//     return $totalsales;
-//  } 
-//  if($branch != "900")
-//  {
-//   $totalsales = \DB::table('mlyrpts')
-   
-//   ->where('monthdone', '=', $monthto)
-// ->where('yeardone', '=', $yearto)
-//   ->where('branch', '=', $branch)
-//   ->where('companyname', '=', $companyname)
-//  ->where('countryname', '=', $countryname)
-// // ->where('status', '=', 1)
-//  ->sum('collections');
-//     return $totalsales;
-//  } 
- 
-// }
 
 public function totalmonthlycollectionsselectedreport()
 {
 /// Getting the Logged in User details
  $userid =  auth('api')->user()->id;
  $userbranch =  auth('api')->user()->branch;
- $userrole =  auth('api')->user()->type;
-
+ $usertype =  auth('api')->user()->type;
+ $userrole =  auth('api')->user()->mmaderole;
+ $usercompany =  auth('api')->user()->companyname;
+ $usercountry =  auth('api')->user()->countryname;
      
   $currentdate = date('Y-m-d');
   $monthto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('monthname');
@@ -4393,8 +4413,63 @@ public function totalmonthlycollectionsselectedreport()
   $branch  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branch');
   $countryname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('countryname');
   $companyname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('companyname');
- 
-if($branch == "900")
+
+
+if($usertype != "1")
+{
+  if($userrole == "101")
+  {
+                                 
+                                                {
+                                                  $totalsales = \DB::table('cintransfers')
+                                                  
+                                                  ->where('monthmade', '=', $monthto)
+                                                  ->where('yearmade', '=', $yearto)
+                                                  ->where('branchto', '=', $userbranch)
+                                                  ->where('companyname', '=', $usercompany)
+                                                  ->where('countryname', '=', $usercountry)
+                                                ->where('status', '=', 1)
+                                                ->sum('amount');
+                                                    return $totalsales;
+                                                } 
+}///////////////////////////////////////////////////////////////////////////////////
+  if($userrole != "101")
+  {
+                                    if($branch == "900")
+                                  {
+                                    $totalsales = \DB::table('cintransfers')
+                                    
+                                    ->where('monthmade', '=', $monthto)
+                                    ->where('yearmade', '=', $yearto)
+                                    ->where('companyname', '=', $usercompany)
+                                  ->where('countryname', '=', $usercountry)
+                                  ->where('status', '=', 1)
+                                    ->sum('amount');
+                                      return $totalsales;
+                                  } 
+                                                if($branch != "900")
+                                                {
+                                                  $totalsales = \DB::table('cintransfers')
+                                                  
+                                                  ->where('monthmade', '=', $monthto)
+                                                  ->where('yearmade', '=', $yearto)
+                                                  ->where('branchto', '=', $branch)
+                                                  ->where('companyname', '=', $usercompany)
+                                                  ->where('countryname', '=', $usercountry)
+                                                ->where('status', '=', 1)
+                                                ->sum('amount');
+                                                    return $totalsales;
+                                                } 
+}///////////////////////////////////////////////////////////////////////////////////
+}
+///////////////////////////////////////////////////
+
+
+
+ if($usertype == "1")
+{
+  
+  if($branch == "900")
  {
   $totalsales = \DB::table('cintransfers')
    
@@ -4418,7 +4493,8 @@ if($branch == "900")
  ->where('status', '=', 1)
  ->sum('amount');
     return $totalsales;
- } 
+ }
+ } /// end of super admin
  
 }
 
@@ -4427,8 +4503,10 @@ public function totalmonthlysalesselectedreport()
 /// Getting the Logged in User details
  $userid =  auth('api')->user()->id;
  $userbranch =  auth('api')->user()->branch;
- $userrole =  auth('api')->user()->type;
-
+ $usertype =  auth('api')->user()->type;
+ $userrole =  auth('api')->user()->mmaderole;
+ $usercompany =  auth('api')->user()->companyname;
+ $usercountry =  auth('api')->user()->countryname;
      
  $monthto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('monthname');
  $yearto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('yearname');
@@ -4436,6 +4514,60 @@ public function totalmonthlysalesselectedreport()
  $countryname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('countryname');
  $companyname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('companyname');
 
+ if($usertype != "1")
+
+{ 
+  if($userrole == "101")    
+  {
+       
+
+  $totalsales = \DB::table('dailyreportcodes')
+  ->where('branch', '=', $userbranch)
+   ->where('monthmade', '=', $monthto)
+   ->where('yearmade', '=', $yearto)
+   ->where('companyname', '=', $usercompany)
+   ->where('countryname', '=', $usercountry)
+  ->sum('daysalesamount');
+    return $totalsales;
+          
+}
+  /////////////// end of branch manager 
+  if($userrole != "101")    
+  {
+       
+ if($branch == "900")
+ 
+{ 
+  $totalsales = \DB::table('dailyreportcodes')
+  
+   ->where('monthmade', '=', $monthto)
+   ->where('yearmade', '=', $yearto)
+   ->where('companyname', '=', $usercompany)
+   ->where('countryname', '=', $usercountry)
+  ->sum('daysalesamount');
+    return $totalsales;
+  }
+  if($branch != "900")
+ 
+{ $totalsales = \DB::table('dailyreportcodes')
+  
+   ->where('monthmade', '=', $monthto)
+   ->where('yearmade', '=', $yearto)
+   ->where('branch', '=', $branch)
+   ->where('companyname', '=', $usercompany)
+   ->where('countryname', '=', $usercountry)
+  ->sum('daysalesamount');
+    return $totalsales;
+  }
+}/////////////////////////end of nob branch manager role
+
+
+
+}///////////////////////////////////////////////////////////////////// end of non super admin
+ if($usertype == "1")
+
+{                  
+       
  if($branch == "900")
  
 { $totalsales = \DB::table('dailyreportcodes')
@@ -4459,7 +4591,7 @@ public function totalmonthlysalesselectedreport()
   ->sum('daysalesamount');
     return $totalsales;
   }
-  
+}///////////////////////////////////////////////////////////////////// end of super admin
  
 }
 
@@ -4468,14 +4600,80 @@ public function totalmonthlypayoutselectedreport()
 /// Getting the Logged in User details
  $userid =  auth('api')->user()->id;
  $userbranch =  auth('api')->user()->branch;
- $userrole =  auth('api')->user()->type;
+ $usertype =  auth('api')->user()->type;
+ $userrole =  auth('api')->user()->mmaderole;
+ $usercompany =  auth('api')->user()->companyname;
+ $usercountry =  auth('api')->user()->countryname;
 
  $monthto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('monthname');
  $yearto  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('yearname');
  $branch  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('branch');
  $countryname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('countryname');
  $companyname  = \DB::table('fishreportselections')->where('ucret', $userid)->orderBy('id', 'Desc')->limit(1)->value('companyname');
-  if($branch == "900")
+ 
+ 
+ 
+ 
+ if($usertype != "1")
+ {
+  if($userrole == "101")
+  {
+ 
+  
+  $totalsales = \DB::table('dailyreportcodes')
+   
+    ->where('monthmade', '=', $monthto)
+    ->where('yearmade', '=', $yearto)
+    ->where('branch', '=', $userbranch)
+    ->where('companyname', '=', $usercompany)
+    ->where('countryname', '=', $usercountry)
+   ->sum('daypayoutamount');
+     return $totalsales;
+ }
+ /////////////////// End of branch Manager
+  if($userrole != "101")
+  {
+ 
+ if($branch == "900")
+  
+ {
+  
+  $totalsales = \DB::table('dailyreportcodes')
+   
+    ->where('monthmade', '=', $monthto)
+    ->where('yearmade', '=', $yearto)
+    ->where('companyname', '=', $usercompany)
+    ->where('countryname', '=', $usercountry)
+   ->sum('daypayoutamount');
+     return $totalsales;
+ }
+ if($branch != "900")
+ 
+ {
+  $totalsales = \DB::table('dailyreportcodes')
+   
+  ->where('monthmade', '=', $monthto)
+  ->where('yearmade', '=', $yearto)
+  ->where('branch', '=', $branch)
+  ->where('companyname', '=', $usercompany)
+  ->where('countryname', '=', $usercountry)
+ ->sum('daypayoutamount');
+   return $totalsales;
+ } 
+
+ }/////////////////////////////////end of Admin Role
+
+
+
+
+
+
+
+} ///////////////////////////////////////////////////// End of  None super admin
+
+ if($usertype == "1")
+ {
+ if($branch == "900")
   
  {
   
@@ -4501,6 +4699,11 @@ public function totalmonthlypayoutselectedreport()
  ->sum('daypayoutamount');
    return $totalsales;
  } 
+
+} ///////////////////////////////////////////////////// End of super admin
+
+
+
 }
 
 

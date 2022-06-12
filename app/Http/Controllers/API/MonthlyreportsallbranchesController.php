@@ -35,7 +35,11 @@ class MonthlyreportsallbranchesController extends Controller
     {
         $userid =  auth('api')->user()->id;
         $userbranch =  auth('api')->user()->branch;
-        $userrole =  auth('api')->user()->type;
+        $usertype =  auth('api')->user()->type;
+        $userrole =  auth('api')->user()->mmaderole;
+        $userbranch =  auth('api')->user()->branch;
+        $usercompany =  auth('api')->user()->companyname;
+        $usercountry =  auth('api')->user()->countryname;
 
       //  $reporttype = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('reporttype');
         $monthtodisplay = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('monthname');
@@ -44,8 +48,71 @@ class MonthlyreportsallbranchesController extends Controller
       
         $companyname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('companyname');
         $countryname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('countryname');
-       
+       //////////////////////////////////////////////////////////
+       if($usertype != '1')
+       { 
+
+        if($userrole == '101')
+        {
+           // if($branch == "900")
+              {
+                
+                return   Mlyrpt::with(['branchnameDailycodes'])->orderby('id', 'Asc')
+                ->where('branch', $userbranch)
+           ->where('yeardone', $yeartodisplay)
+           ->where('monthdone', $monthtodisplay)
+           ->where('companyname', $usercompany)
+           ->where('countryname', $usercountry)
+           
+               ->paginate(35);
+              }
+
+            } //// end of branch manager role
+        if($userrole != '101')
+{
+    if($branch == "900")
+      {
         
+        return   Mlyrpt::with(['branchnameDailycodes'])->orderby('id', 'Asc')
+     
+   ->where('yeardone', $yeartodisplay)
+   ->where('monthdone', $monthtodisplay)
+   ->where('companyname', $usercompany)
+   ->where('countryname', $usercountry)
+   
+       ->paginate(35);
+      }
+
+
+
+
+
+
+
+      if($branch != "900")
+      {
+        
+        return   Mlyrpt::with(['branchnameDailycodes'])->orderby('id', 'Asc')
+     
+   ->where('yeardone', $yeartodisplay)
+   ->where('monthdone', $monthtodisplay)
+   ->where('companyname', $usercompany)
+   ->where('countryname', $usercountry)
+   ->where('branch', $branch)
+       ->paginate(35);
+      }
+    } //// End of user role not cashier
+      
+     }//// end of user type !super admin
+    
+
+
+
+
+
+
+        if($usertype == '1')
+       { 
     if($branch == "900")
       {
         
@@ -58,6 +125,12 @@ class MonthlyreportsallbranchesController extends Controller
    
        ->paginate(35);
       }
+
+
+
+
+
+
 
       if($branch != "900")
       {
@@ -72,7 +145,7 @@ class MonthlyreportsallbranchesController extends Controller
        ->paginate(35);
       }
       
-     
+     }//// end of user type super admin
     
 
       
