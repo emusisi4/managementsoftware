@@ -30,16 +30,45 @@ class BranchperformanceContoller extends Controller
     public function index()
     {
       $userid =  auth('api')->user()->id;
+      $userid =  auth('api')->user()->id;
       $userbranch =  auth('api')->user()->branch;
-      $userrole =  auth('api')->user()->type;
+      $usertype =  auth('api')->user()->type;
+      $userrole =  auth('api')->user()->mmaderole;
+      $userbranch =  auth('api')->user()->branch;
+      $usercompany =  auth('api')->user()->companyname;
+      $usercountry =  auth('api')->user()->countryname;
 
-      return   Branchperformancereport::with(['countryBranchperformancereport','companyBranchperformancereport','branchBranchperformancereport'])->orderBy('branchname', 'Desc')
-       ///countryBranchperformancereport
-     //  return   Branchperformancereport::latest('id')
-       //  return   Branchpayout::latest('id')
-      // ->where('branch', $branch)
-        //->where('ucret', $userid)
+    //  $reporttype = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('reporttype');
+      $monthtodisplay = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('monthname');
+      $yeartodisplay = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('yearname');
+      $branch = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('branch');
+    
+      $companyname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('companyname');
+      $countryname = \DB::table('fishreportselections')->where('ucret', '=', $userid)->value('countryname');
+      
+      if($usertype != '1')
+      
+      {
+         return   Branchperformancereport::with(['countryBranchperformancereport','companyBranchperformancereport','branchBranchperformancereport'])->orderBy('branchname', 'Desc')
+         ->where('monthname', $monthtodisplay)
+         ->where('yearname', $yeartodisplay)
+         ->where('countryname', $usercountry)
+         ->where('companyname', $usercompany)
+         ->paginate(15);
+       }
+       //// end of usertype is super admin
+      if($usertype == '1')
+      
+     {
+        return   Branchperformancereport::with(['countryBranchperformancereport','companyBranchperformancereport','branchBranchperformancereport'])->orderBy('branchname', 'Desc')
+        // ->where('countryname', $countryname)
+        ->where('countryname', $countryname)
+        ->where('companyname', $companyname)
+        ->where('monthname', $monthtodisplay)
+        ->where('yearname', $yeartodisplay)
         ->paginate(15);
+      }
+      //// end of usertype is super admin
     }
 
    

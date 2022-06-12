@@ -2143,6 +2143,7 @@ checkAutorityaccess(){
                                 this.form.post('api/saleareportsview')
                                 .then(()=>{
 axios.get("api/totalmonthlycollectionsselectedreport").then(({ data }) => (this.totalmonthlycollectionsselectedreport = data));
+this.loadBranchperformancereportrecords();
 axios.get("api/allbranchesmreports").then(({ data }) => (this.allbranchesmreports = data));
   axios.get("api/selectedreporttype").then(({ data }) => (this.selectedreporttype = data));
    axios.get("api/mothlyreportmonth").then(({ data }) => (this.mothlyreportmonth = data));
