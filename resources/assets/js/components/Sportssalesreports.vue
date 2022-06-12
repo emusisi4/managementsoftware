@@ -13,16 +13,33 @@
 
 
 
+<div v-if="allowedadilysalesreportcomponent+allowedgenealsalesreportcomponent+allowedmonthlysalesreportcomponent+allowedabranchperformancesalesreportcomponent < 1">
 
+
+
+<div class="card">
+                <div class="d-flex border-bottom title-part-padding align-items-center ">
+                  <div>
+                   <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">Sorry, No Reports Aothorised for you</div>
+                  </div>
+                
+                
+                </div>
+         
+              </div>
+
+
+</div>
 
         <!-- Start of the -->
+<div v-if="allowedadilysalesreportcomponent+allowedgenealsalesreportcomponent+allowedmonthlysalesreportcomponent+allowedabranchperformancesalesreportcomponent > 0">
 
 <div class="card">
                 <div class="d-flex border-bottom title-part-padding align-items-center ">
                 
                 
 
-   <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">SALES REPORTS {{allowedabranchperformancesalesreportcomponent+allowedmonthlysalesreportcomponent}}</div>
+   <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">SALES REPORTS </div>
                 
 
 
@@ -274,11 +291,11 @@
       <label for="exampleInputEmail1">To :</label>
                     <input v-model="form.enddate" type="date"  v-on:change="myClickEventtosavesalesreportbydate"  name="enddate"  :class="{ 'is-invalid': form.errors.has('enddate') }">
                      <has-error :form="form" field="enddate"></has-error>
-        <label for="exampleInputEmail1">Country :</label>
+        <label v-if="lut == '1'" for="exampleInputEmail1">Country :</label>
                  
                  
 
-         <select name ="countryname" v-model="form.countryname" id ="countryname" 
+         <select v-if="lut == '1'" name ="countryname" v-model="form.countryname" id ="countryname" 
          v-on:change="myClickEventtosavesalesreportbydate" :class="{'is-invalid': form.errors.has('countryname')}">
 <option>  </option>
 <option v-for='data in countrieslist' v-bind:value='data.id'> {{ data.countryname }}</option>
@@ -288,11 +305,11 @@
 
 
 
-    <label for="exampleInputEmail1">Company :</label>
+    <label v-if="lut == '1'" for="exampleInputEmail1">Company :</label>
                  
                  
 
-         <select name ="companyname" v-model="form.companyname" id ="companyname" 
+         <select v-if="lut == '1'" name ="companyname" v-model="form.companyname" id ="companyname" 
          v-on:change="myClickEventtosavesalesreportbydate" :class="{'is-invalid': form.errors.has('companyname')}">
 <option value="900"> All </option>
 <option v-for='data in companieslist' v-bind:value='data.id'> {{ data.companyname }}</option>
@@ -300,11 +317,11 @@
 </select>
             <has-error :form="form" field="companyname"></has-error>
 
-    <label for="exampleInputEmail1">Branch :</label>
+    <label v-if="lur != '101'" for="exampleInputEmail1">Branch :</label>
                  
                  
 
-         <select name ="branchname" v-model="form.branchname" id ="branchname" 
+         <select v-if="lur != '101'" name ="branchname" v-model="form.branchname" id ="branchname" 
          v-on:change="myClickEventtosavesalesreportbydate" :class="{'is-invalid': form.errors.has('branchname')}">
 <option value="900"> All </option>
 <option v-for='data in brancheslist' v-bind:value='data.id'> {{ data.branchname }}</option>
@@ -970,7 +987,7 @@
                 </div>
               </div>
   
-
+</div>
 <!-- mmmm models -->
 
 
