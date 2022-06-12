@@ -218,7 +218,7 @@
                  
                  
 
-       <select v-show="lut == 1 " name ="type" v-model="form.countryname" @change='getcompanies()' v-on:change="myClickEventtosavemonthlyreportallbranches" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
+       <select v-show="lut == '1' " name ="type" v-model="form.countryname" @change='getcompanies()' v-on:change="myClickEventtosavemonthlyreportallbranches" id ="countryname" :class="{'is-invalid': form.errors.has('countryname')}"
                                        data-live-search="true">
                                         <option></option>
                                         <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
