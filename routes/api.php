@@ -49,7 +49,10 @@ Route::get('generalExpensesmainpageAccess', 'APIController@generalExpensesmainpa
 
 
 
-
+Route::get('allowedadilysalesreportcomponent', 'APIController@allowedadilysalesreportcomponent');
+Route::get('allowedgenealsalesreportcomponent', 'APIController@allowedgenealsalesreportcomponent');
+Route::get('allowedmonthlysalesreportcomponent', 'APIController@allowedmonthlysalesreportcomponent');
+Route::get('allowedabranchperformancesalesreportcomponent', 'APIController@allowedabranchperformancesalesreportcomponent');
 
 
 Route::get('allowedtosepettycashaccount', 'APIController@allowedtosepettycashaccount');
@@ -109,7 +112,7 @@ Route::get('allowedshopbalancingcomponent', 'APIController@allowedshopbalancingc
 
 
 
-
+Route::get('generalsalesreportaccess', 'APIController@generalsalesreportaccess');
 Route::get('generalsportsfinancialsaccessSettings', 'APIController@generalsportsfinancialsaccessSettings');
 Route::apiResources(['currentintermbalancingrecords' => 'API\CurrentShopintermbalancingContoller']);
 Route::apiResources(['currentbalancingrecords' => 'API\CurrentShopbalancingContoller']);

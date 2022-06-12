@@ -8,7 +8,7 @@
 
 
 <!-- general component access -->
-<div  v-if="generalsportsfinancialsaccessSettings > 0 "> 
+<div  v-if="generalsalesreportaccess > 0 "> 
 
 
 
@@ -22,7 +22,7 @@
                 
                 
 
-   <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">SALES REPORTS </div>
+   <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">SALES REPORTS {{allowedabranchperformancesalesreportcomponent+allowedmonthlysalesreportcomponent}}</div>
                 
 
 
@@ -35,17 +35,17 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" @click="getDailysalesreportrecords()" href="#home" role="tab">
+                        <a class="nav-link active" v-if="allowedadilysalesreportcomponent > 0" data-bs-toggle="tab" @click="getDailysalesreportrecords()" href="#home" role="tab">
                           <span>Daily Sales Report</span>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" @click="loadGeneralreportsales()" href="#profile" role="tab">
+                        <a class="nav-link" data-bs-toggle="tab" v-if="allowedgenealsalesreportcomponent > 0" @click="loadGeneralreportsales()" href="#profile" role="tab">
                           <span>General Sales Report</span>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" @click="loadmonthlyperformancereport()" href="#messages" role="tab">
+                        <a class="nav-link" data-bs-toggle="tab" v-if="allowedmonthlysalesreportcomponent > 0" @click="loadmonthlyperformancereport()" href="#messages" role="tab">
                           <span>Monthly Sales Report</span>
                         </a>
                       </li>
@@ -53,7 +53,7 @@
 
 
                        <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab"  @click="loadBranchperformancereportrecords()" href="#messages1" role="tab">
+                        <a class="nav-link" data-bs-toggle="tab" v-if="allowedabranchperformancesalesreportcomponent > 0"  @click="loadBranchperformancereportrecords()" href="#messages1" role="tab">
                           <span>Branch Performance Report</span>
                         </a>
                       </li>
@@ -63,7 +63,7 @@
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                      <div class="tab-pane active" id="home" role="tabpanel">
+                      <div class="tab-pane active" id="home" v-if="allowedadilysalesreportcomponent > 0" role="tabpanel">
                         <div class="p-3">
                      
                      
@@ -262,7 +262,7 @@
 
 
 
-                      <div class="tab-pane p-3" id="profile" role="tabpanel">
+                      <div class="tab-pane p-3" id="profile" role="tabpanel" v-if="allowedgenealsalesreportcomponent > 0">
                        
                             <form @submit.prevent="saveDatesforgeneralreport()">
                  
@@ -500,7 +500,7 @@
 
 
 
-                      <div class="tab-pane p-3" id="messages" role="tabpanel">
+<div class="tab-pane p-3" id="messages" role="tabpanel" v-if="allowedmonthlysalesreportcomponent > 0">
 
       <div class="row">
             <!-- Column -->
@@ -792,7 +792,7 @@
 
 
 
- <div class="tab-pane p-3" id="messages1" role="tabpanel">
+ <div class="tab-pane p-3" id="messages1" role="tabpanel" v-if="allowedabranchperformancesalesreportcomponent > 0">
     <form @submit.prevent="savethemonthlyreportforallBranches()">
                  
                       <div class="form-group">
@@ -1821,7 +1821,7 @@
 <!-- closure of allowed -->
 <!--   if not authorised -->
 
-<div  v-if="generalsportsfinancialsaccessSettings < 1 "> 
+<div  v-if="generalsalesreportaccess < 1 "> 
 
    <div class="container">
         <div class="row justify-content-center">
@@ -1974,7 +1974,11 @@ totalmonthlypayoutbybranch:null,
                 bankaccountcurrentbalance:null,
                generalreportselectedstartdate:null,
             generalreportselectedenddate:null,
-         generalsportsfinancialsaccessSettings:'',
+         generalsalesreportaccess:'',
+         allowedadilysalesreportcomponent:'',
+allowedgenealsalesreportcomponent:'',
+allowedmonthlysalesreportcomponent:'',
+allowedabranchperformancesalesreportcomponent:'',
          branchesccessSettings:'',
            machineonesales: 0,
         machineonepayout: 0,
@@ -2095,7 +2099,19 @@ companycontactperson:'',
          },
 
 methods:{
+checkAutorityaccess(){
+       
+          
+            axios.get("api/allowedadilysalesreportcomponent").then(({ data }) => (this.allowedadilysalesreportcomponent = data));
+            axios.get("api/allowedgenealsalesreportcomponent").then(({ data }) => (this.allowedgenealsalesreportcomponent = data));
+            axios.get("api/allowedmonthlysalesreportcomponent").then(({ data }) => (this.allowedmonthlysalesreportcomponent = data));
+            axios.get("api/allowedabranchperformancesalesreportcomponent").then(({ data }) => (this.allowedabranchperformancesalesreportcomponent = data));
+            ///axios.get("api/candeletecredit").then(({ data }) => (this.candeletecredit = data));
+            
+             
 
+      
+  },
 
   loadRtys(){
    axios.get("api/lur").then(({ data }) => (this.lur = data));
@@ -2648,7 +2664,7 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
   loadUsers(){
      
       axios.get("api/userrecords").then(({ data }) => (this.userrecords = data));
-        axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+        axios.get("api/generalsalesreportaccess").then(({ data }) => (this.generalsalesreportaccess = data));
         axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -2661,7 +2677,7 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
   loadRoles(){
      
       axios.get("api/rolesrecords").then(({ data }) => (this.rolesrecords = data));
-        // axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+        // axios.get("api/generalsalesreportaccess").then(({ data }) => (this.generalsalesreportaccess = data));
         // axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         // axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         // axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -2676,7 +2692,7 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
    loadCompanies(){
      axios.get("api/companyrecords").then(({ data }) => (this.companyrecords = data));
         // this.checkBranchescomponentfeatures();
-        // axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+        // axios.get("api/generalsalesreportaccess").then(({ data }) => (this.generalsalesreportaccess = data));
         // axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         // axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         // axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -2693,7 +2709,7 @@ paginationroleAuthorisedcomponentsfeature(page = 1) {
      //  this.getRoles();
           //  this.getUsertypes();
         this.checkBranchescomponentfeatures();
-        axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+        axios.get("api/generalsalesreportaccess").then(({ data }) => (this.generalsalesreportaccess = data));
         axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -2712,7 +2728,7 @@ loadSubmenaccess(){
       //  this.getRoles();
       //  this.getUsertypes();
      
-    axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+    axios.get("api/generalsalesreportaccess").then(({ data }) => (this.generalsalesreportaccess = data));
         axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -2735,7 +2751,7 @@ axios.get("api/authorisedmainmenus").then(({ data }) => (this.datarecordsMainmen
           
          axios.get("api/mainmenulist").then(({ data }) => (this.mainmenulist = data));
 
-      axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+      axios.get("api/generalsalesreportaccess").then(({ data }) => (this.generalsalesreportaccess = data));
         axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         
         axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
@@ -2752,7 +2768,7 @@ axios.get("api/authorisedmainmenus").then(({ data }) => (this.datarecordsMainmen
        // axios.get("api/getlistofcomponents").then(({ data }) => (this.componentslist = data));
       //  this.getRoles();
       //  this.getUsertypes();
-    axios.get("api/generalsportsfinancialsaccessSettings").then(({ data }) => (this.generalsportsfinancialsaccessSettings = data));
+    axios.get("api/generalsalesreportaccess").then(({ data }) => (this.generalsalesreportaccess = data));
         axios.get("api/branchesccessSettings").then(({ data }) => (this.branchesccessSettings = data));
         axios.get("api/rolesaccessSettings").then(({ data }) => (this.rolesaccessSettings = data));
         axios.get("api/submenuaccessSettings").then(({ data }) => (this.submenuaccessSettings = data));
@@ -3645,6 +3661,7 @@ balancescheck(){
 
 ///////////////////////////////////////////////////
         created() {
+          this.checkAutorityaccess();
           this.loadRtys();
           this.monthlyReportsummaries();
             axios.get('/api/montheslist').then(function (response) { this.montheslist = response.data;}.bind(this));
