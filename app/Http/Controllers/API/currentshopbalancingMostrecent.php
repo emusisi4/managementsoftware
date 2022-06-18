@@ -189,12 +189,12 @@ if($usertype == "1")
       $branchto = $request['branchname'];
 
 
-
+    //  if($userrole == '1')
       {
 
 
       /// checking if the branch has a machine code set for it
-$doesthebranchhaveacdelock = \DB::table('branchandcodes')->where('branch', $branchforaction )->count();
+      $doesthebranchhaveacdelock = \DB::table('branchandcodes')->where('branch', $branchforaction )->count();
 if($doesthebranchhaveacdelock > 0)
      {
 $machinefloatcodelastloaded  = Branchandcode::where('branch', $branchforaction)->orderBy('id', 'Desc')->limit(1)->value('floatcode');
@@ -207,14 +207,16 @@ if($doesthebranchhaveacdelock < 1)
 
 
 $doesthebranchhavefish = \DB::table('branchandproducts')->where('branch', $branchforaction )->where('sysname', $fishgame )->count();
-
+$doesthebranchhavesoccer = \DB::table('branchandproducts')->where('branch', $branchforaction )->where('sysname', $soccer )->count();
+$doesthebranchhavevirtual = \DB::table('branchandproducts')->where('branch', $branchforaction )->where('sysname', $virtual )->count();
 
       //// branch in action
-   
+      $branchforaction = $request['branchname'];
 
   
      
-    
+    /// number of machines 
+    $totalfishmacinesinthebranch = \DB::table('branchesandmachines')->where('branchname', '=', $branchforaction)->count();
 if($usertype == '1')
 {
     $this->validate($request,[
@@ -243,6 +245,8 @@ if($usertype == '1')
         'machineonecurrentcode'  => 'required',
         'machineonesales'  => 'required',
         'machineonepayout'  => 'required',
+       // 'countryname'  => 'required',
+       // 'companyname'  => 'required',
         'machineonefloat'  => 'required'
       
        ]);
@@ -250,19 +254,58 @@ if($usertype == '1')
 
 
      $datepaid = date('Y-m-d');
-     $branch  = $request['branchname'];
+     $inpbranch = $request['branchname'];
      $dateinq =  $request['datedone'];
 
-     /// checking if a record exists for balancing
-     $branchinbalanced  = \DB::table('shopbalancingrecords')
-     ->where('branch', '=', $branch)
-     ->where('countryname', '=', $countryname)
-     ->where('companyname', '=', $companyname)
-     ->count();
-     //// working on the openning balance 
+       /// checking if the machine was reset
+  $machineresetstatus = \DB::table('machineresets')->where('branch', $inpbranch)->where('machine', '101')->orderBy('id', 'Desc')->limit(1)->value('resetdate');
+     if( $machineresetstatus  != $dateinq)
+{
+
+            /// getting the expenses
+$totalexpense = \DB::table('madeexpenses')
+->where('datemade', '=', $dateinq)
+->where('branch', '=', $inpbranch)
+->where('countryname', '=', $countryname)
+->where('companyname', '=', $companyname)
+->where('explevel', '=', 1)
+->where('approvalstate', '=', 1)
+->sum('amount');
+     
+        /// getting the cashin
+$totalcashin = \DB::table('couttransfers')->where('transferdate', '=', $dateinq)->where('branchto', '=', $inpbranch)
+->where('status', '=', 1)
+->where('countryname', '=', $countryname)
+->where('companyname', '=', $companyname)
+->sum('amount');
+      /// getting the cashout
+$totalcashout = \DB::table('cintransfers')
+->where('transferdate', '=', $dateinq)
+->where('branchto', '=', $inpbranch)
+->where('countryname', '=', $countryname)
+->where('companyname', '=', $companyname)
+->where('status', '=', 1)->sum('amount');
+     
+      /// getting the payout
+$totalpayout = \DB::table('branchpayouts')
+->where('datepaid', '=', $dateinq)
+->where('branch', '=', $inpbranch)
+->where('countryname', '=', $countryname)
+->where('companyname', '=', $companyname)
+->sum('amount');
+     
+     
+      /// checking if a record exists for balancing
+             $branchinbalanced  = \DB::table('shopbalancingrecords')
+             ->where('branch', '=', $inpbranch)
+             ->where('countryname', '=', $countryname)
+             ->where('companyname', '=', $companyname)
+             ->count();
+     
+     ///getting the openning balance
      if($branchinbalanced > 0)
      {
-     $openningbalance  = Shopbalancingrecord::where('branch', $branch)
+     $openningbalance  = Shopbalancingrecord::where('branch', $inpbranch)
       ->where('countryname', '=', $countryname)
       ->where('companyname', '=', $companyname)
       ->orderBy('id', 'Desc')
@@ -271,166 +314,172 @@ if($usertype == '1')
      }
      if($branchinbalanced < 1)
      {
-     $openningbalance  = Branch::where('id', $branch)
+     $openningbalance  = Branch::where('id', $inpbranch)
      ->where('countryname', '=', $countryname)
       ->where('companyname', '=', $companyname)
       ->orderBy('id', 'Desc')->limit(1)->value('openningbalance');
      }
- 
-     $yearmade = date('Y', strtotime($dateinq));
-     $monthmade = date('m', strtotime($dateinq));
+   
+     /// working on fish sales and codes
+     //gitting the days code from sles and payout
 
-     /// getting the machine openning code
-     $machineoneopenningcode = \DB::table('currentmachinecodes')
-     ->where('branch', $branch)
-     ->where('machineno', '101')
-     ->orderBy('id', 'Desc')
-     ->limit(1)->value('machinecode');
+     $dateinact = $request['datedone'];
+     $yearmade = date('Y', strtotime($dateinact));
+     $monthmade = date('m', strtotime($dateinact));
+
+    $machineoneopenningcode = \DB::table('currentmachinecodes')->where('branch', $inpbranch)->where('machineno', '101')->orderBy('id', 'Desc')->limit(1)->value('machinecode');
+      
 ///// Getting the machine multiplier
 $multiplier = \DB::table('branchesandmachines')
-->where('branchname', $branch)
+->where('branchname', $inpbranch)
 ->where('countryname', '=', $countryname)
 ->where('companyname', '=', $companyname)
 ->where('machinename', '101')->orderBy('id', 'Desc')->limit(1)->value('machinmultiplier');
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            /// getting the expenses
-            $totalexpense = \DB::table('madeexpenses')
-            ->where('datemade', '=', $dateinq)
-            ->where('branch', '=', $branch)
-            ->where('countryname', '=', $countryname)
-            ->where('companyname', '=', $companyname)
-            ->where('explevel', '=', 1)
-            ->where('approvalstate', '=', 1)
-            ->sum('amount');
-                 
-                    /// getting the cashin
-            $totalcashin = \DB::table('couttransfers')->where('transferdate', '=', $dateinq)->where('branchto', '=', $branch)
-            ->where('status', '=', 1)
-            ->where('countryname', '=', $countryname)
-            ->where('companyname', '=', $companyname)
-            ->sum('amount');
-                  /// getting the cashout
-            $totalcashout = \DB::table('cintransfers')
-            ->where('transferdate', '=', $dateinq)
-            ->where('branchto', '=', $branch)
-            ->where('countryname', '=', $countryname)
-            ->where('companyname', '=', $companyname)
-            ->where('status', '=', 1)->sum('amount');
-                 
-                  /// getting the payout
-            $totalpayout = \DB::table('branchpayouts')
-            ->where('datepaid', '=', $dateinq)
-            ->where('branch', '=', $branch)
-            ->where('countryname', '=', $countryname)
-            ->where('companyname', '=', $companyname)
-            ->sum('amount');
 
 
 
 
 
 
+    $machineonecurrentcode = $request['machineonecurrentcode'];
+    $machineonesales = $request['machineonesales'];
+    $machineonepayout = $request['machineonepayout'];
+    $machineonefloat = $request['machineonefloat'];
+    
+    
+     $machineoneclosingcode = $machineonecurrentcode;
+     $fishincome = ($machineoneclosingcode - $machineoneopenningcode)*$multiplier;
+     $closingbalance = $openningbalance + $fishincome + $totalcashin - $totalcashout -$totalexpense -$totalpayout;
+
+     /// working on todays saes and payout 
+     $latestsalescode = \DB::table('dailyreportcodes')
+     ->where('branch', $inpbranch)
+     ->where('machineno', '101')
+     ->where('countryname', '=', $countryname)
+     ->where('companyname', '=', $companyname)
+     ->orderBy('id', 'Desc')
+     ->limit(1)
+     ->value('salescode');
+
+     $latestfloatcode = \DB::table('dailyreportcodes')
+     ->where('branch', $inpbranch)
+     ->where('machineno', '101')
+     ->where('countryname', '=', $countryname)
+     ->where('companyname', '=', $companyname)
+     ->orderBy('id', 'Desc')
+     ->limit(1)
+     ->value('floatcode');
 
 
-///////////////////
+
+$currentfcode = $request['machineonefloat'];
+
+     if($latestfloatcode >= $currentfcode)
+     {
+       $timeworkedinminutes = $latestfloatcode - $currentfcode;
+       $timeworkedinhours = (($latestfloatcode - $currentfcode)/60);
+       $remainingtimeinhours =  ($currentfcode/60);
+       $remainningtimeidays = ($currentfcode/60/24);
+     }
+    //  if($latestfloatcode < $currentfcode)
+    //  {
+    //    $timeworkedinminutes = $latestfloatcode - $currentfcode;
+    //    $timeworkedinhours = (($latestfloatcode - $currentfcode)/60);
+    //    $remainingtimeinhours =  ($currentfcode/60);
+    //    $remainningtimeidays = ($currentfcode/60/24);
+    //  }
 
 
-
-$machineonecurrentcode = $request['machineonecurrentcode'];
-$machineonesales = $request['machineonesales'];
-$machineonepayout = $request['machineonepayout'];
-$machineonefloat = $request['machineonefloat'];
-
-$machineoneclosingcode = $machineonecurrentcode;
-$fishincome = ($machineoneclosingcode - $machineoneopenningcode)*$multiplier;
-
-//// branch closing cash 
-// $closingbalance = $openningbalance + $fishincome + $totalcashin - $totalcashout -$totalexpense -$totalpayout;
-$closingbalance = $openningbalance + $fishincome + $totalcashin - $totalcashout;
-
-  /// working on todays saes and payout 
-  $latestsalescode = \DB::table('dailyreportcodes')
-  ->where('branch', $branch)
-  ->where('machineno', '101')
-  ->where('countryname', '=', $countryname)
-  ->where('companyname', '=', $companyname)
-  ->orderBy('id', 'Desc')
-  ->limit(1)
-  ->value('salescode');
-
-  $latestpayoutcode = \DB::table('dailyreportcodes')
-  ->where('branch', $branch)
-  ->where('machineno', '101')
-  ->where('countryname', '=', $countryname)
-  ->where('companyname', '=', $companyname)
-  ->orderBy('id', 'Desc')
-  ->limit(1)
-  ->value('payoutcode');
-  $todayssales = $machineonesales - $latestsalescode;
-  $todayspayout = $machineonepayout - $latestpayoutcode;
-  
-  
-  $mydaysales =  ($todayssales*$multiplier);
-  $mydaypayout = $todayspayout*$multiplier;
+     $latestpayoutcode = \DB::table('dailyreportcodes')
+     ->where('branch', $inpbranch)
+     ->where('machineno', '101')
+     ->where('countryname', '=', $countryname)
+     ->where('companyname', '=', $companyname)
+     ->orderBy('id', 'Desc')
+     ->limit(1)
+     ->value('payoutcode');
+     $todayssales = $machineonesales - $latestsalescode;
+     $todayspayout = $machineonepayout - $latestpayoutcode;
+    Shopbalancingrecord::Create([
+           'fishincome' => $fishincome,
+           'fishsales' => $todayssales,
+           'fishpayout' => $todayspayout,
+           'datedone' => $request['datedone'],
+           'branch' => $request['branchname'],
+           'scpayout' => 0,
+           'scsales' =>0,
+           'sctkts' => 0,
+           'vsales' => 0,
+           'vcan' => 0,
+           'vprof' => 0,
+           'vpay' => 0,
+           'vtkts' => 0,
+           'comment' => $request['comment'],
+           'expenses' => $totalexpense,
+           'cashin'    => $totalcashin,
+           'cashout'   => $totalcashout,
+           'opbalance'    => $openningbalance,
+           'clcash'    => $closingbalance,
+           'reportedcash'    => $request['reportedcash'],
+           'comment'    => $request['bio'],
+           'multiplier' => $multiplier,
 
 
-$totalprofit =  ($todayssales*$multiplier)-($todayspayout*$multiplier);
-  Shopbalancingrecord::Create([
-    'fishincome' => $fishincome,
-    'fishsales' => $todayssales,
-    'fishpayout' => $todayspayout,
-    'datedone' => $request['datedone'],
-    'branch' => $request['branchname'],
-    'scpayout' => 0,
-    'scsales' =>0,
-    'sctkts' => 0,
-    'vsales' => 0,
-    'vcan' => 0,
-    'vprof' => 0,
-    'vpay' => 0,
-    'vtkts' => 0,
-    'comment' => $request['comment'],
-    'expenses' => $totalexpense,
-    'cashin'    => $totalcashin,
-    'cashout'   => $totalcashout,
-    'opbalance'    => $openningbalance,
-    'clcash'    => $closingbalance,
-    'reportedcash'    => $request['reportedcash'],
-    'comment'    => $request['bio'],
-    'multiplier' => $multiplier,
+           'countryname'    => $countryname,
+           'companyname'    => $companyname,
+
+           'totalsales' => $todayssales*$multiplier,
+           'totalpayout' => $todayspayout*$multiplier,
+           'totalcancelled' => 0,
+           'totalprofit' => ($todayssales*$multiplier)-($todayspayout*$multiplier),
 
 
-    'countryname'    => $countryname,
-    'companyname'    => $companyname,
-
-    'totalsales' =>$mydaysales,
-    'totalpayout' => $mydaypayout,
-    'totalcancelled' => 0,
-    'totalprofit' =>$totalprofit,
-
-
-    'ucret' => $userid,
-  
-]);
+           'ucret' => $userid,
+         
+       ]);
 
 ////////// working on shop balance
+
 $currentbranchbalance = \DB::table('branchcashstandings')
-->where('branch', $branch)
+->where('branch', $inpbranch)
 ->where('countryname', '=', $countryname)
 ->where('companyname', '=', $companyname)
 ->orderBy('id', 'Desc')
 ->limit(1)
 ->value('outstanding');
 
-$machinemoney = ( ($todayssales*$multiplier)-($todayspayout*$multiplier));
 
+ $machinemoney = ( ($todayssales*$multiplier)-($todayspayout*$multiplier));
 $totaltipup = $currentbranchbalance+$machinemoney;
 $result2 = \DB::table('branchcashstandings')
-->where('branch', $branch)
+->where('branch', $inpbranch)
 ->where('countryname', '=', $countryname)
 ->where('companyname', '=', $companyname)
 ->update(['outstanding' =>  $totaltipup, 'reportedcash' =>  $request['reportedcash']]);
+
+
+/////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -445,9 +494,11 @@ $result2 = \DB::table('branchcashstandings')
         'ucret' => $userid,
       
     ]);
-/////////////////////////////////
-$existpreviouswork = \DB::table('dailyreportcodes')
-->where('branch', '=', $branch)
+    //ooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+/// working and Updating the daily Codes
+    /////////////////////////////////////////// checking if there is a sale or payout
+    $existpreviouswork = \DB::table('dailyreportcodes')
+->where('branch', '=', $inpbranch)
 ->where('countryname', '=', $countryname)
 ->where('companyname', '=', $companyname)
 ->where('machineno', '=', 101)->count();
@@ -456,7 +507,7 @@ $existpreviouswork = \DB::table('dailyreportcodes')
        if($existpreviouswork > 0)
        {
       $previoussalesfigure = \DB::table('dailyreportcodes')
-      ->where('branch', $branch)
+      ->where('branch', $inpbranch)
       ->where('countryname', '=', $countryname)
       ->where('companyname', '=', $companyname)
       ->where('machineno', '101')
@@ -464,7 +515,7 @@ $existpreviouswork = \DB::table('dailyreportcodes')
       ->limit(1)
       ->value('salescode');
       $previouspayoutfigure = \DB::table('dailyreportcodes')
-      ->where('branch', $branch)
+      ->where('branch', $inpbranch)
       ->where('machineno', '101')
       ->where('countryname', '=', $countryname)
 ->where('companyname', '=', $companyname)
@@ -825,8 +876,20 @@ $totalprofittttt = \DB::table('mlyrpts')
     
     ]);
   } 
+// $curen = \DB::table('shopbalancingrecords')->where('id', '=', $id)->value('datedone');
+    
+}// closing if the machine was not reset 
+      }///////////////////////////////////////////////////////////////////// end of super admin 
 
-  }//////////////// 
+
+
+
+
+
+
+
+
+
 
 
 

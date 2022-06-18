@@ -89,8 +89,9 @@ class CompaniesController extends Controller
       'contactperson' => $request['contactperson'],
       'countryname' => $request['countryname'],
       'contactnumber' => $request['contactnumber'],
-    
-   
+      
+      'tradename' => $request['tradename'],
+      'description' => $request['description'],
       'ucret' => $userid,
     
   ]);

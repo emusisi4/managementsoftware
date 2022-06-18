@@ -171,11 +171,27 @@
                   <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
+
+
+               
+
+
+
+
                       <li class="nav-item"  v-if="allowedshopbalancingcomponent > 0 ">
                         <a class="nav-link active" data-bs-toggle="tab" href="#home"  @click="getShopbalancingrecords()" role="tab">
                           <span>Shop Balancing</span>
                         </a>
                       </li>
+
+ <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#messages3"  @click="loadBranchOperationrecords()" role="tab">
+                          <span>Check Shop Balance</span>
+                        </a>
+                      </li>
+
+
+
 
 
                       <li class="nav-item"  v-if="allowedcollectionscomponent > 0 ">
@@ -200,6 +216,14 @@
                           <span>Branch Operation</span>
                         </a>
                       </li>
+
+
+
+
+  
+
+
+
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -270,7 +294,8 @@
                                       <div class="bethapa-table-header">
                       Shop Balancing records 
 
-                      <button type="button" v-if="candoshopbalancing > 0 " class="add-newm" @click="newcompanydetailsModal" @mouseover="getcompanybranches();" >Balance shop now </button> 
+                      <button type="button" v-if="candoshopbalancing > 0 " class="add-newm" @click="newcompanydetailsModal" @mouseover="getcompanybranches();" >Balance shop now </button>  
+                   
                      </div>
 
 
@@ -646,6 +671,115 @@
                     <!-- closure of responsive -->
                       </div>
 
+                      <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <div class="tab-pane p-3" id="messages3" role="tabpanel">
+                 <div class="table-responsive">
+                         
+                        
+<div class="bethapa-table-header">
+
+                           </div>
+
+         <div class="bethapa-table-header">
+               Machine Cash at Hand
+                <button type="button" v-if="candoshopbalancing > 0 " class="add-newm" @click="newcashchecknowModal" @mouseover="getcompanybranches();" >Check Now </button>  
+                 <!--  -->
+                </div>
+   
+               
+               
+        <table class="table table-bordered">
+                       <thead>
+                  
+
+
+  <tr>
+          
+                    <th>#</th>
+                   
+                     
+                    <th>Date</th>
+                       <th>User</th>
+                      <th>Branch</th>
+                      
+        
+              
+
+
+<!-- fish -->
+
+
+
+
+
+ <th>Deposits </th>
+            <th> Withdraws </th>
+            
+            <th >Profit (Machine Money) </th>
+             
+           
+        </tr>
+
+
+
+
+
+
+
+                  </thead>
+                  <tbody>
+                    <tr>
+
+               <tr v-for="shobalrecs in shopbalancingdatarecords.data" :key="shobalrecs.id">        
+                 
+                  
+                
+                      
+                         
+                                <td>{{shobalrecs.id}}</td>
+                                 <td>{{shobalrecs.datedone}}</td>
+                               
+                                     <td>  <template v-if="shobalrecs.userbalancing_branch">	{{shobalrecs.userbalancing_branch.name | firstletterCapital}}</template></td> 
+                                    <td>  <template v-if="shobalrecs.branchin_balance">	{{shobalrecs.branchin_balance.branchname | firstletterCapital}}</template></td> 
+                               
+                                  
+
+
+
+
+                                  
+                                             
+
+                                
+                                             
+                                             
+                    <td style="text-align:right;">{{formatPrice((shobalrecs.fishsales)*shobalrecs.multiplier)}}</td>
+                    <td style="text-align:right;">{{formatPrice((shobalrecs.fishpayout)*shobalrecs.multiplier)}}</td>
+                   
+
+                     <td style="text-align:right;" >{{formatPrice((shobalrecs.fishincome))}}  </td>
+
+               
+                              
+                               
+                    </tr>
+              
+                     
+                  </tbody>
+              
+ 
+                                   </table>
+
+
+                 <div class="card-footer">
+           <ul class="pagination pagination-sm m-0 float-right">
+              <pagination :data="allowedrolecomponentsObject" @pagination-change-page="paginationroleAuthorisedsubmenues"></pagination>
+           </ul>
+         </div>
+                    </div>
+                    <!-- closure of responsive -->
+                      </div>
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
                       <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <div class="tab-pane p-3" id="messages2" v-if="allowedbranchstandingcomponent > 0 " role="tabpanel">
                  <div class="table-responsive">
@@ -1836,7 +1970,294 @@
                       </div>
 
 
+<!-- ////////////////////////////////////////////////////////////////////////////////// -->
+<div class="modal fade" id="addnewcashCheck"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bs-example-modal-lg"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                              <h4 class="modal-title" id="myLargeModalLabel"
+                             v-show="!editmode">  
+                              <!-- <img src="images/logo.png" class="profile-user-img img-fluid img-circle" style="height: 80px; width: 80px;"> -->
+                      CASH CHECK
+                              </h4>
+                                  <h4  v-show="editmode" class="modal-title" >UPDATE RECORD</h4> 
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- <div class="modal-body"> -->
+                              
+              <form class="form-control-line mt-4" @submit.prevent="editmode ? updateCompanydetails():createnewIntermidiaryBalance()"> 
+                  <div class="card-body">
+          
+        <form @submit.prevent="savenewCompanyandcountry()"> 
 
+                 <div v-show="lut == 1 " class="mb-3 row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Country</label>
+                      <div class="col-sm-9">
+                 
+                                               <select name ="countryname" v-model="form.countryname"  
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" id ="countryname"
+                                                 @change='getCountrycompanies()'
+                                                :class="{'is-invalid': form.errors.has('countryname')}"
+                                     class="form-control form-control-line" >
+                                        <option></option>
+                                        <option v-for='data in countrieslist' :value='data.id'>{{ data.countryname }}</option>
+                                    </select>
+                       <has-error :form="form" field="countryname"></has-error>
+                      </div>
+                    </div>
+
+
+                   <div v-show="lut == 1 "  class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Company</label>
+                      <div class="col-sm-9">
+                        <!-- v-on:change="myClickEventsavennn" -->
+                    
+                                               <select name ="companyname" v-model="form.companyname"
+                                                v-on:change="myClickEventtosavesalesreportbydatehhhhhhhhhh" @change='getcompanybranches();'
+                                               
+                                                id ="companyname" :class="{'is-invalid': form.errors.has('companyname')}"
+                                     class="form-control form-control-line">
+                                        <option></option>
+                                        <option v-for='data in companiesss' :value='data.id'>{{ data.companyname }}</option>
+                                    </select>
+                                         <has-error :form="form" field="companyname"></has-error>
+                      </div>
+                    </div>
+
+
+
+
+
+ 
+
+ 
+      <button type="submit" id="submit" hidden="hidden" name= "submit" ref="theButtontosabemonthlyreportviePOOOJJJ" class="btn btn-primary btn-sm">Saveit</button>      
+
+                 </form>
+                 
+ <form @submit.prevent="addRecordtodbbbb()">     
+
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Branch</label>
+                      <div class="col-sm-9">
+                    
+            <select name ="branchname" v-model="form.branchname"  v-on:change="myClickEventsavennnnnnnnnnnnnnn9n"
+                                                id ="branchname"
+                                               
+                                                :class="{'is-invalid': form.errors.has('branchname')}"
+                                     class="form-control form-control-line" >
+                                        <option></option>
+                                        <option v-for='data in companybrancheslist' :value='data.id'>{{ data.branchname }}</option>
+                                    </select>
+
+                                         <has-error :form="form" field="branchname"></has-error>
+                      </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Date</label>
+                      <div class="col-sm-9">
+                    
+                       <input v-model="form.datedone" v-on:change="myClickEventsavennnnnnnnnnnnnnn9n" type="date" name="datedone"  
+                       class="form-control" :class="{ 'is-invalid': form.errors.has('datedone') }">
+                   
+
+                                <has-error :form="form" field="datedone"></has-error>
+                      </div>
+                    </div>
+
+
+<div  v-if=" soccergameproduct > 0  " >
+  <div class ="bethapa-table-sectionheader"> Soccer Details {{fishmachinestotal}}</div>
+   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Sales</label>
+                      <div class="col-sm-9">
+                    
+                        <input v-model="form.scsales" type="number" name="scsales"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('scsales') }">
+
+                                <has-error :form="form" field="scsales"></has-error>
+                      </div>
+                    </div>
+
+                     <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Tickets Sold</label>
+                      <div class="col-sm-9">
+                    
+                      <input v-model="form.sctkts" type="number" name="sctkts"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('sctkts') }">
+
+                                <has-error :form="form" field="sctkts"></has-error>
+                      </div>
+                    </div>
+
+                  
+                  
+      </div>
+   <!-- end of soccer -->
+
+<!-- virtual start -->
+<!--  -->
+<div v-if=" virtualgameproduct > 0  " >
+  <div class ="bethapa-table-sectionheader">Virtual Details</div>
+<!-- <div class ="bethapa-table-sectionheader">Kiron Virtual</div> -->
+   <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Sales</label>
+                      <div class="col-sm-9">
+                    
+                      <input v-model="form.vsales" type="number" name="vsales"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('vsales') }">
+                                <has-error :form="form" field="vsales"></has-error>
+                      </div>
+                    </div>
+                       <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Payout</label>
+                      <div class="col-sm-9">
+                    
+                         <input v-model="form.vpay" type="number" name="vpay"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('vpay') }">
+
+                                <has-error :form="form" field="vpay"></has-error>
+                      </div>
+                    </div>
+                       <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Cancelled</label>
+                      <div class="col-sm-9">
+                    
+                        <input v-model="form.vtkts" type="number" name="vtkts"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('vtkts') }">
+                                <has-error :form="form" field="vtkts"></has-error>
+                      </div>
+                    </div>
+</div>
+<!-- end of virtual -->
+
+<!-- fish hunting start -->
+  <div v-if=" fishmachinestotal > 0">
+ <div class ="bethapa-table-sectionheader">Fish Hunting Details</div>
+ 
+
+    <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Multiplier</label>
+                      <div class="col-sm-9">
+                    
+                           <input v-model="form.machineonepayout" @keyup="updatemachineonePayout" @keypress="updatemachineonePayout" type="number" name="machineonepayout"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('machineonepayout') }">
+                         <has-error :form="form" field="machineonepayout"></has-error>
+                      </div>
+                    </div>
+
+ 
+     <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Openning Code</label>
+                      <div class="col-sm-9">
+                    
+                        {{(machineoneopenningcode)}}
+                      </div>
+                    </div>
+
+                       <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Current Code</label>
+                      <div class="col-sm-9">
+                    
+                           <input v-model="form.machineonecurrentcode" readonly type="number" name="machineonecurrentcode"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('machineonecurrentcode') }">
+                      </div>
+                    </div>
+
+                       <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Sales</label>
+                      <div class="col-sm-9">
+                    
+                          <input v-model="form.machineonesales" type="number" @keyup="updatemachineoneSales" @keypress="updatemachineoneSales"  name="machineonesales"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('machineonesales') }">
+                         <has-error :form="form" field="machineonesales"></has-error>
+                      </div>
+                    </div>
+
+
+                     <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Payout</label>
+                      <div class="col-sm-9">
+                    
+                           <input v-model="form.machineonepayout" @keyup="updatemachineonePayout" @keypress="updatemachineonePayout" type="number" name="machineonepayout"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('machineonepayout') }">
+                         <has-error :form="form" field="machineonepayout"></has-error>
+                      </div>
+                    </div>
+
+
+                       <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Float Code</label>
+                      <div class="col-sm-9">
+                    
+                            <input v-model="form.machineonefloat" type="number" name="machineonefloat"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('machineonefloat') }">
+                         <has-error :form="form" field="machineonefloat"></has-error>
+                      </div>
+                    </div>
+
+
+                    <div class ="bethapa-table-sectionheader">Shop details</div>
+                     <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Cash at Hand</label>
+                      <div class="col-sm-9">
+                    
+                            <input v-model="form.reportedcash" type="text" name="reportedcash"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('reportedcash') }">
+                         <has-error :form="form" field="reportedcash"></has-error>
+                      </div>
+                    </div>
+
+                     <div class="mb-3 row">
+                      <label class="col-sm-3 text-end control-label col-form-label">Float Code</label>
+                      <div class="col-sm-9">
+                    
+                            <textarea v-model="form.bio" type="text" name="bio"
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
+                         <has-error :form="form" field="bio"></has-error>
+                      </div>
+                    </div>
+
+</div>
+
+      
+  <button type="submit" id="submit" style="display:none" hidden="hidden"
+   name= "submit" ref="btnForshopbalancing" class="btn btn-primary btn-sm">Saveit</button>
+
+
+
+
+ </form>
+     
+
+                   
+
+                 </div>
+            
+                
+                            <!-- </div> -->
+                            
+                            <div class="modal-footer">
+             <button type="submit" v-if="branchbalancedforthisdate < 1" class="btn btn-info rounded-pill  px-4 waves-effect waves-light"> Create </button>
+             <button type="button" class="btn btn-light-danger text-danger rounded-pill px-4 waves-effect waves-light " data-bs-dismiss="modal">Close </button>
+                            </div>
+                             </form>
+                          </div>
+                          
+                          <!-- /.modal-content -->
+                        </div>
+                        
+                        <!-- /.modal-dialog -->
+                      </div>
+
+
+
+
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ////////////////////////////////////////////////////////////////////////////////// -->
 <div class="modal fade" id="addnewshopbalancingrecord"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bs-example-modal-lg"
                         aria-hidden="true"
@@ -2070,7 +2491,7 @@
                     </div>
 
                      <div class="mb-3 row">
-                      <label class="col-sm-3 text-end control-label col-form-label">Float Code</label>
+                      <label class="col-sm-3 text-end control-label col-form-label">Comment</label>
                       <div class="col-sm-9">
                     
                             <textarea v-model="form.bio" type="text" name="bio"
@@ -3249,6 +3670,46 @@ $('#addnewsupplierModal').modal('show');
             },
 
 
+   newcashchecknowModal(){
+        this.editmode = false;
+        this.form.clear();
+        this.form.reset();
+     
+     $('#addnewcashCheck').modal('show');
+            },
+
+
+
+
+
+createnewIntermidiaryBalance(){
+      this.$Progress.start();
+        this.form.post('api/currentintermbalancingrecords')
+        .then(()=>{
+
+         
+    $('#addnewcashCheck').modal('hide');
+ //   Fire.$emit('AfterAction');
+  Toast.fire({
+  icon: 'success',
+  title: 'Record Successfully Added'
+});
+        this.$Progress.finish();
+axios.get("api/currentintermbalancingrecords").then(({ data }) => (this.shopbalancingdatarecords = data));
+        })
+        .catch(()=>{
+          
+        })
+         
+    },
+
+
+
+
+
+
+
+
    newcompanydetailsModal(){
         this.editmode = false;
         this.form.clear();
@@ -3257,6 +3718,7 @@ $('#addnewsupplierModal').modal('show');
      $('#addnewshopbalancingrecord').modal('show');
             },
 
+  
 
   createBalancingrecord(){
       this.$Progress.start();

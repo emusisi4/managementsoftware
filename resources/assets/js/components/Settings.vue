@@ -83,6 +83,14 @@
                           <span>Companies</span>
                         </a>
                       </li>
+
+       <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" @click="loadCompanywallets()" href="#messages5" role="tab" >
+                          <span>Company Wallets</span>
+                        </a>
+                      </li>
+
+
                       <li class="nav-item">
                         <a  class="nav-link" data-bs-toggle="tab" href="#profile" @click="loadUsers()" role="tab" >
                           <span>Users</span>
@@ -120,11 +128,7 @@
                       </li>
 
 
-                       <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" @click="loadCompanywallets()" href="#messages5" role="tab" >
-                          <span>Company Wallets</span>
-                        </a>
-                      </li>
+                
 
 
 
