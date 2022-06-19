@@ -382,7 +382,14 @@ $totalprofit =  ($todayssales*$multiplier)-($todayspayout*$multiplier);
     'fishpayout' => $todayspayout,
     'datedone' => $request['datedone'],
     'branch' => $request['branchname'],
-  
+    'scpayout' => 0,
+    'scsales' =>0,
+    'sctkts' => 0,
+    'vsales' => 0,
+    'vcan' => 0,
+    'vprof' => 0,
+    'vpay' => 0,
+    'vtkts' => 0,
     'comment' => $request['comment'],
     'expenses' => $totalexpense,
     'cashin'    => $totalcashin,
@@ -399,8 +406,8 @@ $totalprofit =  ($todayssales*$multiplier)-($todayspayout*$multiplier);
 
     'totalsales' =>$mydaysales,
     'totalpayout' => $mydaypayout,
-   
-    'totalprofit' =>($mydaysales - $mydaypayout),
+    'totalcancelled' => 0,
+    'totalprofit' =>$totalprofit,
 
 
     'ucret' => $userid,

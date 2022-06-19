@@ -1,0 +1,207 @@
+
+                       <table class="table table-bordered">
+                       <thead>
+                    <tr>
+                     <th>#</th>
+                       <th>DATE</th>
+                        <th>USER</th>
+                      <th>BRANCH</th>
+                     
+                     
+                  
+
+<!-- v-if=" soccergameproduct > 0  " -->
+<!-- <th colspan="6"  style="font-size: 30px; background-color: green; color:white; "> TOTAL ({{currencydetails}} )</th>
+                       <th v-if=" soccergameproduct > 0  " colspan="5" style="font-size: 30px;  color:#2b2d72; ">SOCCER ({{currencydetails}})</th> -->
+
+<th colspan="5"  style="text-align:center;  background-color: green; color:#eee   "> <b>ALL PRODUCTS SUMMARY ({{currencydetails}} )</b></th>
+                     
+
+
+                     <!-- v-if=" fishgameproduct > 0  " -->
+<th colspan="5"  style="text-align:center;  background-color: #9a6d1b; color:#eee   ">FISH ({{currencydetails}} ) </th>
+                   
+                    <!-- v-if=" virtualgameproduct > 0  " -->
+<th colspan="5"   style="text-align:center;  background-color: #90423c;color:#eee "> VIRTUAL ({{currencydetails}} )</th>
+                   
+
+                      <!-- <th>Cashin ({{currencydetails }})</th>
+                      <th>Cashout ({{currencydetails }})</th> -->
+                     
+                      
+                     
+                        <th>COMMENT </th>
+                     <th >  </th>
+                    </tr>
+
+
+
+  <tr>
+          
+                    <th></th>
+                   
+                     
+                    <th></th>
+                       <th></th>
+                      <th></th>
+                      
+           <th>Sales </th>
+            <!-- <th>Cancelled </th> -->
+            <th colspan="2" >Payout </th>
+           
+           
+            <th colspan="2" >GGR (Profit) </th>
+              
+
+
+<!-- fish -->
+
+
+
+
+
+ <th>Deposits </th>
+            <th colspan="2" > Withdraws </th>
+            
+            <th colspan="2" >Profit (Machine Money) </th>
+             
+           
+           <th>Sales </th>
+         
+            <th  colspan="2">Payout </th>
+           
+            <th  colspan="2">GGR (Profit) </th>
+
+            <th></th>
+
+
+                <th></th>         
+                     
+        </tr>
+
+
+
+
+
+
+
+                  </thead>
+                  <tbody>
+                    <tr>
+
+               <tr v-for="shobalrecs in shopbalancingdatarecords.data" :key="shobalrecs.id">        
+                 
+                  
+                
+                      
+                         
+                                <td>{{shobalrecs.id}}</td>
+                                 <td>{{shobalrecs.datedone}}</td>
+                               
+                                     <td>  <template v-if="shobalrecs.userbalancing_branch">	{{shobalrecs.userbalancing_branch.name | firstletterCapital}}</template></td> 
+                                    <td>  <template v-if="shobalrecs.branchin_balance">	{{shobalrecs.branchin_balance.branchname | firstletterCapital}}</template></td> 
+                               
+                                   <td style="text-align:right;">{{formatPrice(shobalrecs.totalsales)}}</td>
+                                   
+                                      <td style="text-align:right;"> {{formatPrice(shobalrecs.totalpayout)}}</td>
+
+<td style="text-align:center;">
+                                                   
+                                          <div v-if="(shobalrecs.totalsales)  == 0 "> - </div> 
+<div v-if="(shobalrecs.totalsales-shobalrecs.totalcancelled)  != 0 ">
+    {{parseFloat(((shobalrecs.totalpayout) /(shobalrecs.totalsales))*100).toFixed(0)}}%
+</div> </td>
+
+
+
+
+                                      <td style="text-align:right;">{{formatPrice(shobalrecs.totalprofit)}}
+                                           </td>
+                                             
+
+                                 <td style="text-align:center;"> 
+                                     
+                                      <div  v-if="(shobalrecs.totalsales-shobalrecs.totalcancelled) == 0" >- </div> 
+  <div  v-if="(shobalrecs.totalsales-shobalrecs.totalcancelled) !=0 ">
+     {{parseFloat(((shobalrecs.totalprofit) /(shobalrecs.totalsales))*100).toFixed(0)}}% </div>
+                                     
+                                     
+                                     
+                                     </td>
+                                             
+                                             
+                    <td style="text-align:right;">{{formatPrice((shobalrecs.fishsales)*shobalrecs.multiplier)}}</td>
+                    <td style="text-align:right;">{{formatPrice((shobalrecs.fishpayout)*shobalrecs.multiplier)}}</td>
+                     <td style="text-align:center;" >
+                     
+                     <div v-if="(shobalrecs.fishsales*shobalrecs.multiplier) != 0 ">
+                     
+                     
+                     {{parseFloat(((shobalrecs.fishpayout*shobalrecs.multiplier) /(shobalrecs.fishsales*shobalrecs.multiplier))*100).toFixed(0)}}%</div>
+                     
+                       <div v-if="(shobalrecs.fishsales*shobalrecs.multiplier) == 0 "> - </div>
+                     
+                     </td>
+
+                     <td style="text-align:right;" >{{formatPrice((shobalrecs.fishincome))}}  </td>
+
+                      <td style="text-align:center;"> 
+                         <div v-if="shobalrecs.fishsales*shobalrecs.multiplier  != 0 ">  
+                         
+                         {{parseFloat(((shobalrecs.fishincome) /(shobalrecs.fishsales*shobalrecs.multiplier))*100).toFixed(0)}}%
+                               </div>
+                         <div v-if="shobalrecs.fishsales*shobalrecs.multiplier  == 0 ">   - </div>
+                      </td>
+                         <td style="text-align:right;"  >{{formatPrice(shobalrecs.vsales)}}</td>
+                     
+                       <td style="text-align:right;" >{{formatPrice(shobalrecs.vpay)}}</td>
+         <td style="text-align:center; ">
+           <div v-if="(shobalrecs.vsales-shobalrecs.vcan) != 0">
+           {{parseFloat(((shobalrecs.vpay) /(shobalrecs.vsales-shobalrecs.vcan))*100).toFixed(0)}}%
+           </div>
+           <div v-if="(shobalrecs.vsales-shobalrecs.vcan) == 0">- </div>
+           </td> 
+                                     <td style="text-align:right;" >{{formatPrice((shobalrecs.vprof))}}</td>
+
+<td style="text-align:center; " >
+  <div v-if="(shobalrecs.vsales-shobalrecs.vcan) != 0"> 
+    {{parseFloat(((shobalrecs.vprof) /(shobalrecs.vsales-shobalrecs.vcan))*100).toFixed(0)}}%
+  </div>
+  
+  <div v-if="(shobalrecs.vsales-shobalrecs.vcan) == 0"> - </div>
+  
+  
+  </td> 
+                                
+                                    <!-- <td style="text-align:right;" >{{formatPrice((shobalrecs.cashin))}}</td>
+                     <td style="text-align:right;" >{{formatPrice((shobalrecs.cashout))}}</td>
+                    -->
+            
+
+
+
+
+                                       <td>{{shobalrecs.comment}}</td>
+                            
+                                  
+                                       
+                                
+                                <!-- v-if="allowedtodeleteshopBalancingRecord > 0" -->
+
+  <td>
+                                    <button type="button" v-if="allowedtodeleteshopBalancingRecord > 0 " 
+  @click="deleteShopbalancingrecord(shobalrecs.id)" class="btn waves-effect waves-light btn-xs btn-danger">
+                      Void Record
+                    </button>
+                 
+                      </td>
+               
+                              
+                               
+                    </tr>
+              
+                     
+                  </tbody>
+              
+ 
+                                   </table>
