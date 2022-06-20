@@ -2424,7 +2424,7 @@
 
 <!-- fish hunting start -->
   <div v-if=" fishmachinestotal > 0">
- <div class ="bethapa-table-sectionheader">Fish Hunting Details</div>
+ <div class ="bethapa-table-sectionheader">Fish ddd Hunting Details</div>
  
 
  

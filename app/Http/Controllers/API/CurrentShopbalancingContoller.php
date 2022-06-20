@@ -367,6 +367,7 @@ $closingbalance = $openningbalance + $fishincome + $totalcashin - $totalcashout;
   ->orderBy('id', 'Desc')
   ->limit(1)
   ->value('payoutcode');
+ 
   $todayssales = $machineonesales - $latestsalescode;
   $todayspayout = $machineonepayout - $latestpayoutcode;
   
@@ -380,7 +381,7 @@ $totalprofit =  ($todayssales*$multiplier)-($todayspayout*$multiplier);
     'fishincome' => $fishincome,
     'fishsales' => $todayssales,
     'fishpayout' => $todayspayout,
-    'datedone' => $request['datedone'],
+    'datedone' =>  $dateinq,
     'branch' => $request['branchname'],
   
     'comment' => $request['comment'],
@@ -430,7 +431,7 @@ $result2 = \DB::table('branchcashstandings')
        //// Saving the current machinecodes
        Currentmachinecode::Create([
         'machineno' => '101',
-        'datedone' => $request['datedone'],
+        'datedone' =>  $dateinq,
         'countryname'    => $countryname,
         'companyname'    => $companyname,
         'branch' => $request['branchname'],
@@ -445,22 +446,27 @@ $existpreviouswork = \DB::table('dailyreportcodes')
 ->where('companyname', '=', $companyname)
 ->where('machineno', '=', 101)->count();
   
-    
+ /// working on the previous sales figure   
        if($existpreviouswork > 0)
        {
       $previoussalesfigure = \DB::table('dailyreportcodes')
       ->where('branch', $branch)
       ->where('countryname', '=', $countryname)
       ->where('companyname', '=', $companyname)
-      ->where('machineno', '101')
+     ->where('machineno', '101')
       ->orderBy('id', 'Desc')
       ->limit(1)
       ->value('salescode');
+
+
+
+ /// working on the previous payout figure   
+
       $previouspayoutfigure = \DB::table('dailyreportcodes')
       ->where('branch', $branch)
       ->where('machineno', '101')
       ->where('countryname', '=', $countryname)
-->where('companyname', '=', $companyname)
+      ->where('companyname', '=', $companyname)
       ->orderBy('id', 'Desc')
       ->limit(1)
       ->value('payoutcode');
@@ -506,7 +512,7 @@ DB::table('dailyreportcodes')->where('branch', $bxn)->where('datedone', $datedon
       'companyname'     => $request['companyname'],
       'countryname'       => $request['countryname'],
   
-      'datedone'     => $request['datedone'],
+      'datedone'     =>  $dateinq,
       'branch'       => $request['branchname'],
       'closingcode'  => $machineoneclosingcode,
       'floatcode'    => $request['machineonefloat'],
@@ -719,7 +725,7 @@ Daysummarry::Create([
     
     Salesdetail::Create([
       'machineno'      => '101',
-      'datedone'       => $request['datedone'],
+      'datedone'       =>  $dateinq,
       'branch'         => $request['branchname'],
       
       'previoussalesfigure' => $previoussalesfigure,
