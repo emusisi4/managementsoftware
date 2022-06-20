@@ -136,10 +136,7 @@
 <div class="col-md-12">
               <div class="card">
                 <div class="d-flex  border-bottom title-part-padding align-items-center ">
-                  <div>
-                    <h2 class="card-title mb-0"> EXPENSES DETAILS</h2>
-                  </div>
-               
+                    <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">EXPENSES DETAILS </div>
                 </div>
                 <div class="card-body">
                  

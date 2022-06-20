@@ -26,9 +26,7 @@
                     title-part-padding
                     align-items-center
                   ">
-                  <div>
-                    <h4 class="card-title mb-0">Fish Manager</h4>
-                  </div>
+                 <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">FISH MANAGER </div>
                 
                 
                 </div>

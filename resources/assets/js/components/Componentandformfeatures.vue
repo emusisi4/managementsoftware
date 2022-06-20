@@ -17,9 +17,7 @@
                     title-part-padding
                     align-items-center
                   ">
-                  <div>
-                    <h2 class="card-title mb-0">COMPONENTS AND FORM FEATURES</h2>
-                  </div>
+                     <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">COMPONENTS AND FEATURES </div>
                
                 </div>
                 <div class="card-body">

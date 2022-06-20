@@ -20,7 +20,12 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="d-flex border-bottom  title-part-padding align-items-center">
-                  <div class="card-title mb-0">SYSTEM SETTINGS  </div>
+         
+            <div style="    font-size: 3.125rem;  text-align: center; font-weight: bold;">SYSTEM SETTING </div>
+
+
+
+
                   <div class="ms-auto">
                     <button
                       class="
